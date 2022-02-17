@@ -18,81 +18,139 @@ namespace SmartMonitoring
 		private string _Action;
         private string _RecordID;
 		private string _machine_id;
+		private string newMachineId;
 
-		public frmMachineDetails()
+        public string ServerID { get; set; }
+
+        public frmMachineDetails()
         {
             InitializeComponent();
             btnSave.DialogResult = DialogResult.OK;
         }
 
-		public frmMachineDetails(Boolean duplicate, string machine_id, string machine_name)
-		{
-			InitializeComponent();
-			_machine_id = machine_id;
-			if (duplicate == true)
-			{
-				btnSave.Text = "Duplicate";
-				this.Text = "Duplicate from " + machine_name;
-				var row = db.montr_machines_list.Where(a => a.machine_id == machine_id).FirstOrDefault();
-				txtName.Text = row.machine_name;
-				txtDescription.Text = row.machine_description;
-				txtHostName.Text = row.host_name;
-				txtIPAddress.Text = row.ip_address;
-				txtOperatingSystem.Text = row.os_name;
-				txtDomain.Text = row.conn_domain_name;
-				txtUsername.Text = row.conn_user_name;
-				txtPassword.Text = row.conn_user_password;
-			}
-			btnSave.DialogResult = DialogResult.OK;
-		}
+		//public frmMachineDetails(Boolean duplicate, string machine_id, string machine_name)
+		//{
+		//	InitializeComponent();
+		//	_machine_id = machine_id;
+		//	if (duplicate == true)
+		//	{
+		//		btnSave.Text = "Duplicate";
+		//		this.Text = "Duplicate from " + machine_name;
+		//		var row = db.montr_machines_list.Where(a => a.machine_id == machine_id).FirstOrDefault();
+		//		txtName.Text = row.machine_name;
+		//		txtDescription.Text = row.machine_description;
+		//		txtHostName.Text = row.host_name;
+		//		txtIPAddress.Text = row.ip_address;
+		//		txtOperatingSystem.Text = row.os_name;
+		//		txtDomain.Text = row.conn_domain_name;
+		//		txtUsername.Text = row.conn_user_name;
+		//		txtPassword.Text = row.conn_user_password;
+		//	}
+		//	btnSave.DialogResult = DialogResult.OK;
+		//}
 
 		public frmMachineDetails(string Action, string RecordID)
         {
             InitializeComponent();
             btnSave.DialogResult = DialogResult.OK;
-            btnUpdate.DialogResult = DialogResult.OK;
-            btnDelete.DialogResult = DialogResult.OK;
-            _Action = Action;
+			//btnSave.DialogResult = DialogResult.OK;
+			//btnDelete.DialogResult = DialogResult.OK;
+			
+			_Action = Action;
             _RecordID = RecordID;
-            if (Action == "add")
+   //         if (Action == "add")
+   //         {
+   //             //btnSave.Visible = true;
+   //             //btnSave.Visible = false;
+   //             //btnDelete.Visible = false;				
+			//	clearFields();
+   //         }
+   //         else if (Action == "edit")
+   //         {
+   //         //    btnSave.Visible = false;
+   //         //    btnSave.Visible = true;
+   //         //    btnDelete.Visible = false;
+
+			//	var row = db.montr_machines_list.Where(a => a.machine_id == RecordID).FirstOrDefault();
+			//	txtName.Text = row.machine_name;
+			//	txtDescription.Text = row.machine_description;
+			//	txtHostName.Text = row.host_name;
+			//	txtIPAddress.Text = row.ip_address;
+			//	txtOperatingSystem.Text = row.os_name;
+			//	txtDomain.Text = row.conn_domain_name;
+			//	txtUsername.Text = row.conn_user_name;
+			//	txtPassword.Text = row.conn_user_password;
+   //         }
+   //         else if (Action == "delete")
+   //         {
+   //             //btnSave.Visible = false;
+   //             //btnSave.Visible = false;
+   //             //btnDelete.Visible = true;
+   //         }
+			//else if (Action == "duplicate")
+   //         {
+
+   //         }
+        }
+
+		//private void btnCancel_Click(object sender, EventArgs e)
+		//{
+		//    this.Close();
+		//}
+
+		private void frmMachineDetails_Load(object sender, EventArgs e)
+		{
+			txtName.Focus();
+			if (_Action == "add")
             {
-                btnSave.Visible = true;
-                btnUpdate.Visible = false;
-                btnDelete.Visible = false;
-				//txtName.Focus();
 				clearFields();
-            }
-            else if (Action == "edit")
+				btnSave.Text = "Add";
+				// get new server ID
+				string _sql1 = $"select serialno_value from set_serialno where identifier_id = 'montr_machines_list'";
+				int _server_id = Convert.ToInt32(DAL.clsDBFunctions.getDBValue(_sql1)) + 1;
+				newMachineId = $"MCHN-{_server_id.ToString("000")}";
+				txtMachineID.Text = newMachineId;
+			}
+			else if (_Action == "edit")
             {
-                btnSave.Visible = false;
-                btnUpdate.Visible = true;
-                btnDelete.Visible = false;
-
-				var row = db.montr_machines_list.Where(a => a.machine_id == RecordID).FirstOrDefault();
-				txtName.Text = row.machine_name;
-				txtDescription.Text = row.machine_description;
-				txtHostName.Text = row.host_name;
-				txtIPAddress.Text = row.ip_address;
-				txtOperatingSystem.Text = row.os_name;
-				txtDomain.Text = row.conn_domain_name;
-				txtUsername.Text = row.conn_user_name;
-				txtPassword.Text = row.conn_user_password;
-            }
-            else if (Action == "delete")
+				btnSave.Text = "Edit";
+				txtMachineID.Text = _RecordID;
+				var serverToEdit = db.montr_machines_list.FirstOrDefault(s => s.machine_id == _RecordID);
+				if (serverToEdit != null)
+                {
+					txtName.Text = serverToEdit.machine_name;
+					txtDescription.Text = serverToEdit.machine_description;
+					txtHostName.Text = serverToEdit.host_name;
+					txtIPAddress.Text = serverToEdit.ip_address;
+					txtOperatingSystem.Text = serverToEdit.os_name;
+					txtDomain.Text = serverToEdit.conn_domain_name;
+					txtUsername.Text = serverToEdit.conn_user_name;
+					txtPassword.Text = serverToEdit.conn_user_password;
+				}
+			}
+			else if (_Action == "delete")
             {
-                btnSave.Visible = false;
-                btnUpdate.Visible = false;
-                btnDelete.Visible = true;
-            }
-        }
+				btnSave.Text = "Delete";
+			}
+			else if (_Action == "duplicate")
+            {
+				btnSave.Text = "Duplicate";
+				var serverToDuplicate = db.montr_machines_list.FirstOrDefault(s => s.machine_id == _RecordID);
+				if (serverToDuplicate != null)
+				{
+					txtName.Text = serverToDuplicate.machine_name;
+					txtDescription.Text = serverToDuplicate.machine_description;
+					txtHostName.Text = serverToDuplicate.host_name;
+					txtIPAddress.Text = serverToDuplicate.ip_address;
+					txtOperatingSystem.Text = serverToDuplicate.os_name;
+					txtDomain.Text = serverToDuplicate.conn_domain_name;
+					txtUsername.Text = serverToDuplicate.conn_user_name;
+					txtPassword.Text = serverToDuplicate.conn_user_password;
+				}
+			}
+		}
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-
-        public string getValue()
+		public string getValue()
         {
             return $"{txtMachineID.Text};{txtName.Text}";
         }
@@ -208,21 +266,42 @@ namespace SmartMonitoring
 			}
 			else
 			{
-				// get new server ID
-				string _sql1 = $"select serialno_value from set_serialno where identifier_id = 'montr_machines_list'";
-				int _server_id = Convert.ToInt32(DAL.clsDBFunctions.getDBValue(_sql1)) + 1;
-				txtMachineID.Text = $"MCHN-{_server_id.ToString("000")}";
+				
 
 				// insert machine to montr_machines_list
-				int _machines_inserted = 0;
-				_machines_inserted = InsertMachine(txtMachineID.Text, txtName.Text, txtDescription.Text, txtHostName.Text, txtIPAddress.Text, txtOperatingSystem.Text, chkIsLocalhost.Checked, txtDomain.Text, txtUsername.Text, txtPassword.Text, chkIsActive.Checked, 0, DateTime.Now);
+				//int _machines_inserted = 0;
+				//_machines_inserted = InsertMachine(txtMachineID.Text, txtName.Text, txtDescription.Text, txtHostName.Text, txtIPAddress.Text, txtOperatingSystem.Text, chkIsLocalhost.Checked, txtDomain.Text, txtUsername.Text, txtPassword.Text, chkIsActive.Checked, 0, DateTime.Now);
 
-				// insert group to montr_monitor_groups
-				insertGroups(txtMachineID.Text);
+				//// insert group to montr_monitor_groups
+				//insertGroups(txtMachineID.Text);
 
 				// update serialno
-				string _sql2 = $"update set_serialno set serialno_value = {_server_id} where identifier_id = 'montr_machines_list'";
-				int _serial_updated = DAL.clsDBFunctions.UpdateDBRecord(_sql2);
+				//string _sql2 = $"update set_serialno set serialno_value = {_server_id} where identifier_id = 'montr_machines_list'";
+				//int _serial_updated = DAL.clsDBFunctions.UpdateDBRecord(_sql2);
+
+				if (_Action == "add")
+                {
+					montr_machines_list newServer = new montr_machines_list
+					{
+						machine_id = txtMachineID.Text,
+						machine_name = txtName.Text,
+						machine_description = txtDescription.Text,
+						host_name = txtHostName.Text,
+						ip_address = txtIPAddress.Text,
+						os_name = txtOperatingSystem.Text,
+						is_active = chkIsActive.Checked,
+						is_deleted = false,
+						is_current_machine = chkIsLocalhost.Checked,
+						conn_domain_name = txtDomain.Text,
+						conn_user_name = txtUsername.Text,
+						conn_user_password = txtPassword.Text,
+						insert_user_id = 0,
+						insert_dt = DateTime.Now
+					};
+
+					db.montr_machines_list.Add(newServer);
+					db.SaveChanges();
+                }
 
 				if (btnSave.Text == "Duplicate")
 				{
@@ -401,15 +480,13 @@ namespace SmartMonitoring
 				
 		}
 
-		private void frmMachineDetails_Load(object sender, EventArgs e)
-		{
-
-		}
+		
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
 			var check = db.montr_machines_list.Where(b => b.is_deleted == false && b.machine_name == txtName.Text || b.host_name == txtHostName.Text || b.ip_address == txtIPAddress.Text).FirstOrDefault();
-			
+
+			#region Checking if the user enters the required fields (Validation)
 			if (txtName.Text == "")
 			{
 				MessageBox.Show("Please write machine name.", "Notification");
@@ -464,26 +541,106 @@ namespace SmartMonitoring
 				txtIPAddress.Focus();
 				this.DialogResult = DialogResult.None;
 			}
-			else
-			{
-				var mach = db.montr_machines_list.Where(b => b.machine_id == _RecordID).FirstOrDefault();
-				if (mach != null)
+            #endregion
+            else
+            {
+                //var mach = db.montr_machines_list.Where(b => b.machine_id == _RecordID).FirstOrDefault();
+                //if (mach != null)
+                //{
+                //	mach.machine_name = txtName.Text;
+                //	mach.machine_description = txtDescription.Text;
+                //	mach.host_name = txtHostName.Text;
+                //	mach.ip_address = txtIPAddress.Text;
+                //	mach.os_name = txtOperatingSystem.Text;
+                //	mach.conn_domain_name = txtDomain.Text;
+                //	mach.conn_user_name = txtUsername.Text;
+                //	mach.conn_user_password = txtPassword.Text;
+
+                //	db.Entry(mach).State = EntityState.Modified;
+                //	db.SaveChanges();
+                //}
+                #region Add New Server
+                if (_Action == "add")
 				{
-					mach.machine_name = txtName.Text;
-					mach.machine_description = txtDescription.Text;
-					mach.host_name = txtHostName.Text;
-					mach.ip_address = txtIPAddress.Text;
-					mach.os_name = txtOperatingSystem.Text;
-					mach.conn_domain_name = txtDomain.Text;
-					mach.conn_user_name = txtUsername.Text;
-					mach.conn_user_password = txtPassword.Text;
+					montr_machines_list newServer = new montr_machines_list
+					{
+						machine_id = txtMachineID.Text,
+						machine_name = txtName.Text,
+						machine_description = txtDescription.Text,
+						host_name = txtHostName.Text,
+						ip_address = txtIPAddress.Text,
+						os_name = txtOperatingSystem.Text,
+						is_active = chkIsActive.Checked,
+						is_deleted = false,
+						is_current_machine = chkIsLocalhost.Checked,
+						conn_domain_name = txtDomain.Text,
+						conn_user_name = txtUsername.Text,
+						conn_user_password = txtPassword.Text,
+						insert_user_id = 0,
+						insert_dt = DateTime.Now
+					};
 
-					db.Entry(mach).State = EntityState.Modified;
-					db.SaveChanges();
-				}
-			}
+					db.montr_machines_list.Add(newServer);
+					int isRowInserted = db.SaveChanges();
+					#region Add New Monitor to the Server
+					if (isRowInserted > 0)
+                    {
+						ServerID = newServer.machine_id;
+
+						var query = db.montr_monitor_groups.Where(m => m.machine_id == "SERV-01");
+
+                        foreach (var item in query)
+                        {
+							montr_monitor_groups newMonitorGroup = new montr_monitor_groups
+							{ 
+								machine_id = newServer.machine_id,
+								group_name = item.group_name,
+								group_image_id = item.group_image_id,
+								display_order = item.display_order,
+								is_deleted = false,
+								is_active = true
+							};
+							db.montr_monitor_groups.Add(newMonitorGroup);
+                        }
+						db.SaveChanges();
+
+						//Update Serial Value
+						var currentSerValue = db.set_serialno.FirstOrDefault(s => s.identifier_id == "montr_machines_list");
+						currentSerValue.serialno_value++;
+						db.Entry(currentSerValue).State = EntityState.Modified;
+						db.SaveChanges();
+                    }
+                    #endregion
+                }
+                #endregion
+                #region Edit a server
+                else if (_Action == "edit")
+                {
+					var editServer = db.montr_machines_list.FirstOrDefault(m => m.machine_id == _RecordID);
+
+					if (editServer != null)
+                    {
+						editServer.machine_id = txtMachineID.Text;
+						editServer.machine_name = txtName.Text;
+						editServer.machine_description = txtDescription.Text;
+						editServer.host_name = txtHostName.Text;
+						editServer.ip_address = txtIPAddress.Text;
+						editServer.os_name = txtOperatingSystem.Text;
+						editServer.is_active = chkIsActive.Checked;
+
+						db.Entry(editServer).State = EntityState.Modified;
+						db.SaveChanges();
+                    }
+                }
+                #endregion
+            }
 
 
-		}
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

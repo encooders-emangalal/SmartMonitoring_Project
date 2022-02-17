@@ -328,6 +328,8 @@ where tbl_link.machine_id = '{_server_id}' and tbl_link.group_id = {_monitor_id}
             }
 
             //gvServers.DataSource = _table;
+
+            //load_monitors();
         }
 
         private void load_Monitors(string _server_id)
@@ -575,6 +577,8 @@ where counters.is_deleted = 0 and tbl_link.machine_id = '{_server_id}' and tbl_l
 				{
                     int index = gvServers.SelectedRows[0].Index;
                     load_servers();
+                    //if (dialogForm.ServerID != null)
+                    //    load_Monitors(dialogForm.ServerID);
                     gvServers.ClearSelection();
                     gvServers.Rows[index].Selected = true;
                 }
@@ -694,18 +698,18 @@ where counters.is_deleted = 0 and tbl_link.machine_id = '{_server_id}' and tbl_l
 
         private void mnuServerDuplicate_Click(object sender, EventArgs e)
         {
-            using (frmMachineDetails dialogForm = new frmMachineDetails(true, txtSelServerID.Text, txtSelServerName.Text))
-            {
-                DialogResult dr = dialogForm.ShowDialog(this);
-                if (dr == DialogResult.OK)
-                {
-                    int index = gvServers.SelectedRows[0].Index;
-                    load_servers();
-                    gvServers.ClearSelection();
-                    gvServers.Rows[index].Selected = true;
-                }
-                dialogForm.Close();
-            }
+            //using (frmMachineDetails dialogForm = new frmMachineDetails(true, txtSelServerID.Text, txtSelServerName.Text))
+            //{
+            //    DialogResult dr = dialogForm.ShowDialog(this);
+            //    if (dr == DialogResult.OK)
+            //    {
+            //        int index = gvServers.SelectedRows[0].Index;
+            //        load_servers();
+            //        gvServers.ClearSelection();
+            //        gvServers.Rows[index].Selected = true;
+            //    }
+            //    dialogForm.Close();
+            //}
         }
 
         private void mnuCounterAdd_Click(object sender, EventArgs e)
