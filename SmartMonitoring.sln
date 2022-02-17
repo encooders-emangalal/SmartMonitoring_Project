@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartMonitoring", "SmartMonitoring\SmartMonitoring.csproj", "{38F1709F-E643-4E5D-AF37-715FEDAFF84B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartMonitoring.WS", "SmartMonitoring.WS\SmartMonitoring.WS.csproj", "{1A843A13-FA9D-4521-AEF1-91A228541430}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartMonitoring.ASMX", "SmartMonitoring.ASMX\SmartMonitoring.ASMX.csproj", "{F15DA224-1BC2-465F-8441-C24EB99FC10F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartMonitoring.BackEnd", "SmartMonitoring.BackEnd\SmartMonitoring.BackEnd.csproj", "{CFB44ABE-C1B3-4006-9B30-71AF6C3893BB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{38F1709F-E643-4E5D-AF37-715FEDAFF84B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38F1709F-E643-4E5D-AF37-715FEDAFF84B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38F1709F-E643-4E5D-AF37-715FEDAFF84B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38F1709F-E643-4E5D-AF37-715FEDAFF84B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A843A13-FA9D-4521-AEF1-91A228541430}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A843A13-FA9D-4521-AEF1-91A228541430}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A843A13-FA9D-4521-AEF1-91A228541430}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A843A13-FA9D-4521-AEF1-91A228541430}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F15DA224-1BC2-465F-8441-C24EB99FC10F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F15DA224-1BC2-465F-8441-C24EB99FC10F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F15DA224-1BC2-465F-8441-C24EB99FC10F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F15DA224-1BC2-465F-8441-C24EB99FC10F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFB44ABE-C1B3-4006-9B30-71AF6C3893BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFB44ABE-C1B3-4006-9B30-71AF6C3893BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFB44ABE-C1B3-4006-9B30-71AF6C3893BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFB44ABE-C1B3-4006-9B30-71AF6C3893BB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

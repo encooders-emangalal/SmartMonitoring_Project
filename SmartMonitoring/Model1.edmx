@@ -1,0 +1,850 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SmartMonitoringModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="montr_machines_list">
+          <Key>
+            <PropertyRef Name="machine_id" />
+          </Key>
+          <Property Name="machine_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="machine_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="machine_description" Type="nvarchar" MaxLength="250" />
+          <Property Name="host_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ip_address" Type="varchar" MaxLength="20" />
+          <Property Name="os_name" Type="varchar" MaxLength="50" />
+          <Property Name="is_current_machine" Type="bit" />
+          <Property Name="conn_domain_name" Type="varchar" MaxLength="50" />
+          <Property Name="conn_user_name" Type="varchar" MaxLength="50" />
+          <Property Name="conn_user_password" Type="nvarchar" MaxLength="150" />
+          <Property Name="is_active" Type="bit" />
+          <Property Name="is_deleted" Type="bit" />
+          <Property Name="insert_user_id" Type="int" />
+          <Property Name="insert_dt" Type="datetime" />
+          <Property Name="update_user_id" Type="int" />
+          <Property Name="update_dt" Type="datetime" />
+          <Property Name="delete_user_id" Type="int" />
+          <Property Name="delete_dt" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SmartMonitoring.dbo.montr_monitor_counters' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="montr_monitor_counters">
+          <Key>
+            <PropertyRef Name="machine_id" />
+            <PropertyRef Name="counter_id" />
+          </Key>
+          <Property Name="machine_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="counter_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="instance_id" Type="nvarchar" MaxLength="150" />
+          <Property Name="instance_name" Type="nvarchar" MaxLength="150" />
+          <Property Name="display_order" Type="int" />
+          <Property Name="current_value" Type="float" />
+          <Property Name="current_datetime" Type="datetime" />
+          <Property Name="minimum_value" Type="float" />
+          <Property Name="minimum_datetime" Type="datetime" />
+          <Property Name="maximum_value" Type="float" />
+          <Property Name="maximum_datetime" Type="datetime" />
+          <Property Name="average_value" Type="float" />
+          <Property Name="average_datetime" Type="datetime" />
+          <Property Name="is_active" Type="bit" />
+          <Property Name="is_deleted" Type="bit" />
+          <Property Name="insert_user_id" Type="int" />
+          <Property Name="insert_dt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="montr_monitor_groups">
+          <Key>
+            <PropertyRef Name="group_id" />
+          </Key>
+          <Property Name="group_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="group_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="machine_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="group_image_id" Type="varchar" MaxLength="20" />
+          <Property Name="display_order" Type="int" />
+          <Property Name="is_active" Type="bit" />
+          <Property Name="is_deleted" Type="bit" />
+          <Property Name="insert_user_id" Type="int" />
+          <Property Name="insert_dt" Type="datetime" />
+          <Property Name="update_user_id" Type="int" />
+          <Property Name="update_dt" Type="datetime" />
+          <Property Name="delete_user_id" Type="int" />
+          <Property Name="delete_dt" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SmartMonitoring.dbo.montr_monitor_groups_counters' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="montr_monitor_groups_counters">
+          <Key>
+            <PropertyRef Name="machine_id" />
+            <PropertyRef Name="group_id" />
+            <PropertyRef Name="counter_id" />
+          </Key>
+          <Property Name="machine_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="group_id" Type="int" Nullable="false" />
+          <Property Name="counter_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="instance_id" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SmartMonitoring.dbo.montr_monitor_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="montr_monitor_rules">
+          <Key>
+            <PropertyRef Name="machine_id" />
+            <PropertyRef Name="counter_id" />
+            <PropertyRef Name="rule_field" />
+            <PropertyRef Name="rule_math_symbol" />
+            <PropertyRef Name="rule_value" />
+            <PropertyRef Name="rule_ocuurance_type" />
+            <PropertyRef Name="ocuurance_interval" />
+            <PropertyRef Name="display_level" />
+            <PropertyRef Name="action_id" />
+          </Key>
+          <Property Name="machine_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="counter_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="instance_id" Type="nvarchar" MaxLength="150" />
+          <Property Name="rule_field" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="rule_math_symbol" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="rule_value" Type="float" Nullable="false" />
+          <Property Name="rule_ocuurance_type" Type="tinyint" Nullable="false" />
+          <Property Name="ocuurance_interval" Type="int" Nullable="false" />
+          <Property Name="display_level" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="action_id" Type="int" Nullable="false" />
+          <Property Name="first_occurance_datetime" Type="datetime" />
+          <Property Name="last_occurance_datetime" Type="datetime" />
+          <Property Name="occurance_count" Type="int" />
+          <Property Name="occurance_interval" Type="int" />
+          <Property Name="is_alarm_raised" Type="bit" />
+          <Property Name="is_action_raised" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SmartMonitoring.dbo.montr_monitor_transactions' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="montr_monitor_transactions">
+          <Key>
+            <PropertyRef Name="machine_id" />
+            <PropertyRef Name="counter_id" />
+            <PropertyRef Name="counter_datetime" />
+            <PropertyRef Name="counter_value" />
+          </Key>
+          <Property Name="machine_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="counter_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="instance_id" Type="nvarchar" MaxLength="150" />
+          <Property Name="counter_datetime" Type="datetime" Nullable="false" />
+          <Property Name="counter_value" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="schd_schedulers_data">
+          <Key>
+            <PropertyRef Name="scheduler_id" />
+          </Key>
+          <Property Name="scheduler_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="entity_type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="entity_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="schd_is_enabled" Type="bit" Nullable="false" />
+          <Property Name="schd_duration_start_date" Type="date" Nullable="false" />
+          <Property Name="schd_duration_end_date" Type="date" Nullable="false" />
+          <Property Name="schd_frequencey" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="schd_daily_frequency" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="schd_daily_once_time" Type="time" Precision="0" />
+          <Property Name="schd_daily_repeat_interval" Type="tinyint" />
+          <Property Name="schd_daily_repeat_unit" Type="varchar" MaxLength="10" />
+          <Property Name="schd_daily_repeat_start_time" Type="time" Precision="0" />
+          <Property Name="schd_daily_repeat_end_time" Type="time" Precision="7" />
+          <Property Name="schd_weekly_saturday" Type="bit" />
+          <Property Name="schd_weekly_sunday" Type="bit" />
+          <Property Name="schd_weekly_monday" Type="bit" />
+          <Property Name="schd_weekly_tuesday" Type="bit" />
+          <Property Name="schd_weekly_wednesday" Type="bit" />
+          <Property Name="schd_weekly_thursday" Type="bit" />
+          <Property Name="schd_weekly_friday" Type="bit" />
+          <Property Name="schd_monthly_day" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="servers_data">
+          <Key>
+            <PropertyRef Name="server_id" />
+          </Key>
+          <Property Name="server_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="server_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="server_description" Type="nvarchar" MaxLength="250" />
+          <Property Name="host_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ip_address" Type="varchar" MaxLength="20" />
+          <Property Name="os_name" Type="varchar" MaxLength="50" />
+          <Property Name="is_current_machine" Type="bit" />
+          <Property Name="conn_domain_name" Type="varchar" MaxLength="50" />
+          <Property Name="conn_user_name" Type="varchar" MaxLength="50" />
+          <Property Name="conn_user_password" Type="nvarchar" MaxLength="150" />
+          <Property Name="is_active" Type="bit" />
+          <Property Name="is_deleted" Type="bit" />
+          <Property Name="insert_user_id" Type="int" />
+          <Property Name="insert_dt" Type="datetime" />
+          <Property Name="update_user_id" Type="int" />
+          <Property Name="update_dt" Type="datetime" />
+          <Property Name="delete_user_id" Type="int" />
+          <Property Name="delete_dt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="servers_updates">
+          <Key>
+            <PropertyRef Name="transaction_id" />
+          </Key>
+          <Property Name="transaction_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="transaction_dt" Type="datetime" Nullable="false" />
+          <Property Name="server_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="sys_system_name" Type="varchar" MaxLength="150" />
+          <Property Name="sys_ip_address" Type="varchar" MaxLength="20" />
+          <Property Name="cpu_processor_id" Type="varchar" MaxLength="100" />
+          <Property Name="cpu_processor_name" Type="varchar" MaxLength="50" />
+          <Property Name="cpu_cores_count" Type="smallint" />
+          <Property Name="cpu_cores_enabled_count" Type="smallint" />
+          <Property Name="cpu_logical_processors_count" Type="smallint" />
+          <Property Name="cpu_max_clock_speed" Type="smallint" />
+          <Property Name="memory_total" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="storage_total" Type="decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="set_counters">
+          <Key>
+            <PropertyRef Name="counter_id" />
+          </Key>
+          <Property Name="counter_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="counter_description" Type="varchar" MaxLength="100" />
+          <Property Name="counter_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="category_name" Type="varchar" MaxLength="100" />
+          <Property Name="counter_unit" Type="varchar" MaxLength="20" />
+          <Property Name="category_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="instance_total_name" Type="varchar" MaxLength="100" />
+          <Property Name="instance_all_prefix" Type="varchar" MaxLength="100" />
+          <Property Name="instance_blank_name" Type="varchar" MaxLength="100" />
+          <Property Name="display_order" Type="decimal" Precision="8" Scale="4" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SmartMonitoring.dbo.set_counters_categories' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="set_counters_categories">
+          <Key>
+            <PropertyRef Name="category_id" />
+            <PropertyRef Name="category_description" />
+            <PropertyRef Name="category_name" />
+            <PropertyRef Name="is_active" />
+          </Key>
+          <Property Name="category_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="category_description" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="category_name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="display_order" Type="tinyint" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="set_serialno">
+          <Key>
+            <PropertyRef Name="identifier_id" />
+          </Key>
+          <Property Name="identifier_id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="serialno_value" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="xx_counters_transactions">
+          <Key>
+            <PropertyRef Name="category_name" />
+            <PropertyRef Name="counter_name" />
+            <PropertyRef Name="counter_datetime" />
+            <PropertyRef Name="counter_value" />
+          </Key>
+          <Property Name="machine_name" Type="varchar" MaxLength="20" />
+          <Property Name="category_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="counter_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="instance_name" Type="varchar" MaxLength="50" />
+          <Property Name="counter_datetime" Type="datetime" Nullable="false" />
+          <Property Name="counter_value" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="SmartMonitoringModelStoreContainer">
+          <EntitySet Name="montr_machines_list" EntityType="Self.montr_machines_list" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="montr_monitor_groups" EntityType="Self.montr_monitor_groups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="schd_schedulers_data" EntityType="Self.schd_schedulers_data" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="servers_data" EntityType="Self.servers_data" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="servers_updates" EntityType="Self.servers_updates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="set_counters" EntityType="Self.set_counters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="set_serialno" EntityType="Self.set_serialno" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="montr_monitor_counters" EntityType="Self.montr_monitor_counters" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [montr_monitor_counters].[machine_id] AS [machine_id], 
+    [montr_monitor_counters].[counter_id] AS [counter_id], 
+    [montr_monitor_counters].[instance_id] AS [instance_id], 
+    [montr_monitor_counters].[instance_name] AS [instance_name], 
+    [montr_monitor_counters].[display_order] AS [display_order], 
+    [montr_monitor_counters].[current_value] AS [current_value], 
+    [montr_monitor_counters].[current_datetime] AS [current_datetime], 
+    [montr_monitor_counters].[minimum_value] AS [minimum_value], 
+    [montr_monitor_counters].[minimum_datetime] AS [minimum_datetime], 
+    [montr_monitor_counters].[maximum_value] AS [maximum_value], 
+    [montr_monitor_counters].[maximum_datetime] AS [maximum_datetime], 
+    [montr_monitor_counters].[average_value] AS [average_value], 
+    [montr_monitor_counters].[average_datetime] AS [average_datetime], 
+    [montr_monitor_counters].[is_active] AS [is_active], 
+    [montr_monitor_counters].[is_deleted] AS [is_deleted], 
+    [montr_monitor_counters].[insert_user_id] AS [insert_user_id], 
+    [montr_monitor_counters].[insert_dt] AS [insert_dt]
+    FROM [dbo].[montr_monitor_counters] AS [montr_monitor_counters]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="montr_monitor_groups_counters" EntityType="Self.montr_monitor_groups_counters" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [montr_monitor_groups_counters].[machine_id] AS [machine_id], 
+    [montr_monitor_groups_counters].[group_id] AS [group_id], 
+    [montr_monitor_groups_counters].[counter_id] AS [counter_id], 
+    [montr_monitor_groups_counters].[instance_id] AS [instance_id]
+    FROM [dbo].[montr_monitor_groups_counters] AS [montr_monitor_groups_counters]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="montr_monitor_rules" EntityType="Self.montr_monitor_rules" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [montr_monitor_rules].[machine_id] AS [machine_id], 
+    [montr_monitor_rules].[counter_id] AS [counter_id], 
+    [montr_monitor_rules].[instance_id] AS [instance_id], 
+    [montr_monitor_rules].[rule_field] AS [rule_field], 
+    [montr_monitor_rules].[rule_math_symbol] AS [rule_math_symbol], 
+    [montr_monitor_rules].[rule_value] AS [rule_value], 
+    [montr_monitor_rules].[rule_ocuurance_type] AS [rule_ocuurance_type], 
+    [montr_monitor_rules].[ocuurance_interval] AS [ocuurance_interval], 
+    [montr_monitor_rules].[display_level] AS [display_level], 
+    [montr_monitor_rules].[action_id] AS [action_id], 
+    [montr_monitor_rules].[first_occurance_datetime] AS [first_occurance_datetime], 
+    [montr_monitor_rules].[last_occurance_datetime] AS [last_occurance_datetime], 
+    [montr_monitor_rules].[occurance_count] AS [occurance_count], 
+    [montr_monitor_rules].[occurance_interval] AS [occurance_interval], 
+    [montr_monitor_rules].[is_alarm_raised] AS [is_alarm_raised], 
+    [montr_monitor_rules].[is_action_raised] AS [is_action_raised]
+    FROM [dbo].[montr_monitor_rules] AS [montr_monitor_rules]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="montr_monitor_transactions" EntityType="Self.montr_monitor_transactions" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [montr_monitor_transactions].[machine_id] AS [machine_id], 
+    [montr_monitor_transactions].[counter_id] AS [counter_id], 
+    [montr_monitor_transactions].[instance_id] AS [instance_id], 
+    [montr_monitor_transactions].[counter_datetime] AS [counter_datetime], 
+    [montr_monitor_transactions].[counter_value] AS [counter_value]
+    FROM [dbo].[montr_monitor_transactions] AS [montr_monitor_transactions]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="set_counters_categories" EntityType="Self.set_counters_categories" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [set_counters_categories].[category_id] AS [category_id], 
+    [set_counters_categories].[category_description] AS [category_description], 
+    [set_counters_categories].[category_name] AS [category_name], 
+    [set_counters_categories].[display_order] AS [display_order], 
+    [set_counters_categories].[is_active] AS [is_active]
+    FROM [dbo].[set_counters_categories] AS [set_counters_categories]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="xx_counters_transactions" EntityType="Self.xx_counters_transactions" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [xx_counters_transactions].[machine_name] AS [machine_name], 
+    [xx_counters_transactions].[category_name] AS [category_name], 
+    [xx_counters_transactions].[counter_name] AS [counter_name], 
+    [xx_counters_transactions].[instance_name] AS [instance_name], 
+    [xx_counters_transactions].[counter_datetime] AS [counter_datetime], 
+    [xx_counters_transactions].[counter_value] AS [counter_value]
+    FROM [dbo].[xx_counters_transactions] AS [xx_counters_transactions]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SmartMonitoringModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="montr_machines_list">
+          <Key>
+            <PropertyRef Name="machine_id" />
+          </Key>
+          <Property Name="machine_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="machine_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="machine_description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="host_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ip_address" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="os_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="is_current_machine" Type="Boolean" />
+          <Property Name="conn_domain_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="conn_user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="conn_user_password" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="is_active" Type="Boolean" />
+          <Property Name="is_deleted" Type="Boolean" />
+          <Property Name="insert_user_id" Type="Int32" />
+          <Property Name="insert_dt" Type="DateTime" Precision="3" />
+          <Property Name="update_user_id" Type="Int32" />
+          <Property Name="update_dt" Type="DateTime" Precision="3" />
+          <Property Name="delete_user_id" Type="Int32" />
+          <Property Name="delete_dt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="montr_monitor_groups">
+          <Key>
+            <PropertyRef Name="group_id" />
+          </Key>
+          <Property Name="group_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="group_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="machine_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="group_image_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="display_order" Type="Int32" />
+          <Property Name="is_active" Type="Boolean" />
+          <Property Name="is_deleted" Type="Boolean" />
+          <Property Name="insert_user_id" Type="Int32" />
+          <Property Name="insert_dt" Type="DateTime" Precision="3" />
+          <Property Name="update_user_id" Type="Int32" />
+          <Property Name="update_dt" Type="DateTime" Precision="3" />
+          <Property Name="delete_user_id" Type="Int32" />
+          <Property Name="delete_dt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="schd_schedulers_data">
+          <Key>
+            <PropertyRef Name="scheduler_id" />
+          </Key>
+          <Property Name="scheduler_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="entity_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="entity_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="schd_is_enabled" Type="Boolean" Nullable="false" />
+          <Property Name="schd_duration_start_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="schd_duration_end_date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="schd_frequencey" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="schd_daily_frequency" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="schd_daily_once_time" Type="Time" Precision="0" />
+          <Property Name="schd_daily_repeat_interval" Type="Byte" />
+          <Property Name="schd_daily_repeat_unit" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="schd_daily_repeat_start_time" Type="Time" Precision="0" />
+          <Property Name="schd_daily_repeat_end_time" Type="Time" Precision="7" />
+          <Property Name="schd_weekly_saturday" Type="Boolean" />
+          <Property Name="schd_weekly_sunday" Type="Boolean" />
+          <Property Name="schd_weekly_monday" Type="Boolean" />
+          <Property Name="schd_weekly_tuesday" Type="Boolean" />
+          <Property Name="schd_weekly_wednesday" Type="Boolean" />
+          <Property Name="schd_weekly_thursday" Type="Boolean" />
+          <Property Name="schd_weekly_friday" Type="Boolean" />
+          <Property Name="schd_monthly_day" Type="Byte" />
+        </EntityType>
+        <EntityType Name="servers_data">
+          <Key>
+            <PropertyRef Name="server_id" />
+          </Key>
+          <Property Name="server_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="server_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="server_description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="host_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ip_address" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="os_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="is_current_machine" Type="Boolean" />
+          <Property Name="conn_domain_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="conn_user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="conn_user_password" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="is_active" Type="Boolean" />
+          <Property Name="is_deleted" Type="Boolean" />
+          <Property Name="insert_user_id" Type="Int32" />
+          <Property Name="insert_dt" Type="DateTime" Precision="3" />
+          <Property Name="update_user_id" Type="Int32" />
+          <Property Name="update_dt" Type="DateTime" Precision="3" />
+          <Property Name="delete_user_id" Type="Int32" />
+          <Property Name="delete_dt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="servers_updates">
+          <Key>
+            <PropertyRef Name="transaction_id" />
+          </Key>
+          <Property Name="transaction_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="transaction_dt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="server_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sys_system_name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="sys_ip_address" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="cpu_processor_id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cpu_processor_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cpu_cores_count" Type="Int16" />
+          <Property Name="cpu_cores_enabled_count" Type="Int16" />
+          <Property Name="cpu_logical_processors_count" Type="Int16" />
+          <Property Name="cpu_max_clock_speed" Type="Int16" />
+          <Property Name="memory_total" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="storage_total" Type="Decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="set_counters">
+          <Key>
+            <PropertyRef Name="counter_id" />
+          </Key>
+          <Property Name="counter_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="counter_description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="counter_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="category_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="counter_unit" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="category_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="instance_total_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="instance_all_prefix" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="instance_blank_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="display_order" Type="Decimal" Precision="8" Scale="4" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="set_serialno">
+          <Key>
+            <PropertyRef Name="identifier_id" />
+          </Key>
+          <Property Name="identifier_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="serialno_value" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="montr_monitor_counters">
+          <Key>
+            <PropertyRef Name="machine_id" />
+            <PropertyRef Name="counter_id" />
+          </Key>
+          <Property Name="machine_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="counter_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="instance_id" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="instance_name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="display_order" Type="Int32" />
+          <Property Name="current_value" Type="Double" />
+          <Property Name="current_datetime" Type="DateTime" Precision="3" />
+          <Property Name="minimum_value" Type="Double" />
+          <Property Name="minimum_datetime" Type="DateTime" Precision="3" />
+          <Property Name="maximum_value" Type="Double" />
+          <Property Name="maximum_datetime" Type="DateTime" Precision="3" />
+          <Property Name="average_value" Type="Double" />
+          <Property Name="average_datetime" Type="DateTime" Precision="3" />
+          <Property Name="is_active" Type="Boolean" />
+          <Property Name="is_deleted" Type="Boolean" />
+          <Property Name="insert_user_id" Type="Int32" />
+          <Property Name="insert_dt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="montr_monitor_groups_counters">
+          <Key>
+            <PropertyRef Name="machine_id" />
+            <PropertyRef Name="group_id" />
+            <PropertyRef Name="counter_id" />
+          </Key>
+          <Property Name="machine_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="group_id" Type="Int32" Nullable="false" />
+          <Property Name="counter_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="instance_id" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="montr_monitor_rules">
+          <Key>
+            <PropertyRef Name="machine_id" />
+            <PropertyRef Name="counter_id" />
+            <PropertyRef Name="rule_field" />
+            <PropertyRef Name="rule_math_symbol" />
+            <PropertyRef Name="rule_value" />
+            <PropertyRef Name="rule_ocuurance_type" />
+            <PropertyRef Name="ocuurance_interval" />
+            <PropertyRef Name="display_level" />
+            <PropertyRef Name="action_id" />
+          </Key>
+          <Property Name="machine_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="counter_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="instance_id" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="rule_field" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rule_math_symbol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rule_value" Type="Double" Nullable="false" />
+          <Property Name="rule_ocuurance_type" Type="Byte" Nullable="false" />
+          <Property Name="ocuurance_interval" Type="Int32" Nullable="false" />
+          <Property Name="display_level" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="action_id" Type="Int32" Nullable="false" />
+          <Property Name="first_occurance_datetime" Type="DateTime" Precision="3" />
+          <Property Name="last_occurance_datetime" Type="DateTime" Precision="3" />
+          <Property Name="occurance_count" Type="Int32" />
+          <Property Name="occurance_interval" Type="Int32" />
+          <Property Name="is_alarm_raised" Type="Boolean" />
+          <Property Name="is_action_raised" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="montr_monitor_transactions">
+          <Key>
+            <PropertyRef Name="machine_id" />
+            <PropertyRef Name="counter_id" />
+            <PropertyRef Name="counter_datetime" />
+            <PropertyRef Name="counter_value" />
+          </Key>
+          <Property Name="machine_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="counter_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="instance_id" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="counter_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="counter_value" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="set_counters_categories">
+          <Key>
+            <PropertyRef Name="category_id" />
+            <PropertyRef Name="category_description" />
+            <PropertyRef Name="category_name" />
+            <PropertyRef Name="is_active" />
+          </Key>
+          <Property Name="category_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="category_description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="category_name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="display_order" Type="Byte" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="xx_counters_transactions">
+          <Key>
+            <PropertyRef Name="category_name" />
+            <PropertyRef Name="counter_name" />
+            <PropertyRef Name="counter_datetime" />
+            <PropertyRef Name="counter_value" />
+          </Key>
+          <Property Name="machine_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="category_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="counter_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="instance_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="counter_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="counter_value" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="SmartMonitoringEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="montr_machines_list" EntityType="Self.montr_machines_list" />
+          <EntitySet Name="montr_monitor_groups" EntityType="Self.montr_monitor_groups" />
+          <EntitySet Name="schd_schedulers_data" EntityType="Self.schd_schedulers_data" />
+          <EntitySet Name="servers_data" EntityType="Self.servers_data" />
+          <EntitySet Name="servers_updates" EntityType="Self.servers_updates" />
+          <EntitySet Name="set_counters" EntityType="Self.set_counters" />
+          <EntitySet Name="set_serialno" EntityType="Self.set_serialno" />
+          <EntitySet Name="montr_monitor_counters" EntityType="Self.montr_monitor_counters" />
+          <EntitySet Name="montr_monitor_groups_counters" EntityType="Self.montr_monitor_groups_counters" />
+          <EntitySet Name="montr_monitor_rules" EntityType="Self.montr_monitor_rules" />
+          <EntitySet Name="montr_monitor_transactions" EntityType="Self.montr_monitor_transactions" />
+          <EntitySet Name="set_counters_categories" EntityType="Self.set_counters_categories" />
+          <EntitySet Name="xx_counters_transactions" EntityType="Self.xx_counters_transactions" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SmartMonitoringModelStoreContainer" CdmEntityContainer="SmartMonitoringEntities1">
+          <EntitySetMapping Name="montr_machines_list">
+            <EntityTypeMapping TypeName="SmartMonitoringModel.montr_machines_list">
+              <MappingFragment StoreEntitySet="montr_machines_list">
+                <ScalarProperty Name="machine_id" ColumnName="machine_id" />
+                <ScalarProperty Name="machine_name" ColumnName="machine_name" />
+                <ScalarProperty Name="machine_description" ColumnName="machine_description" />
+                <ScalarProperty Name="host_name" ColumnName="host_name" />
+                <ScalarProperty Name="ip_address" ColumnName="ip_address" />
+                <ScalarProperty Name="os_name" ColumnName="os_name" />
+                <ScalarProperty Name="is_current_machine" ColumnName="is_current_machine" />
+                <ScalarProperty Name="conn_domain_name" ColumnName="conn_domain_name" />
+                <ScalarProperty Name="conn_user_name" ColumnName="conn_user_name" />
+                <ScalarProperty Name="conn_user_password" ColumnName="conn_user_password" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="insert_user_id" ColumnName="insert_user_id" />
+                <ScalarProperty Name="insert_dt" ColumnName="insert_dt" />
+                <ScalarProperty Name="update_user_id" ColumnName="update_user_id" />
+                <ScalarProperty Name="update_dt" ColumnName="update_dt" />
+                <ScalarProperty Name="delete_user_id" ColumnName="delete_user_id" />
+                <ScalarProperty Name="delete_dt" ColumnName="delete_dt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="montr_monitor_groups">
+            <EntityTypeMapping TypeName="SmartMonitoringModel.montr_monitor_groups">
+              <MappingFragment StoreEntitySet="montr_monitor_groups">
+                <ScalarProperty Name="group_id" ColumnName="group_id" />
+                <ScalarProperty Name="group_name" ColumnName="group_name" />
+                <ScalarProperty Name="machine_id" ColumnName="machine_id" />
+                <ScalarProperty Name="group_image_id" ColumnName="group_image_id" />
+                <ScalarProperty Name="display_order" ColumnName="display_order" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="insert_user_id" ColumnName="insert_user_id" />
+                <ScalarProperty Name="insert_dt" ColumnName="insert_dt" />
+                <ScalarProperty Name="update_user_id" ColumnName="update_user_id" />
+                <ScalarProperty Name="update_dt" ColumnName="update_dt" />
+                <ScalarProperty Name="delete_user_id" ColumnName="delete_user_id" />
+                <ScalarProperty Name="delete_dt" ColumnName="delete_dt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="schd_schedulers_data">
+            <EntityTypeMapping TypeName="SmartMonitoringModel.schd_schedulers_data">
+              <MappingFragment StoreEntitySet="schd_schedulers_data">
+                <ScalarProperty Name="scheduler_id" ColumnName="scheduler_id" />
+                <ScalarProperty Name="entity_type" ColumnName="entity_type" />
+                <ScalarProperty Name="entity_id" ColumnName="entity_id" />
+                <ScalarProperty Name="schd_is_enabled" ColumnName="schd_is_enabled" />
+                <ScalarProperty Name="schd_duration_start_date" ColumnName="schd_duration_start_date" />
+                <ScalarProperty Name="schd_duration_end_date" ColumnName="schd_duration_end_date" />
+                <ScalarProperty Name="schd_frequencey" ColumnName="schd_frequencey" />
+                <ScalarProperty Name="schd_daily_frequency" ColumnName="schd_daily_frequency" />
+                <ScalarProperty Name="schd_daily_once_time" ColumnName="schd_daily_once_time" />
+                <ScalarProperty Name="schd_daily_repeat_interval" ColumnName="schd_daily_repeat_interval" />
+                <ScalarProperty Name="schd_daily_repeat_unit" ColumnName="schd_daily_repeat_unit" />
+                <ScalarProperty Name="schd_daily_repeat_start_time" ColumnName="schd_daily_repeat_start_time" />
+                <ScalarProperty Name="schd_daily_repeat_end_time" ColumnName="schd_daily_repeat_end_time" />
+                <ScalarProperty Name="schd_weekly_saturday" ColumnName="schd_weekly_saturday" />
+                <ScalarProperty Name="schd_weekly_sunday" ColumnName="schd_weekly_sunday" />
+                <ScalarProperty Name="schd_weekly_monday" ColumnName="schd_weekly_monday" />
+                <ScalarProperty Name="schd_weekly_tuesday" ColumnName="schd_weekly_tuesday" />
+                <ScalarProperty Name="schd_weekly_wednesday" ColumnName="schd_weekly_wednesday" />
+                <ScalarProperty Name="schd_weekly_thursday" ColumnName="schd_weekly_thursday" />
+                <ScalarProperty Name="schd_weekly_friday" ColumnName="schd_weekly_friday" />
+                <ScalarProperty Name="schd_monthly_day" ColumnName="schd_monthly_day" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="servers_data">
+            <EntityTypeMapping TypeName="SmartMonitoringModel.servers_data">
+              <MappingFragment StoreEntitySet="servers_data">
+                <ScalarProperty Name="server_id" ColumnName="server_id" />
+                <ScalarProperty Name="server_name" ColumnName="server_name" />
+                <ScalarProperty Name="server_description" ColumnName="server_description" />
+                <ScalarProperty Name="host_name" ColumnName="host_name" />
+                <ScalarProperty Name="ip_address" ColumnName="ip_address" />
+                <ScalarProperty Name="os_name" ColumnName="os_name" />
+                <ScalarProperty Name="is_current_machine" ColumnName="is_current_machine" />
+                <ScalarProperty Name="conn_domain_name" ColumnName="conn_domain_name" />
+                <ScalarProperty Name="conn_user_name" ColumnName="conn_user_name" />
+                <ScalarProperty Name="conn_user_password" ColumnName="conn_user_password" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="insert_user_id" ColumnName="insert_user_id" />
+                <ScalarProperty Name="insert_dt" ColumnName="insert_dt" />
+                <ScalarProperty Name="update_user_id" ColumnName="update_user_id" />
+                <ScalarProperty Name="update_dt" ColumnName="update_dt" />
+                <ScalarProperty Name="delete_user_id" ColumnName="delete_user_id" />
+                <ScalarProperty Name="delete_dt" ColumnName="delete_dt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="servers_updates">
+            <EntityTypeMapping TypeName="SmartMonitoringModel.servers_updates">
+              <MappingFragment StoreEntitySet="servers_updates">
+                <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+                <ScalarProperty Name="transaction_dt" ColumnName="transaction_dt" />
+                <ScalarProperty Name="server_id" ColumnName="server_id" />
+                <ScalarProperty Name="sys_system_name" ColumnName="sys_system_name" />
+                <ScalarProperty Name="sys_ip_address" ColumnName="sys_ip_address" />
+                <ScalarProperty Name="cpu_processor_id" ColumnName="cpu_processor_id" />
+                <ScalarProperty Name="cpu_processor_name" ColumnName="cpu_processor_name" />
+                <ScalarProperty Name="cpu_cores_count" ColumnName="cpu_cores_count" />
+                <ScalarProperty Name="cpu_cores_enabled_count" ColumnName="cpu_cores_enabled_count" />
+                <ScalarProperty Name="cpu_logical_processors_count" ColumnName="cpu_logical_processors_count" />
+                <ScalarProperty Name="cpu_max_clock_speed" ColumnName="cpu_max_clock_speed" />
+                <ScalarProperty Name="memory_total" ColumnName="memory_total" />
+                <ScalarProperty Name="storage_total" ColumnName="storage_total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="set_counters">
+            <EntityTypeMapping TypeName="SmartMonitoringModel.set_counters">
+              <MappingFragment StoreEntitySet="set_counters">
+                <ScalarProperty Name="counter_id" ColumnName="counter_id" />
+                <ScalarProperty Name="counter_description" ColumnName="counter_description" />
+                <ScalarProperty Name="counter_name" ColumnName="counter_name" />
+                <ScalarProperty Name="category_name" ColumnName="category_name" />
+                <ScalarProperty Name="counter_unit" ColumnName="counter_unit" />
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="instance_total_name" ColumnName="instance_total_name" />
+                <ScalarProperty Name="instance_all_prefix" ColumnName="instance_all_prefix" />
+                <ScalarProperty Name="instance_blank_name" ColumnName="instance_blank_name" />
+                <ScalarProperty Name="display_order" ColumnName="display_order" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="set_serialno">
+            <EntityTypeMapping TypeName="SmartMonitoringModel.set_serialno">
+              <MappingFragment StoreEntitySet="set_serialno">
+                <ScalarProperty Name="identifier_id" ColumnName="identifier_id" />
+                <ScalarProperty Name="serialno_value" ColumnName="serialno_value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="montr_monitor_counters">
+            <EntityTypeMapping TypeName="SmartMonitoringModel.montr_monitor_counters">
+              <MappingFragment StoreEntitySet="montr_monitor_counters">
+                <ScalarProperty Name="machine_id" ColumnName="machine_id" />
+                <ScalarProperty Name="counter_id" ColumnName="counter_id" />
+                <ScalarProperty Name="instance_id" ColumnName="instance_id" />
+                <ScalarProperty Name="instance_name" ColumnName="instance_name" />
+                <ScalarProperty Name="display_order" ColumnName="display_order" />
+                <ScalarProperty Name="current_value" ColumnName="current_value" />
+                <ScalarProperty Name="current_datetime" ColumnName="current_datetime" />
+                <ScalarProperty Name="minimum_value" ColumnName="minimum_value" />
+                <ScalarProperty Name="minimum_datetime" ColumnName="minimum_datetime" />
+                <ScalarProperty Name="maximum_value" ColumnName="maximum_value" />
+                <ScalarProperty Name="maximum_datetime" ColumnName="maximum_datetime" />
+                <ScalarProperty Name="average_value" ColumnName="average_value" />
+                <ScalarProperty Name="average_datetime" ColumnName="average_datetime" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="insert_user_id" ColumnName="insert_user_id" />
+                <ScalarProperty Name="insert_dt" ColumnName="insert_dt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="montr_monitor_groups_counters">
+            <EntityTypeMapping TypeName="SmartMonitoringModel.montr_monitor_groups_counters">
+              <MappingFragment StoreEntitySet="montr_monitor_groups_counters">
+                <ScalarProperty Name="machine_id" ColumnName="machine_id" />
+                <ScalarProperty Name="group_id" ColumnName="group_id" />
+                <ScalarProperty Name="counter_id" ColumnName="counter_id" />
+                <ScalarProperty Name="instance_id" ColumnName="instance_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="montr_monitor_rules">
+            <EntityTypeMapping TypeName="SmartMonitoringModel.montr_monitor_rules">
+              <MappingFragment StoreEntitySet="montr_monitor_rules">
+                <ScalarProperty Name="machine_id" ColumnName="machine_id" />
+                <ScalarProperty Name="counter_id" ColumnName="counter_id" />
+                <ScalarProperty Name="instance_id" ColumnName="instance_id" />
+                <ScalarProperty Name="rule_field" ColumnName="rule_field" />
+                <ScalarProperty Name="rule_math_symbol" ColumnName="rule_math_symbol" />
+                <ScalarProperty Name="rule_value" ColumnName="rule_value" />
+                <ScalarProperty Name="rule_ocuurance_type" ColumnName="rule_ocuurance_type" />
+                <ScalarProperty Name="ocuurance_interval" ColumnName="ocuurance_interval" />
+                <ScalarProperty Name="display_level" ColumnName="display_level" />
+                <ScalarProperty Name="action_id" ColumnName="action_id" />
+                <ScalarProperty Name="first_occurance_datetime" ColumnName="first_occurance_datetime" />
+                <ScalarProperty Name="last_occurance_datetime" ColumnName="last_occurance_datetime" />
+                <ScalarProperty Name="occurance_count" ColumnName="occurance_count" />
+                <ScalarProperty Name="occurance_interval" ColumnName="occurance_interval" />
+                <ScalarProperty Name="is_alarm_raised" ColumnName="is_alarm_raised" />
+                <ScalarProperty Name="is_action_raised" ColumnName="is_action_raised" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="montr_monitor_transactions">
+            <EntityTypeMapping TypeName="SmartMonitoringModel.montr_monitor_transactions">
+              <MappingFragment StoreEntitySet="montr_monitor_transactions">
+                <ScalarProperty Name="machine_id" ColumnName="machine_id" />
+                <ScalarProperty Name="counter_id" ColumnName="counter_id" />
+                <ScalarProperty Name="instance_id" ColumnName="instance_id" />
+                <ScalarProperty Name="counter_datetime" ColumnName="counter_datetime" />
+                <ScalarProperty Name="counter_value" ColumnName="counter_value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="set_counters_categories">
+            <EntityTypeMapping TypeName="SmartMonitoringModel.set_counters_categories">
+              <MappingFragment StoreEntitySet="set_counters_categories">
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="category_description" ColumnName="category_description" />
+                <ScalarProperty Name="category_name" ColumnName="category_name" />
+                <ScalarProperty Name="display_order" ColumnName="display_order" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="xx_counters_transactions">
+            <EntityTypeMapping TypeName="SmartMonitoringModel.xx_counters_transactions">
+              <MappingFragment StoreEntitySet="xx_counters_transactions">
+                <ScalarProperty Name="machine_name" ColumnName="machine_name" />
+                <ScalarProperty Name="category_name" ColumnName="category_name" />
+                <ScalarProperty Name="counter_name" ColumnName="counter_name" />
+                <ScalarProperty Name="instance_name" ColumnName="instance_name" />
+                <ScalarProperty Name="counter_datetime" ColumnName="counter_datetime" />
+                <ScalarProperty Name="counter_value" ColumnName="counter_value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
