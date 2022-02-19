@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
@@ -184,24 +185,24 @@ namespace SmartMonitoring
         public string _monitor_id;
         private void TimerOnTick(object sender, EventArgs eventArgs)
         {
-			if (txtSelServerID.Text != "" && _counter_id != null && _instance_id != null)
-			{
-                
-				var now = System.DateTime.Now;
+            if (txtSelServerID.Text != "" && _counter_id != null && _instance_id != null)
+            {
+
+                var now = System.DateTime.Now;
 
                 _server_id = txtSelServerID.Text;
                 _monitor_id = txtSelMonitorID.Text;
 
-                
+
 
                 var row = db.montr_monitor_transactions.Where(b => b.machine_id == txtSelServerID.Text && b.counter_id == _counter_id && b.instance_id == _instance_id).OrderBy(p => p.counter_datetime).ToList().LastOrDefault();
                 if (row != null && row.counter_datetime != null)
                 {
-                    
+
                     DateTime dt = (DateTime)row.counter_datetime;
                     DateTime dtPlusSeconds = dt.AddSeconds(10);
 
-                    
+
                     if (row.counter_value > 0)
                     {
 
@@ -245,28 +246,29 @@ where tbl_link.machine_id = '{_server_id}' and tbl_link.group_id = {_monitor_id}
                                 }
                             }
                         }
-                        string lastValue = gvCounters.SelectedRows[0].Cells[5].Value.ToString();
-
-                        string[] array = lastValue.Split(' ');
-                        double lValDouble = Convert.ToDouble(array[0]);
-
-                        // var lastRecord = db.montr_monitor_transactions.Where(q => q.machine_id == txtSelServerID.Text && q.counter_id == _counter_id && q.instance_id == _instance_id ).ToList().LastOrDefault();
-
-                        ChartValues.Add(new MeasureModel
+                        //if (gvCounters.SelectedRows == null)
+                        //    gvCounters.Rows[0].Selected = true;
+                        if (gvCounters.SelectedRows[0].Cells[5].Value != null)
                         {
-                            DateTime = now,
-                            Value = lValDouble
-                        });
-                        Chart1.Value = lValDouble;
-                        lblChart1Value.Text = Math.Round(lValDouble, 1).ToString() + " " + array[1];
-                        //m.DateTime = now;
+                            string lastValue = gvCounters.SelectedRows[0].Cells[5].Value.ToString();
 
+                            string[] array = lastValue.Split(' ');
+                            double lValDouble = Convert.ToDouble(array[0]);
 
+                            ChartValues.Add(new MeasureModel
+                            {
+                                DateTime = now,
+                                Value = lValDouble
+                            });
+                            Chart1.Value = lValDouble;
+                            lblChart1Value.Text = Math.Round(lValDouble, 1).ToString() + " " + array[1];
+                        }
+                        
                         SetAxisLimits(now);
 
                         //lets only use the last 60 values
                         if (ChartValues.Count > 60) ChartValues.RemoveAt(0);
-                        
+
                     }
                     else
                     {
@@ -283,16 +285,16 @@ where tbl_link.machine_id = '{_server_id}' and tbl_link.group_id = {_monitor_id}
                         // load_Counters(txtSelServerID.Text, Convert.ToInt32(_monitor_id));
                     }
                 }
-                
-			}
-			else
-			{
+
+            }
+            else
+            {
                 ChartValues.Clear();
-				Chart1.Value = 0;
-				lblChart1Value.Text = "- %";
+                Chart1.Value = 0;
+                lblChart1Value.Text = "- %";
                 // load_Counters(txtSelServerID.Text, Convert.ToInt32(_monitor_id));
             }
-            
+
         }
 
 
@@ -452,6 +454,14 @@ where counters.is_deleted = 0 and tbl_link.machine_id = '{_server_id}' and tbl_l
             {
                 gvCounters.Rows.Add(_table.Rows[i]["counter_id"].ToString(), _table.Rows[i]["counter_description"].ToString(), _table.Rows[i]["instance_id"].ToString(),
                     _table.Rows[i]["instance_name"].ToString(), _table.Rows[i]["machine_name"].ToString());
+                if (!(_table.Rows[i]["current_value"] is DBNull))
+                    gvCounters.Rows[i].Cells[5].Value = Math.Round(Convert.ToDouble(_table.Rows[i]["current_value"]), 1) + " " + _table.Rows[i]["counter_unit"].ToString();
+                if (!(_table.Rows[i]["average_value"] is DBNull))
+                    gvCounters.Rows[i].Cells[6].Value = Math.Round(Convert.ToDouble(_table.Rows[i]["average_value"]), 1) + " " + _table.Rows[i]["counter_unit"].ToString();
+                if (!(_table.Rows[i]["minimum_value"] is DBNull))
+                    gvCounters.Rows[i].Cells[7].Value = Math.Round(Convert.ToDouble(_table.Rows[i]["minimum_value"]), 1) + " " + _table.Rows[i]["counter_unit"].ToString();
+                if (!(_table.Rows[i]["maximum_value"] is DBNull))
+                    gvCounters.Rows[i].Cells[8].Value = Math.Round(Convert.ToDouble(_table.Rows[i]["maximum_value"]), 1) + " " + _table.Rows[i]["counter_unit"].ToString();
                 //for (int x = 0; x < gvCounters.Rows.Count; x++)
                 //{
                 //    if (_table.Rows[i]["counter_id"].ToString() == gvCounters.Rows[x].Cells[0].Value.ToString() && _table.Rows[i]["instance_id"].ToString() == gvCounters.Rows[x].Cells[2].Value.ToString())
@@ -604,94 +614,21 @@ where counters.is_deleted = 0 and tbl_link.machine_id = '{_server_id}' and tbl_l
 
 		private void mnuServerDelete_Click(object sender, EventArgs e)
 		{
-			Int32 rowToDelete = gvServers.Rows.GetFirstRow(DataGridViewElementStates.Selected);
-			string machine_id = txtSelServerID.Text;
+			//Int32 rowToDelete = gvServers.Rows.GetFirstRow(DataGridViewElementStates.Selected);
+			//string machine_id = txtSelServerID.Text;
 
-			DialogResult dr = MessageBox.Show("Are you Sure you want to Delete this Server?\nNote: All Data that related to this Server will be Deleted Permanently!", "Deleting Server", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+			DialogResult dr = MessageBox.Show("Are you Sure you want to Delete this Server?", "Deleting Server", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
 			if (dr == DialogResult.OK)
 			{
-				//gvServers.Rows.RemoveAt(rowToDelete);
-				//gvServers.ClearSelection();
+                //gvServers.Rows.RemoveAt(rowToDelete);
+                //gvServers.ClearSelection();
 
-                using (SqlConnection _connection = new SqlConnection(DAL.clsDBFunctions.getConnectionString()))
-                {
-                    using (SqlCommand _command = new SqlCommand())
-                    {
-                        _connection.Open();
-                        _command.Connection = _connection;
-                        _command.CommandText = @"DELETE FROM montr_monitor_rules WHERE machine_id = @machine_id";
-                        _command.Parameters.AddWithValue("@machine_id", machine_id);
-                        _command.ExecuteNonQuery();
-
-                        _connection.Close();
-                    }
-                }
-                using (SqlConnection _connection = new SqlConnection(DAL.clsDBFunctions.getConnectionString()))
-                {
-                    using (SqlCommand _command = new SqlCommand())
-                    {
-                        _connection.Open();
-                        _command.Connection = _connection;
-                        _command.CommandText = @"DELETE FROM montr_monitor_transactions WHERE machine_id = @machine_id";
-                        _command.Parameters.AddWithValue("@machine_id", machine_id);
-                        _command.ExecuteNonQuery();
-
-                        _connection.Close();
-                    }
-                }
-                using (SqlConnection _connection = new SqlConnection(DAL.clsDBFunctions.getConnectionString()))
-                {
-                    using (SqlCommand _command = new SqlCommand())
-                    {
-                        _connection.Open();
-                        _command.Connection = _connection;
-                        _command.CommandText = @"DELETE FROM montr_monitor_groups_counters WHERE machine_id = @machine_id";
-                        _command.Parameters.AddWithValue("@machine_id", machine_id);
-                        _command.ExecuteNonQuery();
-
-                        _connection.Close();
-                    }
-                }
-                using (SqlConnection _connection = new SqlConnection(DAL.clsDBFunctions.getConnectionString()))
-                {
-                    using (SqlCommand _command = new SqlCommand())
-                    {
-                        _connection.Open();
-                        _command.Connection = _connection;
-                        _command.CommandText = @"DELETE FROM montr_monitor_groups WHERE machine_id = @machine_id";
-                        _command.Parameters.AddWithValue("@machine_id", machine_id);
-                        _command.ExecuteNonQuery();
-
-                        _connection.Close();
-                    }
-                }
-                using (SqlConnection _connection = new SqlConnection(DAL.clsDBFunctions.getConnectionString()))
-                {
-                    using (SqlCommand _command = new SqlCommand())
-                    {
-                        _connection.Open();
-                        _command.Connection = _connection;
-                        _command.CommandText = @"DELETE FROM montr_monitor_counters WHERE machine_id = @machine_id";
-                        _command.Parameters.AddWithValue("@machine_id", machine_id);
-                        _command.ExecuteNonQuery();
-
-                        _connection.Close();
-                    }
-                }
-                using (SqlConnection _connection = new SqlConnection(DAL.clsDBFunctions.getConnectionString()))
-                {
-                    using (SqlCommand _command = new SqlCommand())
-                    {
-                        _connection.Open();
-                        _command.Connection = _connection;
-                        _command.CommandText = @"DELETE FROM montr_machines_list WHERE machine_id = @machine_id";
-                        _command.Parameters.AddWithValue("@machine_id", machine_id);
-                        _command.ExecuteNonQuery();
-
-                        _connection.Close();
-                    }
-                }
-                // gvServers.Rows[0].Selected = true;
+                var serverToDelete = db.montr_machines_list.FirstOrDefault(s => s.machine_id == txtSelServerID.Text);
+                serverToDelete.is_deleted = true;
+                serverToDelete.delete_dt = DateTime.Now;
+                serverToDelete.delete_user_id = 0;
+                db.Entry(serverToDelete).State = EntityState.Modified;
+                db.SaveChanges();
                 load_servers();
 			}
 		}

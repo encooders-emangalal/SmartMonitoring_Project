@@ -484,7 +484,6 @@ namespace SmartMonitoring
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-			var check = db.montr_machines_list.Where(b => b.is_deleted == false && b.machine_name == txtName.Text || b.host_name == txtHostName.Text || b.ip_address == txtIPAddress.Text).FirstOrDefault();
 
 			#region Checking if the user enters the required fields (Validation)
 			if (txtName.Text == "")
@@ -523,95 +522,85 @@ namespace SmartMonitoring
 				txtPassword.Focus();
 				this.DialogResult = DialogResult.None;
 			}
-			else if (check != null && check.machine_name == txtName.Text)
-			{
-				MessageBox.Show("This machine name already Exists, Please write another one.", "Notification");
-				txtName.Focus();
-				this.DialogResult = DialogResult.None;
-			}
-			else if (check != null && check.host_name == txtHostName.Text)
-			{
-				MessageBox.Show("This Host name already Exists, Please write another one.", "Notification");
-				txtHostName.Focus();
-				this.DialogResult = DialogResult.None;
-			}
-			else if (check != null && check.ip_address == txtIPAddress.Text)
-			{
-				MessageBox.Show("This IP Address already Exists, Please write another one.", "Notification");
-				txtIPAddress.Focus();
-				this.DialogResult = DialogResult.None;
-			}
             #endregion
             else
             {
-                //var mach = db.montr_machines_list.Where(b => b.machine_id == _RecordID).FirstOrDefault();
-                //if (mach != null)
-                //{
-                //	mach.machine_name = txtName.Text;
-                //	mach.machine_description = txtDescription.Text;
-                //	mach.host_name = txtHostName.Text;
-                //	mach.ip_address = txtIPAddress.Text;
-                //	mach.os_name = txtOperatingSystem.Text;
-                //	mach.conn_domain_name = txtDomain.Text;
-                //	mach.conn_user_name = txtUsername.Text;
-                //	mach.conn_user_password = txtPassword.Text;
-
-                //	db.Entry(mach).State = EntityState.Modified;
-                //	db.SaveChanges();
-                //}
                 #region Add New Server
                 if (_Action == "add")
 				{
-					montr_machines_list newServer = new montr_machines_list
+					var check = db.montr_machines_list.Where(b => b.is_deleted == false && b.machine_name == txtName.Text || b.host_name == txtHostName.Text || b.ip_address == txtIPAddress.Text).FirstOrDefault();
+
+					if (check != null && check.machine_name == txtName.Text)
 					{
-						machine_id = txtMachineID.Text,
-						machine_name = txtName.Text,
-						machine_description = txtDescription.Text,
-						host_name = txtHostName.Text,
-						ip_address = txtIPAddress.Text,
-						os_name = txtOperatingSystem.Text,
-						is_active = chkIsActive.Checked,
-						is_deleted = false,
-						is_current_machine = chkIsLocalhost.Checked,
-						conn_domain_name = txtDomain.Text,
-						conn_user_name = txtUsername.Text,
-						conn_user_password = txtPassword.Text,
-						insert_user_id = 0,
-						insert_dt = DateTime.Now
-					};
-
-					db.montr_machines_list.Add(newServer);
-					int isRowInserted = db.SaveChanges();
-					#region Add New Monitor to the Server
-					if (isRowInserted > 0)
+						MessageBox.Show("This machine name already Exists, Please write another one.", "Notification");
+						txtName.Focus();
+						this.DialogResult = DialogResult.None;
+					}
+					else if (check != null && check.host_name == txtHostName.Text)
+					{
+						MessageBox.Show("This Host name already Exists, Please write another one.", "Notification");
+						txtHostName.Focus();
+						this.DialogResult = DialogResult.None;
+					}
+					else if (check != null && check.ip_address == txtIPAddress.Text)
+					{
+						MessageBox.Show("This IP Address already Exists, Please write another one.", "Notification");
+						txtIPAddress.Focus();
+						this.DialogResult = DialogResult.None;
+					}
+					else
                     {
-						ServerID = newServer.machine_id;
+						montr_machines_list newServer = new montr_machines_list
+						{
+							machine_id = txtMachineID.Text,
+							machine_name = txtName.Text,
+							machine_description = txtDescription.Text,
+							host_name = txtHostName.Text,
+							ip_address = txtIPAddress.Text,
+							os_name = txtOperatingSystem.Text,
+							is_active = chkIsActive.Checked,
+							is_deleted = false,
+							is_current_machine = chkIsLocalhost.Checked,
+							conn_domain_name = txtDomain.Text,
+							conn_user_name = txtUsername.Text,
+							conn_user_password = txtPassword.Text,
+							insert_user_id = 0,
+							insert_dt = DateTime.Now
+						};
 
-						var query = db.montr_monitor_groups.Where(m => m.machine_id == "SERV-01");
+						db.montr_machines_list.Add(newServer);
+						int isRowInserted = db.SaveChanges();
+						#region Add New Monitor to the Server
+						if (isRowInserted > 0)
+						{
+							ServerID = newServer.machine_id;
 
-                        foreach (var item in query)
-                        {
-							montr_monitor_groups newMonitorGroup = new montr_monitor_groups
-							{ 
-								machine_id = newServer.machine_id,
-								group_name = item.group_name,
-								group_image_id = item.group_image_id,
-								display_order = item.display_order,
-								is_deleted = false,
-								is_active = true
-							};
-							db.montr_monitor_groups.Add(newMonitorGroup);
-                        }
-						db.SaveChanges();
+							var query = db.montr_monitor_groups.Where(m => m.machine_id == "SERV-01");
 
-						//Update Serial Value
-						var currentSerValue = db.set_serialno.FirstOrDefault(s => s.identifier_id == "montr_machines_list");
-						currentSerValue.serialno_value++;
-						db.Entry(currentSerValue).State = EntityState.Modified;
-						db.SaveChanges();
-                    }
-                    #endregion
-                }
+							foreach (var item in query)
+							{
+								montr_monitor_groups newMonitorGroup = new montr_monitor_groups
+								{
+									machine_id = newServer.machine_id,
+									group_name = item.group_name,
+									group_image_id = item.group_image_id,
+									display_order = item.display_order,
+									is_deleted = false,
+									is_active = true
+								};
+								db.montr_monitor_groups.Add(newMonitorGroup);
+							}
+							db.SaveChanges();
+
+							//Update Serial Value
+							var currentSerValue = db.set_serialno.FirstOrDefault(s => s.identifier_id == "montr_machines_list");
+							currentSerValue.serialno_value++;
+							db.Entry(currentSerValue).State = EntityState.Modified;
+							db.SaveChanges();
+						}
+						#endregion
+					}
+				}
                 #endregion
                 #region Edit a server
                 else if (_Action == "edit")
@@ -634,8 +623,6 @@ namespace SmartMonitoring
                 }
                 #endregion
             }
-
-
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

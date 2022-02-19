@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
@@ -36,6 +36,16 @@
             this.label21 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.gvRules = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.txtNotifText = new System.Windows.Forms.TextBox();
+            this.txtActionId = new System.Windows.Forms.TextBox();
+            this.txtDisplayLevel = new System.Windows.Forms.TextBox();
+            this.txtROccureInterval = new System.Windows.Forms.TextBox();
+            this.txtROccureType = new System.Windows.Forms.TextBox();
+            this.txtRValue = new System.Windows.Forms.TextBox();
+            this.txtRMathSymbol = new System.Windows.Forms.TextBox();
+            this.txtRField = new System.Windows.Forms.TextBox();
+            this.btnOk = new System.Windows.Forms.Button();
             this._Condition = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._action = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,16 +57,7 @@
             this._notificationTxt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.displayLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.actionId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.txtNotifText = new System.Windows.Forms.TextBox();
-            this.txtActionId = new System.Windows.Forms.TextBox();
-            this.txtDisplayLevel = new System.Windows.Forms.TextBox();
-            this.txtROccureInterval = new System.Windows.Forms.TextBox();
-            this.txtROccureType = new System.Windows.Forms.TextBox();
-            this.txtRValue = new System.Windows.Forms.TextBox();
-            this.txtRMathSymbol = new System.Windows.Forms.TextBox();
-            this.txtRField = new System.Windows.Forms.TextBox();
-            this.btnOk = new System.Windows.Forms.Button();
+            this.rule_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gvRules)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -144,15 +145,16 @@
             this._occuranceInterval,
             this._notificationTxt,
             this.displayLevel,
-            this.actionId});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(188)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gvRules.DefaultCellStyle = dataGridViewCellStyle1;
+            this.actionId,
+            this.rule_id});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(188)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvRules.DefaultCellStyle = dataGridViewCellStyle3;
             this.gvRules.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
             this.gvRules.Location = new System.Drawing.Point(13, 33);
             this.gvRules.Margin = new System.Windows.Forms.Padding(4);
@@ -169,91 +171,6 @@
             this.gvRules.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvRules_CellClick);
             this.gvRules.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvRules_RowEnter);
             // 
-            // _Condition
-            // 
-            this._Condition.HeaderText = "Condition";
-            this._Condition.MinimumWidth = 100;
-            this._Condition.Name = "_Condition";
-            this._Condition.ReadOnly = true;
-            // 
-            // _status
-            // 
-            this._status.HeaderText = "Status";
-            this._status.MinimumWidth = 50;
-            this._status.Name = "_status";
-            this._status.ReadOnly = true;
-            // 
-            // _action
-            // 
-            this._action.HeaderText = "Action";
-            this._action.MinimumWidth = 50;
-            this._action.Name = "_action";
-            this._action.ReadOnly = true;
-            // 
-            // _ruleField
-            // 
-            this._ruleField.HeaderText = "Rule Field";
-            this._ruleField.MinimumWidth = 6;
-            this._ruleField.Name = "_ruleField";
-            this._ruleField.ReadOnly = true;
-            this._ruleField.Visible = false;
-            // 
-            // _ruleMathSymbol
-            // 
-            this._ruleMathSymbol.HeaderText = "Rule Math Symbol";
-            this._ruleMathSymbol.MinimumWidth = 6;
-            this._ruleMathSymbol.Name = "_ruleMathSymbol";
-            this._ruleMathSymbol.ReadOnly = true;
-            this._ruleMathSymbol.Visible = false;
-            // 
-            // _rukeValue
-            // 
-            this._rukeValue.HeaderText = "Rule Value";
-            this._rukeValue.MinimumWidth = 6;
-            this._rukeValue.Name = "_rukeValue";
-            this._rukeValue.ReadOnly = true;
-            this._rukeValue.Visible = false;
-            // 
-            // _occuranceType
-            // 
-            this._occuranceType.HeaderText = "Occurance Type";
-            this._occuranceType.MinimumWidth = 6;
-            this._occuranceType.Name = "_occuranceType";
-            this._occuranceType.ReadOnly = true;
-            this._occuranceType.Visible = false;
-            // 
-            // _occuranceInterval
-            // 
-            this._occuranceInterval.HeaderText = "Occurance Interval";
-            this._occuranceInterval.MinimumWidth = 6;
-            this._occuranceInterval.Name = "_occuranceInterval";
-            this._occuranceInterval.ReadOnly = true;
-            this._occuranceInterval.Visible = false;
-            // 
-            // _notificationTxt
-            // 
-            this._notificationTxt.HeaderText = "Notification Text";
-            this._notificationTxt.MinimumWidth = 6;
-            this._notificationTxt.Name = "_notificationTxt";
-            this._notificationTxt.ReadOnly = true;
-            this._notificationTxt.Visible = false;
-            // 
-            // displayLevel
-            // 
-            this.displayLevel.HeaderText = "Display Level";
-            this.displayLevel.MinimumWidth = 6;
-            this.displayLevel.Name = "displayLevel";
-            this.displayLevel.ReadOnly = true;
-            this.displayLevel.Visible = false;
-            // 
-            // actionId
-            // 
-            this.actionId.HeaderText = "Action ID";
-            this.actionId.MinimumWidth = 6;
-            this.actionId.Name = "actionId";
-            this.actionId.ReadOnly = true;
-            this.actionId.Visible = false;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.txtNotifText);
@@ -264,11 +181,10 @@
             this.panel1.Controls.Add(this.txtRValue);
             this.panel1.Controls.Add(this.txtRMathSymbol);
             this.panel1.Controls.Add(this.txtRField);
-            this.panel1.Location = new System.Drawing.Point(184, 342);
+            this.panel1.Location = new System.Drawing.Point(358, 200);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 185);
             this.panel1.TabIndex = 35;
-            this.panel1.Visible = false;
             // 
             // txtNotifText
             // 
@@ -335,8 +251,91 @@
             this.btnOk.TabIndex = 33;
             this.btnOk.Text = "Ok";
             this.btnOk.UseVisualStyleBackColor = true;
-            this.btnOk.Visible = false;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
+            // 
+            // _Condition
+            // 
+            this._Condition.HeaderText = "Condition";
+            this._Condition.MinimumWidth = 100;
+            this._Condition.Name = "_Condition";
+            this._Condition.ReadOnly = true;
+            // 
+            // _status
+            // 
+            this._status.HeaderText = "Status";
+            this._status.MinimumWidth = 50;
+            this._status.Name = "_status";
+            this._status.ReadOnly = true;
+            // 
+            // _action
+            // 
+            this._action.HeaderText = "Action";
+            this._action.MinimumWidth = 50;
+            this._action.Name = "_action";
+            this._action.ReadOnly = true;
+            // 
+            // _ruleField
+            // 
+            this._ruleField.HeaderText = "Rule Field";
+            this._ruleField.MinimumWidth = 6;
+            this._ruleField.Name = "_ruleField";
+            this._ruleField.ReadOnly = true;
+            // 
+            // _ruleMathSymbol
+            // 
+            this._ruleMathSymbol.HeaderText = "Rule Math Symbol";
+            this._ruleMathSymbol.MinimumWidth = 6;
+            this._ruleMathSymbol.Name = "_ruleMathSymbol";
+            this._ruleMathSymbol.ReadOnly = true;
+            // 
+            // _rukeValue
+            // 
+            this._rukeValue.HeaderText = "Rule Value";
+            this._rukeValue.MinimumWidth = 6;
+            this._rukeValue.Name = "_rukeValue";
+            this._rukeValue.ReadOnly = true;
+            // 
+            // _occuranceType
+            // 
+            this._occuranceType.HeaderText = "Occurance Type";
+            this._occuranceType.MinimumWidth = 6;
+            this._occuranceType.Name = "_occuranceType";
+            this._occuranceType.ReadOnly = true;
+            // 
+            // _occuranceInterval
+            // 
+            this._occuranceInterval.HeaderText = "Occurance Interval";
+            this._occuranceInterval.MinimumWidth = 6;
+            this._occuranceInterval.Name = "_occuranceInterval";
+            this._occuranceInterval.ReadOnly = true;
+            // 
+            // _notificationTxt
+            // 
+            this._notificationTxt.HeaderText = "Notification Text";
+            this._notificationTxt.MinimumWidth = 6;
+            this._notificationTxt.Name = "_notificationTxt";
+            this._notificationTxt.ReadOnly = true;
+            // 
+            // displayLevel
+            // 
+            this.displayLevel.HeaderText = "Display Level";
+            this.displayLevel.MinimumWidth = 6;
+            this.displayLevel.Name = "displayLevel";
+            this.displayLevel.ReadOnly = true;
+            // 
+            // actionId
+            // 
+            this.actionId.HeaderText = "Action ID";
+            this.actionId.MinimumWidth = 6;
+            this.actionId.Name = "actionId";
+            this.actionId.ReadOnly = true;
+            // 
+            // rule_id
+            // 
+            this.rule_id.HeaderText = "Rule ID";
+            this.rule_id.MinimumWidth = 6;
+            this.rule_id.Name = "rule_id";
+            this.rule_id.ReadOnly = true;
             // 
             // NotificationRules
             // 
@@ -400,5 +399,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn _notificationTxt;
         private System.Windows.Forms.DataGridViewTextBoxColumn displayLevel;
         private System.Windows.Forms.DataGridViewTextBoxColumn actionId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rule_id;
     }
 }

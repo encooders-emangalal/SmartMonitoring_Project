@@ -56,7 +56,7 @@
             "If Current Value",
             "If Average Value",
             "If Maximum Value",
-            "If Minimum Value\t"});
+            "If Minimum Value"});
             this.cbRuleField.Location = new System.Drawing.Point(12, 12);
             this.cbRuleField.Name = "cbRuleField";
             this.cbRuleField.Size = new System.Drawing.Size(207, 26);

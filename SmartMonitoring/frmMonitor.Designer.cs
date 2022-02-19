@@ -29,12 +29,18 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMonitor));
             this.pnlServers = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.txtCounterValue = new System.Windows.Forms.TextBox();
+            this.txtSelServerName = new System.Windows.Forms.TextBox();
+            this.txtSelCounterID = new System.Windows.Forms.TextBox();
+            this.txtSelMonitorID = new System.Windows.Forms.TextBox();
+            this.txtSelServerID = new System.Windows.Forms.TextBox();
             this.gvServers = new System.Windows.Forms.DataGridView();
             this.Server_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.server_image_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,12 +51,6 @@
             this.mnuServerEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuServerDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuServerDuplicate = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.txtCounterValue = new System.Windows.Forms.TextBox();
-            this.txtSelServerName = new System.Windows.Forms.TextBox();
-            this.txtSelCounterID = new System.Windows.Forms.TextBox();
-            this.txtSelMonitorID = new System.Windows.Forms.TextBox();
-            this.txtSelServerID = new System.Windows.Forms.TextBox();
             this.pnlMonitors = new System.Windows.Forms.Panel();
             this.gvMonitors = new System.Windows.Forms.DataGridView();
             this.group_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -86,14 +86,24 @@
             this.mnuCounterExportData = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -110,39 +120,29 @@
             this.arrangeIconsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.contentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.indexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsMain = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tmrSelCounter = new System.Windows.Forms.Timer(this.components);
             this.btnJobStart = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.btnErrors = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.tsbActivate = new System.Windows.Forms.ToolStripButton();
             this.btnJobLocation = new System.Windows.Forms.ToolStripButton();
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.printPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.indexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmrSelCounter = new System.Windows.Forms.Timer(this.components);
             this.pnlServers.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvServers)).BeginInit();
             this.cmnuServers.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.pnlMonitors.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvMonitors)).BeginInit();
             this.pnlCounters.SuspendLayout();
@@ -162,13 +162,71 @@
             // 
             // pnlServers
             // 
-            this.pnlServers.Controls.Add(this.gvServers);
             this.pnlServers.Controls.Add(this.panel1);
+            this.pnlServers.Controls.Add(this.gvServers);
             this.pnlServers.Location = new System.Drawing.Point(0, 112);
             this.pnlServers.Margin = new System.Windows.Forms.Padding(4);
             this.pnlServers.Name = "pnlServers";
             this.pnlServers.Size = new System.Drawing.Size(333, 690);
             this.pnlServers.TabIndex = 3;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.txtCounterValue);
+            this.panel1.Controls.Add(this.txtSelServerName);
+            this.panel1.Controls.Add(this.txtSelCounterID);
+            this.panel1.Controls.Add(this.txtSelMonitorID);
+            this.panel1.Controls.Add(this.txtSelServerID);
+            this.panel1.Location = new System.Drawing.Point(31, 482);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(267, 183);
+            this.panel1.TabIndex = 6;
+            // 
+            // txtCounterValue
+            // 
+            this.txtCounterValue.Location = new System.Drawing.Point(4, 142);
+            this.txtCounterValue.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCounterValue.Name = "txtCounterValue";
+            this.txtCounterValue.ReadOnly = true;
+            this.txtCounterValue.Size = new System.Drawing.Size(253, 22);
+            this.txtCounterValue.TabIndex = 4;
+            // 
+            // txtSelServerName
+            // 
+            this.txtSelServerName.Location = new System.Drawing.Point(8, 47);
+            this.txtSelServerName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSelServerName.Name = "txtSelServerName";
+            this.txtSelServerName.ReadOnly = true;
+            this.txtSelServerName.Size = new System.Drawing.Size(253, 22);
+            this.txtSelServerName.TabIndex = 3;
+            // 
+            // txtSelCounterID
+            // 
+            this.txtSelCounterID.Location = new System.Drawing.Point(8, 110);
+            this.txtSelCounterID.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSelCounterID.Name = "txtSelCounterID";
+            this.txtSelCounterID.ReadOnly = true;
+            this.txtSelCounterID.Size = new System.Drawing.Size(253, 22);
+            this.txtSelCounterID.TabIndex = 2;
+            // 
+            // txtSelMonitorID
+            // 
+            this.txtSelMonitorID.Location = new System.Drawing.Point(8, 78);
+            this.txtSelMonitorID.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSelMonitorID.Name = "txtSelMonitorID";
+            this.txtSelMonitorID.ReadOnly = true;
+            this.txtSelMonitorID.Size = new System.Drawing.Size(253, 22);
+            this.txtSelMonitorID.TabIndex = 1;
+            // 
+            // txtSelServerID
+            // 
+            this.txtSelServerID.Location = new System.Drawing.Point(8, 16);
+            this.txtSelServerID.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSelServerID.Name = "txtSelServerID";
+            this.txtSelServerID.ReadOnly = true;
+            this.txtSelServerID.Size = new System.Drawing.Size(253, 22);
+            this.txtSelServerID.TabIndex = 0;
             // 
             // gvServers
             // 
@@ -186,14 +244,14 @@
             this.server_image,
             this.SERVER_NAME});
             this.gvServers.ContextMenuStrip = this.cmnuServers;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 8F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(188)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gvServers.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(188)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvServers.DefaultCellStyle = dataGridViewCellStyle1;
             this.gvServers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gvServers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
             this.gvServers.Location = new System.Drawing.Point(0, 0);
@@ -287,65 +345,6 @@
             this.mnuServerDuplicate.Text = "Duplicate this Server";
             this.mnuServerDuplicate.Click += new System.EventHandler(this.mnuServerDuplicate_Click);
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.txtCounterValue);
-            this.panel1.Controls.Add(this.txtSelServerName);
-            this.panel1.Controls.Add(this.txtSelCounterID);
-            this.panel1.Controls.Add(this.txtSelMonitorID);
-            this.panel1.Controls.Add(this.txtSelServerID);
-            this.panel1.Location = new System.Drawing.Point(31, 340);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(267, 183);
-            this.panel1.TabIndex = 6;
-            this.panel1.Visible = false;
-            // 
-            // txtCounterValue
-            // 
-            this.txtCounterValue.Location = new System.Drawing.Point(4, 142);
-            this.txtCounterValue.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCounterValue.Name = "txtCounterValue";
-            this.txtCounterValue.ReadOnly = true;
-            this.txtCounterValue.Size = new System.Drawing.Size(253, 22);
-            this.txtCounterValue.TabIndex = 4;
-            // 
-            // txtSelServerName
-            // 
-            this.txtSelServerName.Location = new System.Drawing.Point(8, 47);
-            this.txtSelServerName.Margin = new System.Windows.Forms.Padding(4);
-            this.txtSelServerName.Name = "txtSelServerName";
-            this.txtSelServerName.ReadOnly = true;
-            this.txtSelServerName.Size = new System.Drawing.Size(253, 22);
-            this.txtSelServerName.TabIndex = 3;
-            // 
-            // txtSelCounterID
-            // 
-            this.txtSelCounterID.Location = new System.Drawing.Point(8, 110);
-            this.txtSelCounterID.Margin = new System.Windows.Forms.Padding(4);
-            this.txtSelCounterID.Name = "txtSelCounterID";
-            this.txtSelCounterID.ReadOnly = true;
-            this.txtSelCounterID.Size = new System.Drawing.Size(253, 22);
-            this.txtSelCounterID.TabIndex = 2;
-            // 
-            // txtSelMonitorID
-            // 
-            this.txtSelMonitorID.Location = new System.Drawing.Point(8, 78);
-            this.txtSelMonitorID.Margin = new System.Windows.Forms.Padding(4);
-            this.txtSelMonitorID.Name = "txtSelMonitorID";
-            this.txtSelMonitorID.ReadOnly = true;
-            this.txtSelMonitorID.Size = new System.Drawing.Size(253, 22);
-            this.txtSelMonitorID.TabIndex = 1;
-            // 
-            // txtSelServerID
-            // 
-            this.txtSelServerID.Location = new System.Drawing.Point(8, 16);
-            this.txtSelServerID.Margin = new System.Windows.Forms.Padding(4);
-            this.txtSelServerID.Name = "txtSelServerID";
-            this.txtSelServerID.ReadOnly = true;
-            this.txtSelServerID.Size = new System.Drawing.Size(253, 22);
-            this.txtSelServerID.TabIndex = 0;
-            // 
             // pnlMonitors
             // 
             this.pnlMonitors.Controls.Add(this.gvMonitors);
@@ -370,29 +369,29 @@
             this.monitor_image_id,
             this.monitor_image,
             this.dataGridViewTextBoxColumn2});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(188)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gvMonitors.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(188)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvMonitors.DefaultCellStyle = dataGridViewCellStyle2;
             this.gvMonitors.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gvMonitors.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
             this.gvMonitors.Location = new System.Drawing.Point(0, 0);
             this.gvMonitors.Margin = new System.Windows.Forms.Padding(4);
             this.gvMonitors.Name = "gvMonitors";
             this.gvMonitors.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Tahoma", 8F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(10);
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gvMonitors.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(10);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gvMonitors.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gvMonitors.RowHeadersVisible = false;
             this.gvMonitors.RowHeadersWidth = 25;
             this.gvMonitors.RowTemplate.Height = 44;
@@ -547,14 +546,14 @@
             this.minimum_value,
             this.maximum_value});
             this.gvCounters.ContextMenuStrip = this.cmnuCounters;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Tahoma", 8F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(188)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gvCounters.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 8F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(188)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvCounters.DefaultCellStyle = dataGridViewCellStyle4;
             this.gvCounters.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gvCounters.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
             this.gvCounters.Location = new System.Drawing.Point(0, 0);
@@ -562,6 +561,7 @@
             this.gvCounters.MultiSelect = false;
             this.gvCounters.Name = "gvCounters";
             this.gvCounters.ReadOnly = true;
+            this.gvCounters.RowHeadersVisible = false;
             this.gvCounters.RowHeadersWidth = 25;
             this.gvCounters.RowTemplate.Height = 30;
             this.gvCounters.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -740,7 +740,7 @@
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.MdiWindowListItem = this.windowsMenu;
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(1628, 28);
+            this.menuStrip.Size = new System.Drawing.Size(1628, 30);
             this.menuStrip.TabIndex = 7;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -760,13 +760,40 @@
             this.exitToolStripMenuItem});
             this.fileMenu.ImageTransparentColor = System.Drawing.SystemColors.ActiveBorder;
             this.fileMenu.Name = "fileMenu";
-            this.fileMenu.Size = new System.Drawing.Size(46, 24);
+            this.fileMenu.Size = new System.Drawing.Size(46, 26);
             this.fileMenu.Text = "&File";
+            // 
+            // newToolStripMenuItem
+            // 
+            this.newToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripMenuItem.Image")));
+            this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.newToolStripMenuItem.Text = "&New";
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem.Image")));
+            this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.openToolStripMenuItem.Text = "&Open";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(178, 6);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
+            this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.saveToolStripMenuItem.Text = "&Save";
             // 
             // saveAsToolStripMenuItem
             // 
@@ -778,6 +805,23 @@
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(178, 6);
+            // 
+            // printToolStripMenuItem
+            // 
+            this.printToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("printToolStripMenuItem.Image")));
+            this.printToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
+            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
+            this.printToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.printToolStripMenuItem.Text = "&Print";
+            // 
+            // printPreviewToolStripMenuItem
+            // 
+            this.printPreviewToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("printPreviewToolStripMenuItem.Image")));
+            this.printPreviewToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
+            this.printPreviewToolStripMenuItem.Name = "printPreviewToolStripMenuItem";
+            this.printPreviewToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.printPreviewToolStripMenuItem.Text = "Print Pre&view";
             // 
             // printSetupToolStripMenuItem
             // 
@@ -808,13 +852,58 @@
             this.toolStripSeparator7,
             this.selectAllToolStripMenuItem});
             this.editMenu.Name = "editMenu";
-            this.editMenu.Size = new System.Drawing.Size(49, 24);
+            this.editMenu.Size = new System.Drawing.Size(49, 26);
             this.editMenu.Text = "&Edit";
+            // 
+            // undoToolStripMenuItem
+            // 
+            this.undoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("undoToolStripMenuItem.Image")));
+            this.undoToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
+            this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
+            this.undoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(206, 26);
+            this.undoToolStripMenuItem.Text = "&Undo";
+            // 
+            // redoToolStripMenuItem
+            // 
+            this.redoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("redoToolStripMenuItem.Image")));
+            this.redoToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
+            this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
+            this.redoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
+            this.redoToolStripMenuItem.Size = new System.Drawing.Size(206, 26);
+            this.redoToolStripMenuItem.Text = "&Redo";
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(203, 6);
+            // 
+            // cutToolStripMenuItem
+            // 
+            this.cutToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cutToolStripMenuItem.Image")));
+            this.cutToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
+            this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
+            this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(206, 26);
+            this.cutToolStripMenuItem.Text = "Cu&t";
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copyToolStripMenuItem.Image")));
+            this.copyToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(206, 26);
+            this.copyToolStripMenuItem.Text = "&Copy";
+            // 
+            // pasteToolStripMenuItem
+            // 
+            this.pasteToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("pasteToolStripMenuItem.Image")));
+            this.pasteToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
+            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
+            this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(206, 26);
+            this.pasteToolStripMenuItem.Text = "&Paste";
             // 
             // toolStripSeparator7
             // 
@@ -834,7 +923,7 @@
             this.toolBarToolStripMenuItem,
             this.statusBarToolStripMenuItem});
             this.viewMenu.Name = "viewMenu";
-            this.viewMenu.Size = new System.Drawing.Size(55, 24);
+            this.viewMenu.Size = new System.Drawing.Size(55, 26);
             this.viewMenu.Text = "&View";
             // 
             // toolBarToolStripMenuItem
@@ -860,7 +949,7 @@
             this.toolsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.optionsToolStripMenuItem});
             this.toolsMenu.Name = "toolsMenu";
-            this.toolsMenu.Size = new System.Drawing.Size(58, 24);
+            this.toolsMenu.Size = new System.Drawing.Size(58, 26);
             this.toolsMenu.Text = "&Tools";
             // 
             // optionsToolStripMenuItem
@@ -879,43 +968,43 @@
             this.closeAllToolStripMenuItem,
             this.arrangeIconsToolStripMenuItem});
             this.windowsMenu.Name = "windowsMenu";
-            this.windowsMenu.Size = new System.Drawing.Size(84, 24);
+            this.windowsMenu.Size = new System.Drawing.Size(84, 26);
             this.windowsMenu.Text = "&Windows";
             // 
             // newWindowToolStripMenuItem
             // 
             this.newWindowToolStripMenuItem.Name = "newWindowToolStripMenuItem";
-            this.newWindowToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.newWindowToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
             this.newWindowToolStripMenuItem.Text = "&New Window";
             // 
             // cascadeToolStripMenuItem
             // 
             this.cascadeToolStripMenuItem.Name = "cascadeToolStripMenuItem";
-            this.cascadeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.cascadeToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
             this.cascadeToolStripMenuItem.Text = "&Cascade";
             // 
             // tileVerticalToolStripMenuItem
             // 
             this.tileVerticalToolStripMenuItem.Name = "tileVerticalToolStripMenuItem";
-            this.tileVerticalToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.tileVerticalToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
             this.tileVerticalToolStripMenuItem.Text = "Tile &Vertical";
             // 
             // tileHorizontalToolStripMenuItem
             // 
             this.tileHorizontalToolStripMenuItem.Name = "tileHorizontalToolStripMenuItem";
-            this.tileHorizontalToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.tileHorizontalToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
             this.tileHorizontalToolStripMenuItem.Text = "Tile &Horizontal";
             // 
             // closeAllToolStripMenuItem
             // 
             this.closeAllToolStripMenuItem.Name = "closeAllToolStripMenuItem";
-            this.closeAllToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.closeAllToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
             this.closeAllToolStripMenuItem.Text = "C&lose All";
             // 
             // arrangeIconsToolStripMenuItem
             // 
             this.arrangeIconsToolStripMenuItem.Name = "arrangeIconsToolStripMenuItem";
-            this.arrangeIconsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.arrangeIconsToolStripMenuItem.Size = new System.Drawing.Size(190, 26);
             this.arrangeIconsToolStripMenuItem.Text = "&Arrange Icons";
             // 
             // helpMenu
@@ -927,7 +1016,7 @@
             this.toolStripSeparator8,
             this.aboutToolStripMenuItem});
             this.helpMenu.Name = "helpMenu";
-            this.helpMenu.Size = new System.Drawing.Size(55, 24);
+            this.helpMenu.Size = new System.Drawing.Size(55, 26);
             this.helpMenu.Text = "&Help";
             // 
             // contentsToolStripMenuItem
@@ -936,6 +1025,22 @@
             this.contentsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F1)));
             this.contentsToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
             this.contentsToolStripMenuItem.Text = "&Contents";
+            // 
+            // indexToolStripMenuItem
+            // 
+            this.indexToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("indexToolStripMenuItem.Image")));
+            this.indexToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
+            this.indexToolStripMenuItem.Name = "indexToolStripMenuItem";
+            this.indexToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
+            this.indexToolStripMenuItem.Text = "&Index";
+            // 
+            // searchToolStripMenuItem
+            // 
+            this.searchToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("searchToolStripMenuItem.Image")));
+            this.searchToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
+            this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
+            this.searchToolStripMenuItem.Text = "&Search";
             // 
             // toolStripSeparator8
             // 
@@ -965,31 +1070,11 @@
             this.toolStripButton2,
             this.tsbActivate,
             this.btnJobLocation});
-            this.tsMain.Location = new System.Drawing.Point(0, 28);
+            this.tsMain.Location = new System.Drawing.Point(0, 30);
             this.tsMain.Name = "tsMain";
             this.tsMain.Size = new System.Drawing.Size(1628, 69);
             this.tsMain.TabIndex = 8;
             this.tsMain.Text = "toolStrip1";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 69);
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 69);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 69);
-            // 
-            // tmrSelCounter
-            // 
-            this.tmrSelCounter.Interval = 1000;
-            this.tmrSelCounter.Tick += new System.EventHandler(this.tmrSelCounter_Tick);
             // 
             // btnJobStart
             // 
@@ -1001,6 +1086,11 @@
             this.btnJobStart.Text = "Servers";
             this.btnJobStart.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnJobStart.Click += new System.EventHandler(this.btnJobStart_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 69);
             // 
             // toolStripButton5
             // 
@@ -1042,6 +1132,11 @@
             this.toolStripButton3.Text = "Stop";
             this.toolStripButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 69);
+            // 
             // toolStripButton7
             // 
             this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
@@ -1062,6 +1157,11 @@
             this.btnErrors.Text = "Errors";
             this.btnErrors.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnErrors.Click += new System.EventHandler(this.btnErrors_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 69);
             // 
             // toolStripButton2
             // 
@@ -1093,110 +1193,10 @@
             this.btnJobLocation.Text = "Help";
             this.btnJobLocation.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // newToolStripMenuItem
+            // tmrSelCounter
             // 
-            this.newToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripMenuItem.Image")));
-            this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.newToolStripMenuItem.Text = "&New";
-            // 
-            // openToolStripMenuItem
-            // 
-            this.openToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem.Image")));
-            this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.openToolStripMenuItem.Text = "&Open";
-            // 
-            // saveToolStripMenuItem
-            // 
-            this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
-            this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.saveToolStripMenuItem.Text = "&Save";
-            // 
-            // printToolStripMenuItem
-            // 
-            this.printToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("printToolStripMenuItem.Image")));
-            this.printToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
-            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.printToolStripMenuItem.Text = "&Print";
-            // 
-            // printPreviewToolStripMenuItem
-            // 
-            this.printPreviewToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("printPreviewToolStripMenuItem.Image")));
-            this.printPreviewToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
-            this.printPreviewToolStripMenuItem.Name = "printPreviewToolStripMenuItem";
-            this.printPreviewToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.printPreviewToolStripMenuItem.Text = "Print Pre&view";
-            // 
-            // undoToolStripMenuItem
-            // 
-            this.undoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("undoToolStripMenuItem.Image")));
-            this.undoToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
-            this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
-            this.undoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(206, 26);
-            this.undoToolStripMenuItem.Text = "&Undo";
-            // 
-            // redoToolStripMenuItem
-            // 
-            this.redoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("redoToolStripMenuItem.Image")));
-            this.redoToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
-            this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
-            this.redoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.redoToolStripMenuItem.Size = new System.Drawing.Size(206, 26);
-            this.redoToolStripMenuItem.Text = "&Redo";
-            // 
-            // cutToolStripMenuItem
-            // 
-            this.cutToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cutToolStripMenuItem.Image")));
-            this.cutToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
-            this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(206, 26);
-            this.cutToolStripMenuItem.Text = "Cu&t";
-            // 
-            // copyToolStripMenuItem
-            // 
-            this.copyToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copyToolStripMenuItem.Image")));
-            this.copyToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
-            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(206, 26);
-            this.copyToolStripMenuItem.Text = "&Copy";
-            // 
-            // pasteToolStripMenuItem
-            // 
-            this.pasteToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("pasteToolStripMenuItem.Image")));
-            this.pasteToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
-            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(206, 26);
-            this.pasteToolStripMenuItem.Text = "&Paste";
-            // 
-            // indexToolStripMenuItem
-            // 
-            this.indexToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("indexToolStripMenuItem.Image")));
-            this.indexToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
-            this.indexToolStripMenuItem.Name = "indexToolStripMenuItem";
-            this.indexToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
-            this.indexToolStripMenuItem.Text = "&Index";
-            // 
-            // searchToolStripMenuItem
-            // 
-            this.searchToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("searchToolStripMenuItem.Image")));
-            this.searchToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
-            this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
-            this.searchToolStripMenuItem.Text = "&Search";
+            this.tmrSelCounter.Interval = 1000;
+            this.tmrSelCounter.Tick += new System.EventHandler(this.tmrSelCounter_Tick);
             // 
             // frmMonitor
             // 
@@ -1216,10 +1216,10 @@
             this.Load += new System.EventHandler(this.frmMonitor_Load);
             this.Resize += new System.EventHandler(this.frmMonitor_Resize);
             this.pnlServers.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gvServers)).EndInit();
-            this.cmnuServers.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvServers)).EndInit();
+            this.cmnuServers.ResumeLayout(false);
             this.pnlMonitors.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gvMonitors)).EndInit();
             this.pnlCounters.ResumeLayout(false);

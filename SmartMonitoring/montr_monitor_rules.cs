@@ -14,6 +14,7 @@ namespace SmartMonitoring
     
     public partial class montr_monitor_rules
     {
+        public int rule_id { get; set; }
         public string machine_id { get; set; }
         public string counter_id { get; set; }
         public string instance_id { get; set; }

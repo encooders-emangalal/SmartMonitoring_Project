@@ -34,9 +34,9 @@ namespace SmartMonitoring
         public virtual DbSet<set_serialno> set_serialno { get; set; }
         public virtual DbSet<montr_monitor_counters> montr_monitor_counters { get; set; }
         public virtual DbSet<montr_monitor_groups_counters> montr_monitor_groups_counters { get; set; }
-        public virtual DbSet<montr_monitor_rules> montr_monitor_rules { get; set; }
         public virtual DbSet<montr_monitor_transactions> montr_monitor_transactions { get; set; }
         public virtual DbSet<set_counters_categories> set_counters_categories { get; set; }
         public virtual DbSet<xx_counters_transactions> xx_counters_transactions { get; set; }
+        public virtual DbSet<montr_monitor_rules> montr_monitor_rules { get; set; }
     }
 }
