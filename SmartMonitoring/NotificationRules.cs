@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartMonitoring.Repository;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,6 +17,7 @@ namespace SmartMonitoring
     public partial class NotificationRules : Form
     {
         private SmartMonitoringEntities1 db = new SmartMonitoringEntities1();
+        private RulesRepository rulesRepository = new RulesRepository();
         private string _server_id, _counter_id, _instance_id;
         public NotificationRules()
         {
@@ -105,7 +107,15 @@ namespace SmartMonitoring
         {
             if (gvRules.SelectedRows.Count > 0)
             {
-                using (AddAction dialogForm = new AddAction(_server_id, _counter_id, _instance_id, txtRField.Text, txtRMathSymbol.Text, txtROccureType.Text, txtDisplayLevel.Text, txtActionId.Text, txtRValue.Text, txtROccureInterval.Text))
+                string ruleField = gvRules.SelectedRows[0].Cells[3].Value.ToString();
+                string ruleMathSymbol = gvRules.SelectedRows[0].Cells[4].Value.ToString();
+                string occuranceType = gvRules.SelectedRows[0].Cells[6].Value.ToString();
+                string displayLevel = gvRules.SelectedRows[0].Cells[9].Value.ToString();
+                string actionId = gvRules.SelectedRows[0].Cells[10].Value.ToString();
+                string ruleValue = gvRules.SelectedRows[0].Cells[5].Value.ToString();
+                string occuranceInterval = gvRules.SelectedRows[0].Cells[7].Value.ToString();
+
+                using (AddAction dialogForm = new AddAction(_server_id, _counter_id, _instance_id, ruleField, ruleMathSymbol, occuranceType, displayLevel, actionId, ruleValue, occuranceInterval))
                 {
                     DialogResult dr = dialogForm.ShowDialog(this);
                     if (dr == DialogResult.OK)
@@ -199,21 +209,7 @@ namespace SmartMonitoring
                 else
                     actionId = 3;
                 #endregion
-                //foreach (var currentRule in currentRules)
-                //{
-                //    if (currentRule.rule_id == (int)row.Cells[11].Value)
-                //    {
-                //        var ruleToEdit = db.montr_monitor_rules.FirstOrDefault(r => r.rule_id == );
-                //    }
-                //    else if (row.Cells[11].Value.ToString() == null)
-                //    {
 
-                //    }
-                //    else
-                //    {
-
-                //    }
-                //}
                 float t = float.Parse(row.Cells[5].Value.ToString());
                 int z = int.Parse(row.Cells[7].Value.ToString());
                 int x;
@@ -244,17 +240,11 @@ namespace SmartMonitoring
 
             var currentRules = db.montr_monitor_rules.Where(r => r.machine_id == _server_id && r.counter_id == _counter_id && r.instance_id == _instance_id);
             int[] ids = monitorRules.Select(r => r.rule_id).ToArray();
-            //List<int> ids = new List<int>();
-            //foreach (var rule in monitorRules)
-            //{
-            //    if (rule.rule_id >= 0)
-            //        ids.Add(rule.rule_id);
-            //}
 
-            DeleteRange(currentRules.Where(i => !ids.Contains(i.rule_id)).Select(i => i.rule_id));
-            EditRange(monitorRules.Where(i => currentRules.Select(x => x.rule_id).ToList().Contains(i.rule_id)));
-            AddRange(monitorRules.Where(i => !currentRules.Select(x => x.rule_id).ToList().Contains(i.rule_id)));
-            db.SaveChanges();
+            rulesRepository.DeleteRange(currentRules.Where(i => !ids.Contains(i.rule_id)).Select(i => i.rule_id));
+            rulesRepository.EditRange(monitorRules.Where(i => currentRules.Select(x => x.rule_id).ToList().Contains(i.rule_id)));
+            rulesRepository.AddRange(monitorRules.Where(i => !currentRules.Select(x => x.rule_id).ToList().Contains(i.rule_id)));
+            rulesRepository.Commit();
 
        //     using (SqlConnection _connection = new SqlConnection(DAL.clsDBFunctions.getConnectionString()))
        //     {
@@ -360,13 +350,21 @@ namespace SmartMonitoring
                     gvRules.Rows.Add(_table.Rows[i]["rule_field"].ToString() + " " + _table.Rows[i]["rule_math_symbol"].ToString() + " " + _table.Rows[i]["rule_value"].ToString() + " " + coun_unit.counter_unit,
                         "Show " + _table.Rows[i]["display_level"].ToString(), "", _table.Rows[i]["rule_field"].ToString(), _table.Rows[i]["rule_math_symbol"].ToString(), _table.Rows[i]["rule_value"].ToString(), _table.Rows[i]["rule_ocuurance_type"].ToString(), _table.Rows[i]["ocuurance_interval"].ToString(), "", _table.Rows[i]["display_level"], _table.Rows[i]["action_id"], _table.Rows[i]["rule_id"]);
                     if (_table.Rows[i]["rule_field"].ToString() == "current")
+                    {
                         gvRules.Rows[i].Cells[3].Value = "If Current Value";
+                    }
                     else if (_table.Rows[i]["rule_field"].ToString() == "average")
+                    {
                         gvRules.Rows[i].Cells[3].Value = "If Average Value";
+                    }                        
                     else if (_table.Rows[i]["rule_field"].ToString() == "maximum")
+                    {
                         gvRules.Rows[i].Cells[3].Value = "If Maximum Value";
+                    }                        
                     else
+                    {
                         gvRules.Rows[i].Cells[3].Value = "If Minimum Value";
+                    }                       
 
                     if (_table.Rows[i]["rule_math_symbol"].ToString() == "more_than")
                         gvRules.Rows[i].Cells[4].Value = "More Than";
@@ -377,22 +375,40 @@ namespace SmartMonitoring
                     else
                         gvRules.Rows[i].Cells[4].Value = "Not Equal";
 
+                    gvRules.Rows[i].Cells[0].Value = gvRules.Rows[i].Cells[3].Value + " " + gvRules.Rows[i].Cells[4].Value + " " + _table.Rows[i]["rule_value"].ToString();
+
+                    if (_table.Rows[i]["rule_ocuurance_type"].ToString() == "1")
+                        gvRules.Rows[i].Cells[6].Value = "For n Occurance";
+                    else
+                        gvRules.Rows[i].Cells[6].Value = "For Specific Period of Time(in Second)";
+
                     if ((int)_table.Rows[i]["action_id"] == 0)
                     {
                         gvRules.Rows[i].Cells[2].Value = "No Action";
+                        gvRules.Rows[i].Cells[10].Value = "No Action";
                     }
                     else if ((int)_table.Rows[i]["action_id"] == 1)
                     {
                         gvRules.Rows[i].Cells[2].Value = "Play Notification Sound";
+                        gvRules.Rows[i].Cells[10].Value = "Play Notification Sound";
                     }
                     else if ((int)_table.Rows[i]["action_id"] == 2)
                     {
                         gvRules.Rows[i].Cells[2].Value = "Send HTML E-mail Notification";
+                        gvRules.Rows[i].Cells[10].Value = "Send HTML E-mail Notification";
                     }
                     else if ((int)_table.Rows[i]["action_id"] == 3)
                     {
                         gvRules.Rows[i].Cells[2].Value = "Send Text E-mail Notification";
+                        gvRules.Rows[i].Cells[10].Value = "Send Text E-mail Notification";
                     }
+
+                    if (_table.Rows[i]["display_level"].ToString() == "error")
+                        gvRules.Rows[i].Cells[9].Value = "Show Error";
+                    else if (_table.Rows[i]["display_level"].ToString() == "warning")
+                        gvRules.Rows[i].Cells[9].Value = "Show Warning";
+                    else
+                        gvRules.Rows[i].Cells[9].Value = "Show Message";
                     //if (Convert.ToInt32(_table.Rows[i]["rule_ocuurance_type"]) == 1)
                     //{
                     //    gvRules.Rows[i].Cells[6].Value = "For n Occurance";
@@ -406,53 +422,5 @@ namespace SmartMonitoring
            
         }
 
-        private void Delete(int id)
-        {
-            var entity = db.montr_monitor_rules.FirstOrDefault(r => r.rule_id == id);
-            db.montr_monitor_rules.Remove(entity);
-        }
-
-        private void DeleteRange(IEnumerable<int> ids)
-        {
-            foreach (int id in ids)
-            {
-                Delete(id);
-            }
-        }
-
-        private void Edit(montr_monitor_rules entity)
-        {
-            var rule = db.montr_monitor_rules.FirstOrDefault(r => r.rule_id == entity.rule_id);
-
-            if (rule != null)
-                db.Entry(rule).State = EntityState.Detached;
-
-            db.montr_monitor_rules.Attach(entity);
-            entity.first_occurance_datetime = rule.first_occurance_datetime;
-            entity.last_occurance_datetime = rule.last_occurance_datetime;
-            entity.occurance_count = rule.occurance_count;
-            entity.occurance_interval = rule.occurance_interval;
-            entity.is_action_raised = rule.is_action_raised;
-            entity.is_alarm_raised = rule.is_alarm_raised;
-            db.Entry(entity).State = EntityState.Modified;
-        }
-        private void EditRange(IEnumerable<montr_monitor_rules> rules)
-        {
-            foreach (var rule in rules)
-            {
-                Edit(rule);
-            }
-        }
-        private void Add(montr_monitor_rules rule)
-        {
-            db.montr_monitor_rules.Add(rule);
-        }
-        private void AddRange(IEnumerable<montr_monitor_rules> rules)
-        {
-            foreach (var rule in rules)
-            {
-                Add(rule);
-            }
-        }
     }
 }

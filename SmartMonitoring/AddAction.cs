@@ -56,14 +56,14 @@ namespace SmartMonitoring
             _server_id = server_id;
             _counter_id = counter_id;
             _instance_id = instance_id;
-            if (rField == "current")
-                _ruleField = "If Current Value";
-            else if (rField == "average")
-                _ruleField = "If Average Value";
-            else if (rField == "maximum")
-                _ruleField = "If Maximum Value";
-            else
-                _ruleField = "If Minimum Value";
+            //if (rField == "current")
+            //    _ruleField = "If Current Value";
+            //else if (rField == "average")
+            //    _ruleField = "If Average Value";
+            //else if (rField == "maximum")
+            //    _ruleField = "If Maximum Value";
+            //else
+            //    _ruleField = "If Minimum Value";
             // _ruleField = rField;
             if (rMathSymbol == "more_than")
                 _ruleMathSymbol = "More Than";
@@ -81,23 +81,24 @@ namespace SmartMonitoring
             _occurInterval = Convert.ToInt32(rOccureInterval);
             this.Text = "Edit Action";
             btnOk.Text = "Edit";
-            cbRuleField.SelectedItem = _ruleField;
-            cbRuleMathSymbol.SelectedItem = _ruleMathSymbol;
-            cbOccureType.SelectedIndex = int.Parse(rOcurreType) - 1;
+            cbRuleField.SelectedItem = rField;
+            cbRuleMathSymbol.SelectedItem = rMathSymbol;
+            cbOccureType.SelectedItem = rOcurreType;
             
-            if (rDisplayLevel == "error")
-            {
-                cbDisplayLevel.SelectedIndex = 0;
-            }
-            else if (rDisplayLevel == "warning")
-            {
-                cbDisplayLevel.SelectedIndex = 1;
-            }
-            else
-            {
-                cbDisplayLevel.SelectedIndex = 2;
-            }
-            cbNotification.SelectedIndex = Convert.ToInt32(rNotif);
+            //if (rDisplayLevel == "error")
+            //{
+            //    cbDisplayLevel.SelectedIndex = 0;
+            //}
+            //else if (rDisplayLevel == "warning")
+            //{
+            //    cbDisplayLevel.SelectedIndex = 1;
+            //}
+            //else
+            //{
+            //    cbDisplayLevel.SelectedIndex = 2;
+            //}
+            cbDisplayLevel.SelectedItem = rDisplayLevel;
+            cbNotification.SelectedItem = rNotif;
             if (cbNotification.SelectedIndex == 1)
             {
                 cbNotification.Width = this.Width / 2;

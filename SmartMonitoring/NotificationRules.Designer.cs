@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
@@ -36,16 +36,6 @@
             this.label21 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.gvRules = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.txtNotifText = new System.Windows.Forms.TextBox();
-            this.txtActionId = new System.Windows.Forms.TextBox();
-            this.txtDisplayLevel = new System.Windows.Forms.TextBox();
-            this.txtROccureInterval = new System.Windows.Forms.TextBox();
-            this.txtROccureType = new System.Windows.Forms.TextBox();
-            this.txtRValue = new System.Windows.Forms.TextBox();
-            this.txtRMathSymbol = new System.Windows.Forms.TextBox();
-            this.txtRField = new System.Windows.Forms.TextBox();
-            this.btnOk = new System.Windows.Forms.Button();
             this._Condition = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._action = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,6 +48,16 @@
             this.displayLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.actionId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rule_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.txtNotifText = new System.Windows.Forms.TextBox();
+            this.txtActionId = new System.Windows.Forms.TextBox();
+            this.txtDisplayLevel = new System.Windows.Forms.TextBox();
+            this.txtROccureInterval = new System.Windows.Forms.TextBox();
+            this.txtROccureType = new System.Windows.Forms.TextBox();
+            this.txtRValue = new System.Windows.Forms.TextBox();
+            this.txtRMathSymbol = new System.Windows.Forms.TextBox();
+            this.txtRField = new System.Windows.Forms.TextBox();
+            this.btnOk = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvRules)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -66,17 +66,19 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Stencil", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(344, 9);
+            this.label1.Location = new System.Drawing.Point(258, 7);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 20);
+            this.label1.Size = new System.Drawing.Size(50, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Rules";
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(13, 291);
+            this.btnAdd.Location = new System.Drawing.Point(10, 236);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(84, 31);
+            this.btnAdd.Size = new System.Drawing.Size(63, 25);
             this.btnAdd.TabIndex = 2;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -84,9 +86,10 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(103, 291);
+            this.btnEdit.Location = new System.Drawing.Point(77, 236);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(84, 31);
+            this.btnEdit.Size = new System.Drawing.Size(63, 25);
             this.btnEdit.TabIndex = 3;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
@@ -94,9 +97,10 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(193, 291);
+            this.btnDelete.Location = new System.Drawing.Point(145, 236);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(84, 31);
+            this.btnDelete.Size = new System.Drawing.Size(63, 25);
             this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -107,19 +111,19 @@
             this.label21.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label21.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label21.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(13, 335);
-            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label21.Location = new System.Drawing.Point(10, 272);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(748, 1);
+            this.label21.Size = new System.Drawing.Size(561, 1);
             this.label21.TabIndex = 31;
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(676, 342);
+            this.btnCancel.Location = new System.Drawing.Point(507, 278);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(84, 31);
+            this.btnCancel.Size = new System.Drawing.Size(63, 25);
             this.btnCancel.TabIndex = 32;
             this.btnCancel.Text = "Close";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -147,17 +151,16 @@
             this.displayLevel,
             this.actionId,
             this.rule_id});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(188)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gvRules.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(188)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvRules.DefaultCellStyle = dataGridViewCellStyle1;
             this.gvRules.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.gvRules.Location = new System.Drawing.Point(13, 33);
-            this.gvRules.Margin = new System.Windows.Forms.Padding(4);
+            this.gvRules.Location = new System.Drawing.Point(10, 27);
             this.gvRules.MultiSelect = false;
             this.gvRules.Name = "gvRules";
             this.gvRules.ReadOnly = true;
@@ -166,92 +169,10 @@
             this.gvRules.RowTemplate.Height = 30;
             this.gvRules.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvRules.ShowEditingIcon = false;
-            this.gvRules.Size = new System.Drawing.Size(748, 251);
+            this.gvRules.Size = new System.Drawing.Size(561, 204);
             this.gvRules.TabIndex = 34;
             this.gvRules.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvRules_CellClick);
             this.gvRules.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvRules_RowEnter);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.txtNotifText);
-            this.panel1.Controls.Add(this.txtActionId);
-            this.panel1.Controls.Add(this.txtDisplayLevel);
-            this.panel1.Controls.Add(this.txtROccureInterval);
-            this.panel1.Controls.Add(this.txtROccureType);
-            this.panel1.Controls.Add(this.txtRValue);
-            this.panel1.Controls.Add(this.txtRMathSymbol);
-            this.panel1.Controls.Add(this.txtRField);
-            this.panel1.Location = new System.Drawing.Point(358, 200);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 185);
-            this.panel1.TabIndex = 35;
-            // 
-            // txtNotifText
-            // 
-            this.txtNotifText.Location = new System.Drawing.Point(31, 163);
-            this.txtNotifText.Name = "txtNotifText";
-            this.txtNotifText.Size = new System.Drawing.Size(138, 22);
-            this.txtNotifText.TabIndex = 7;
-            // 
-            // txtActionId
-            // 
-            this.txtActionId.Location = new System.Drawing.Point(31, 137);
-            this.txtActionId.Name = "txtActionId";
-            this.txtActionId.Size = new System.Drawing.Size(138, 22);
-            this.txtActionId.TabIndex = 6;
-            // 
-            // txtDisplayLevel
-            // 
-            this.txtDisplayLevel.Location = new System.Drawing.Point(31, 109);
-            this.txtDisplayLevel.Name = "txtDisplayLevel";
-            this.txtDisplayLevel.Size = new System.Drawing.Size(138, 22);
-            this.txtDisplayLevel.TabIndex = 5;
-            // 
-            // txtROccureInterval
-            // 
-            this.txtROccureInterval.Location = new System.Drawing.Point(31, 81);
-            this.txtROccureInterval.Name = "txtROccureInterval";
-            this.txtROccureInterval.Size = new System.Drawing.Size(138, 22);
-            this.txtROccureInterval.TabIndex = 4;
-            // 
-            // txtROccureType
-            // 
-            this.txtROccureType.Location = new System.Drawing.Point(31, 58);
-            this.txtROccureType.Name = "txtROccureType";
-            this.txtROccureType.Size = new System.Drawing.Size(138, 22);
-            this.txtROccureType.TabIndex = 3;
-            // 
-            // txtRValue
-            // 
-            this.txtRValue.Location = new System.Drawing.Point(31, 39);
-            this.txtRValue.Name = "txtRValue";
-            this.txtRValue.Size = new System.Drawing.Size(138, 22);
-            this.txtRValue.TabIndex = 2;
-            // 
-            // txtRMathSymbol
-            // 
-            this.txtRMathSymbol.Location = new System.Drawing.Point(31, 18);
-            this.txtRMathSymbol.Name = "txtRMathSymbol";
-            this.txtRMathSymbol.Size = new System.Drawing.Size(138, 22);
-            this.txtRMathSymbol.TabIndex = 1;
-            // 
-            // txtRField
-            // 
-            this.txtRField.Location = new System.Drawing.Point(31, 0);
-            this.txtRField.Name = "txtRField";
-            this.txtRField.Size = new System.Drawing.Size(138, 22);
-            this.txtRField.TabIndex = 0;
-            // 
-            // btnOk
-            // 
-            this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOk.Location = new System.Drawing.Point(586, 342);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(84, 31);
-            this.btnOk.TabIndex = 33;
-            this.btnOk.Text = "Ok";
-            this.btnOk.UseVisualStyleBackColor = true;
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // _Condition
             // 
@@ -337,12 +258,105 @@
             this.rule_id.Name = "rule_id";
             this.rule_id.ReadOnly = true;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.txtNotifText);
+            this.panel1.Controls.Add(this.txtActionId);
+            this.panel1.Controls.Add(this.txtDisplayLevel);
+            this.panel1.Controls.Add(this.txtROccureInterval);
+            this.panel1.Controls.Add(this.txtROccureType);
+            this.panel1.Controls.Add(this.txtRValue);
+            this.panel1.Controls.Add(this.txtRMathSymbol);
+            this.panel1.Controls.Add(this.txtRField);
+            this.panel1.Location = new System.Drawing.Point(185, 278);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(150, 150);
+            this.panel1.TabIndex = 35;
+            this.panel1.Visible = false;
+            // 
+            // txtNotifText
+            // 
+            this.txtNotifText.Location = new System.Drawing.Point(23, 132);
+            this.txtNotifText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNotifText.Name = "txtNotifText";
+            this.txtNotifText.Size = new System.Drawing.Size(104, 20);
+            this.txtNotifText.TabIndex = 7;
+            // 
+            // txtActionId
+            // 
+            this.txtActionId.Location = new System.Drawing.Point(23, 111);
+            this.txtActionId.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtActionId.Name = "txtActionId";
+            this.txtActionId.Size = new System.Drawing.Size(104, 20);
+            this.txtActionId.TabIndex = 6;
+            // 
+            // txtDisplayLevel
+            // 
+            this.txtDisplayLevel.Location = new System.Drawing.Point(23, 89);
+            this.txtDisplayLevel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtDisplayLevel.Name = "txtDisplayLevel";
+            this.txtDisplayLevel.Size = new System.Drawing.Size(104, 20);
+            this.txtDisplayLevel.TabIndex = 5;
+            // 
+            // txtROccureInterval
+            // 
+            this.txtROccureInterval.Location = new System.Drawing.Point(23, 66);
+            this.txtROccureInterval.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtROccureInterval.Name = "txtROccureInterval";
+            this.txtROccureInterval.Size = new System.Drawing.Size(104, 20);
+            this.txtROccureInterval.TabIndex = 4;
+            // 
+            // txtROccureType
+            // 
+            this.txtROccureType.Location = new System.Drawing.Point(23, 47);
+            this.txtROccureType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtROccureType.Name = "txtROccureType";
+            this.txtROccureType.Size = new System.Drawing.Size(104, 20);
+            this.txtROccureType.TabIndex = 3;
+            // 
+            // txtRValue
+            // 
+            this.txtRValue.Location = new System.Drawing.Point(23, 32);
+            this.txtRValue.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtRValue.Name = "txtRValue";
+            this.txtRValue.Size = new System.Drawing.Size(104, 20);
+            this.txtRValue.TabIndex = 2;
+            // 
+            // txtRMathSymbol
+            // 
+            this.txtRMathSymbol.Location = new System.Drawing.Point(23, 15);
+            this.txtRMathSymbol.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtRMathSymbol.Name = "txtRMathSymbol";
+            this.txtRMathSymbol.Size = new System.Drawing.Size(104, 20);
+            this.txtRMathSymbol.TabIndex = 1;
+            // 
+            // txtRField
+            // 
+            this.txtRField.Location = new System.Drawing.Point(23, 0);
+            this.txtRField.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtRField.Name = "txtRField";
+            this.txtRField.Size = new System.Drawing.Size(104, 20);
+            this.txtRField.TabIndex = 0;
+            // 
+            // btnOk
+            // 
+            this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOk.Location = new System.Drawing.Point(440, 278);
+            this.btnOk.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(63, 25);
+            this.btnOk.TabIndex = 33;
+            this.btnOk.Text = "Ok";
+            this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
+            // 
             // NotificationRules
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;
-            this.ClientSize = new System.Drawing.Size(772, 379);
+            this.ClientSize = new System.Drawing.Size(580, 314);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.gvRules);
             this.Controls.Add(this.btnOk);
@@ -352,10 +366,11 @@
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(790, 426);
+            this.MaximumSize = new System.Drawing.Size(596, 353);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(790, 426);
+            this.MinimumSize = new System.Drawing.Size(596, 353);
             this.Name = "NotificationRules";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

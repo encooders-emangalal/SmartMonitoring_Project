@@ -635,6 +635,18 @@ where counters.is_deleted = 0 and tbl_link.machine_id = '{_server_id}' and tbl_l
 
         private void mnuServerDuplicate_Click(object sender, EventArgs e)
         {
+            using (frmMachineDetails dialogForm = new frmMachineDetails("duplicate", txtSelServerID.Text))
+            {
+                DialogResult dr = dialogForm.ShowDialog(this);
+                if (dr == DialogResult.OK)
+                {
+                    int index = gvServers.SelectedRows[0].Index;
+                    load_servers();
+                    gvServers.ClearSelection();
+                    gvServers.Rows[index].Selected = true;
+                }
+                dialogForm.Close();
+            }
             //using (frmMachineDetails dialogForm = new frmMachineDetails(true, txtSelServerID.Text, txtSelServerName.Text))
             //{
             //    DialogResult dr = dialogForm.ShowDialog(this);
@@ -786,12 +798,15 @@ where counters.is_deleted = 0 and tbl_link.machine_id = '{_server_id}' and tbl_l
 		{
 			if (e.Button == MouseButtons.Right)
 			{
+
 				var hti = gvServers.HitTest(e.X, e.Y);
                 //ChartValues.Clear();
 
-                txtSelMonitorID.Text = "";
-				txtSelCounterID.Text = "";
-				if (_counter_id != null && _instance_id != null)
+                
+
+                //            txtSelMonitorID.Text = "";
+                //txtSelCounterID.Text = "";
+                if (_counter_id != null && _instance_id != null)
 				{
 					_counter_id = null;
 					_instance_id = null;
@@ -807,6 +822,25 @@ where counters.is_deleted = 0 and tbl_link.machine_id = '{_server_id}' and tbl_l
                 }
 				else
 				{
+                    string _server_id = gvServers.Rows[hti.RowIndex].Cells[0].Value.ToString();
+                    string _server_name = gvServers.Rows[hti.RowIndex].Cells[3].Value.ToString();
+                    if (_server_row_index != hti.RowIndex && ChartValues != null)
+                    {
+                        ChartValues.Clear();
+                        Chart1.Value = 0;
+                        lblChart1Value.Text = "- %";
+                    }
+                    _server_row_index = hti.RowIndex;
+                    txtSelServerID.Text = _server_id;
+                    txtSelServerName.Text = _server_name;
+                    txtSelMonitorID.Text = "";
+                    txtSelCounterID.Text = "";
+                    if (_counter_id != null && _instance_id != null)
+                    {
+                        _counter_id = null;
+                        _instance_id = null;
+                    }
+                    load_Monitors(_server_id);
                     if (_server_row_index != hti.RowIndex && ChartValues != null)
                     {
                         ChartValues.Clear();

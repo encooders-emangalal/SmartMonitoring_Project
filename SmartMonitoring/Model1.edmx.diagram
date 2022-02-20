@@ -17,7 +17,7 @@
         <EntityTypeShape EntityType="SmartMonitoringModel.montr_monitor_transactions" Width="1.5" PointX="8.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SmartMonitoringModel.set_counters_categories" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SmartMonitoringModel.xx_counters_transactions" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SmartMonitoringModel.montr_monitor_rules" Width="1.5" PointX="9.125" PointY="3.625" />
+        <EntityTypeShape EntityType="SmartMonitoringModel.montr_monitor_rules" Width="1.5" PointX="11.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
