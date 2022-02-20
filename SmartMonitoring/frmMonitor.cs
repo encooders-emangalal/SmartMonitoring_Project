@@ -889,9 +889,13 @@ where counters.is_deleted = 0 and tbl_link.machine_id = '{_server_id}' and tbl_l
 
         private void mnuCounterViewData_Click(object sender, EventArgs e)
         {
-            string[] split = gvCounters.SelectedRows[0].Cells[5].Value.ToString().Split(' ');
-            CounterData countData = new CounterData(txtSelServerID.Text, txtSelCounterID.Text, gvCounters.SelectedRows[0].Cells[2].Value.ToString(), split[1]);
-            countData.ShowDialog();
+            if (gvCounters.SelectedRows[0].Cells[5].Value != null)
+            {
+                string[] splitToGetCounterUnit = gvCounters.SelectedRows[0].Cells[5].Value.ToString().Split(' ');
+                CounterData countData = new CounterData(txtSelServerID.Text, txtSelCounterID.Text, gvCounters.SelectedRows[0].Cells[2].Value.ToString(), splitToGetCounterUnit[1]);
+                countData.ShowDialog();
+            }
+            
         }
 
         private void mnuCounterExportData_Click(object sender, EventArgs e)
