@@ -883,7 +883,8 @@ where counters.is_deleted = 0 and tbl_link.machine_id = '{_server_id}' and tbl_l
 
         private void mnuCounterDetails_Click(object sender, EventArgs e)
         {
-            CounterDetails countDetails = new CounterDetails();
+            var counter = db.set_counters.FirstOrDefault(c => c.counter_id == txtSelCounterID.Text);
+            CounterDetails countDetails = new CounterDetails(txtSelCounterID.Text, gvCounters.SelectedRows[0].Cells[2].Value.ToString(), gvCounters.SelectedRows[0].Cells[3].Value.ToString());
             countDetails.ShowDialog();
         }
 

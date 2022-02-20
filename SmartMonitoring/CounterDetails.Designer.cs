@@ -47,11 +47,10 @@
             // txtCounterDescription
             // 
             this.txtCounterDescription.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCounterDescription.Location = new System.Drawing.Point(199, 52);
-            this.txtCounterDescription.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCounterDescription.Location = new System.Drawing.Point(149, 42);
             this.txtCounterDescription.Name = "txtCounterDescription";
             this.txtCounterDescription.ReadOnly = true;
-            this.txtCounterDescription.Size = new System.Drawing.Size(509, 26);
+            this.txtCounterDescription.Size = new System.Drawing.Size(383, 22);
             this.txtCounterDescription.TabIndex = 47;
             this.txtCounterDescription.Text = "CPU Usage";
             this.txtCounterDescription.TextChanged += new System.EventHandler(this.txtCounterDescription_TextChanged);
@@ -59,10 +58,9 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(13, 56);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(10, 46);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(187, 26);
+            this.label3.Size = new System.Drawing.Size(140, 21);
             this.label3.TabIndex = 46;
             this.label3.Text = "Counter Description:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -70,11 +68,10 @@
             // txtCounterName
             // 
             this.txtCounterName.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCounterName.Location = new System.Drawing.Point(199, 100);
-            this.txtCounterName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCounterName.Location = new System.Drawing.Point(149, 81);
             this.txtCounterName.Name = "txtCounterName";
             this.txtCounterName.ReadOnly = true;
-            this.txtCounterName.Size = new System.Drawing.Size(509, 26);
+            this.txtCounterName.Size = new System.Drawing.Size(383, 22);
             this.txtCounterName.TabIndex = 49;
             this.txtCounterName.Text = "% Processor Time";
             this.txtCounterName.TextChanged += new System.EventHandler(this.txtCounterName_TextChanged);
@@ -82,10 +79,9 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(13, 104);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(10, 84);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(178, 26);
+            this.label1.Size = new System.Drawing.Size(134, 21);
             this.label1.TabIndex = 48;
             this.label1.Text = "Counter Name:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -93,11 +89,10 @@
             // txtCounterUnit
             // 
             this.txtCounterUnit.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCounterUnit.Location = new System.Drawing.Point(199, 148);
-            this.txtCounterUnit.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCounterUnit.Location = new System.Drawing.Point(149, 120);
             this.txtCounterUnit.Name = "txtCounterUnit";
             this.txtCounterUnit.ReadOnly = true;
-            this.txtCounterUnit.Size = new System.Drawing.Size(509, 26);
+            this.txtCounterUnit.Size = new System.Drawing.Size(383, 22);
             this.txtCounterUnit.TabIndex = 51;
             this.txtCounterUnit.Text = "%";
             this.txtCounterUnit.TextChanged += new System.EventHandler(this.txtCounterUnit_TextChanged);
@@ -105,10 +100,9 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(13, 152);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(10, 124);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(178, 26);
+            this.label2.Size = new System.Drawing.Size(134, 21);
             this.label2.TabIndex = 50;
             this.label2.Text = "Counter Unit:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -116,21 +110,19 @@
             // txtObjectPrefix
             // 
             this.txtObjectPrefix.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtObjectPrefix.Location = new System.Drawing.Point(199, 201);
-            this.txtObjectPrefix.Margin = new System.Windows.Forms.Padding(4);
+            this.txtObjectPrefix.Location = new System.Drawing.Point(149, 163);
             this.txtObjectPrefix.Name = "txtObjectPrefix";
             this.txtObjectPrefix.ReadOnly = true;
-            this.txtObjectPrefix.Size = new System.Drawing.Size(509, 26);
+            this.txtObjectPrefix.Size = new System.Drawing.Size(383, 22);
             this.txtObjectPrefix.TabIndex = 53;
             this.txtObjectPrefix.Text = "CPU";
             // 
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(13, 205);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(10, 167);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(178, 26);
+            this.label4.Size = new System.Drawing.Size(134, 21);
             this.label4.TabIndex = 52;
             this.label4.Text = "Object Prefix:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -138,21 +130,19 @@
             // txtInstanceId
             // 
             this.txtInstanceId.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInstanceId.Location = new System.Drawing.Point(199, 253);
-            this.txtInstanceId.Margin = new System.Windows.Forms.Padding(4);
+            this.txtInstanceId.Location = new System.Drawing.Point(149, 206);
             this.txtInstanceId.Name = "txtInstanceId";
             this.txtInstanceId.ReadOnly = true;
-            this.txtInstanceId.Size = new System.Drawing.Size(509, 26);
+            this.txtInstanceId.Size = new System.Drawing.Size(383, 22);
             this.txtInstanceId.TabIndex = 55;
             this.txtInstanceId.Text = "0";
             // 
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(13, 257);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(10, 209);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(178, 26);
+            this.label5.Size = new System.Drawing.Size(134, 21);
             this.label5.TabIndex = 54;
             this.label5.Text = "Instance ID:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -160,21 +150,19 @@
             // txtInstanceName
             // 
             this.txtInstanceName.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInstanceName.Location = new System.Drawing.Point(199, 304);
-            this.txtInstanceName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtInstanceName.Location = new System.Drawing.Point(149, 247);
             this.txtInstanceName.Name = "txtInstanceName";
             this.txtInstanceName.ReadOnly = true;
-            this.txtInstanceName.Size = new System.Drawing.Size(509, 26);
+            this.txtInstanceName.Size = new System.Drawing.Size(383, 22);
             this.txtInstanceName.TabIndex = 57;
             this.txtInstanceName.Text = "CPU 0";
             // 
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(13, 308);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(10, 250);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(178, 26);
+            this.label6.Size = new System.Drawing.Size(134, 21);
             this.label6.TabIndex = 56;
             this.label6.Text = "Instance Name:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -183,18 +171,18 @@
             // 
             this.label10.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label10.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(13, 352);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Location = new System.Drawing.Point(10, 286);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(695, 2);
+            this.label10.Size = new System.Drawing.Size(521, 2);
             this.label10.TabIndex = 58;
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(611, 371);
+            this.btnClose.Location = new System.Drawing.Point(458, 301);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(97, 32);
+            this.btnClose.Size = new System.Drawing.Size(73, 26);
             this.btnClose.TabIndex = 59;
             this.btnClose.Text = "OK";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -202,9 +190,9 @@
             // 
             // CounterDetails
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(721, 416);
+            this.ClientSize = new System.Drawing.Size(542, 344);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtInstanceName);
@@ -219,14 +207,16 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtCounterDescription);
             this.Controls.Add(this.label3);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(739, 463);
+            this.MaximumSize = new System.Drawing.Size(558, 383);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(739, 463);
+            this.MinimumSize = new System.Drawing.Size(558, 383);
             this.Name = "CounterDetails";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Counter Details";
+            this.Load += new System.EventHandler(this.CounterDetails_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
