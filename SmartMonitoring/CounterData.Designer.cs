@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cbSelectDataTime = new System.Windows.Forms.ComboBox();
             this.btnDisplayData = new System.Windows.Forms.Button();
             this.gvCounterData = new System.Windows.Forms.DataGridView();
@@ -38,6 +38,8 @@
             this.lblAverage = new System.Windows.Forms.Label();
             this.lblMinimum = new System.Windows.Forms.Label();
             this.lblMaximum = new System.Windows.Forms.Label();
+            this.dateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.counterValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gvCounterData)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,6 +67,7 @@
             this.btnDisplayData.TabIndex = 1;
             this.btnDisplayData.Text = "Display Data";
             this.btnDisplayData.UseVisualStyleBackColor = true;
+            this.btnDisplayData.Click += new System.EventHandler(this.btnDisplayData_Click);
             // 
             // gvCounterData
             // 
@@ -75,14 +78,17 @@
             this.gvCounterData.BackgroundColor = System.Drawing.Color.White;
             this.gvCounterData.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.gvCounterData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Tahoma", 8F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(188)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gvCounterData.DefaultCellStyle = dataGridViewCellStyle7;
+            this.gvCounterData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dateTime,
+            this.counterValue});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(188)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvCounterData.DefaultCellStyle = dataGridViewCellStyle1;
             this.gvCounterData.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
             this.gvCounterData.Location = new System.Drawing.Point(12, 56);
             this.gvCounterData.Margin = new System.Windows.Forms.Padding(4);
@@ -163,6 +169,20 @@
             this.lblMaximum.Text = "Max: 9.0 %";
             this.lblMaximum.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // dateTime
+            // 
+            this.dateTime.HeaderText = "Time";
+            this.dateTime.MinimumWidth = 6;
+            this.dateTime.Name = "dateTime";
+            this.dateTime.ReadOnly = true;
+            // 
+            // counterValue
+            // 
+            this.counterValue.HeaderText = "Counter Value";
+            this.counterValue.MinimumWidth = 6;
+            this.counterValue.Name = "counterValue";
+            this.counterValue.ReadOnly = true;
+            // 
             // CounterData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -202,5 +222,7 @@
         private System.Windows.Forms.Label lblAverage;
         private System.Windows.Forms.Label lblMinimum;
         private System.Windows.Forms.Label lblMaximum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn counterValue;
     }
 }

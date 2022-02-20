@@ -883,14 +883,14 @@ where counters.is_deleted = 0 and tbl_link.machine_id = '{_server_id}' and tbl_l
 
         private void mnuCounterDetails_Click(object sender, EventArgs e)
         {
-            var counter = db.set_counters.FirstOrDefault(c => c.counter_id == txtSelCounterID.Text);
             CounterDetails countDetails = new CounterDetails(txtSelCounterID.Text, gvCounters.SelectedRows[0].Cells[2].Value.ToString(), gvCounters.SelectedRows[0].Cells[3].Value.ToString());
             countDetails.ShowDialog();
         }
 
         private void mnuCounterViewData_Click(object sender, EventArgs e)
         {
-            CounterData countData = new CounterData();
+            string[] split = gvCounters.SelectedRows[0].Cells[5].Value.ToString().Split(' ');
+            CounterData countData = new CounterData(txtSelServerID.Text, txtSelCounterID.Text, gvCounters.SelectedRows[0].Cells[2].Value.ToString(), split[1]);
             countData.ShowDialog();
         }
 

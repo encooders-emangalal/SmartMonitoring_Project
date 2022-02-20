@@ -11,7 +11,7 @@ namespace SmartMonitoring.BackEnd.DAL
 
         public static string getConnectionString()
         {
-            string _connection_string = "Data source=DESKTOP-QQD7L2O; Database=SmartMonitoring;User Id=sa;Password=123";
+            string _connection_string = "Data source=DESKTOP-A0PSS5C; Database=SmartMonitoring;User Id=sa;Password=123456";
             return _connection_string;
         }
 
