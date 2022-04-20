@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,5 +16,33 @@ namespace SmartMonitoring
         {
             InitializeComponent();
         }
+
+        private void frmJobsNotifications_Load(object sender, EventArgs e)
+        {
+            // Bind Grid
+
+
+        }
+
+        private void DesignControls(int status)
+        {
+            if (status == 1) //new
+            {
+                btnNew.Enabled = false;
+                btnDelete.Enabled = false;
+                btnCancel.Enabled = true;
+                gvPushJobs.Enabled = false;
+            }
+            else if (status == 2) //cancel
+            {
+                btnNew.Enabled = false;
+                btnDelete.Enabled = false;
+                btnCancel.Enabled = true;
+                gvPushJobs.Enabled = true;
+            }
+
+        }
+
+        
     }
 }

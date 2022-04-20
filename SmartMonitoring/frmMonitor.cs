@@ -1085,6 +1085,12 @@ where counters.is_deleted = 0 and tbl_link.machine_id = '{_server_id}' and tbl_l
             frmUserConfigration frmUserConfigration = new frmUserConfigration();
             frmUserConfigration.ShowDialog();
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            frmServersGroupsConfigration frmServersGroupsConfigration = new frmServersGroupsConfigration();
+            frmServersGroupsConfigration.ShowDialog();
+        }
     }
 
     public class MeasureModel

@@ -34,17 +34,17 @@
             this.tsbActivate = new System.Windows.Forms.ToolStripButton();
             this.label3 = new System.Windows.Forms.Label();
             this.btnJobLocation = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.btnCancel = new System.Windows.Forms.ToolStripButton();
             this.label18 = new System.Windows.Forms.Label();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.btnDelete = new System.Windows.Forms.ToolStripButton();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.btnJobStart = new System.Windows.Forms.ToolStripButton();
+            this.btnNew = new System.Windows.Forms.ToolStripButton();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btnJobStop = new System.Windows.Forms.ToolStripButton();
+            this.btnSave = new System.Windows.Forms.ToolStripButton();
             this.gvPushJobs = new System.Windows.Forms.DataGridView();
             this.JOB_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.JOB_NAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,11 +61,11 @@
             this.checkBox12 = new System.Windows.Forms.CheckBox();
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvPushJobs)).BeginInit();
             this.panel1.SuspendLayout();
@@ -113,14 +113,14 @@
             this.btnJobLocation.Size = new System.Drawing.Size(36, 36);
             this.btnJobLocation.Text = "Deactivate";
             // 
-            // toolStripButton2
+            // btnCancel
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(36, 36);
-            this.toolStripButton2.Text = "Duplicate";
+            this.btnCancel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
+            this.btnCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(36, 36);
+            this.btnCancel.Text = "Duplicate";
             // 
             // label18
             // 
@@ -149,14 +149,14 @@
             this.checkBox1.TabIndex = 20;
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // toolStripButton1
+            // btnDelete
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(36, 36);
-            this.toolStripButton1.Text = "Delete";
+            this.btnDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(36, 36);
+            this.btnDelete.Text = "Delete";
             // 
             // textBox7
             // 
@@ -177,14 +177,14 @@
             this.label20.Text = "CCB Division";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // btnJobStart
+            // btnNew
             // 
-            this.btnJobStart.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnJobStart.Image = ((System.Drawing.Image)(resources.GetObject("btnJobStart.Image")));
-            this.btnJobStart.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnJobStart.Name = "btnJobStart";
-            this.btnJobStart.Size = new System.Drawing.Size(36, 36);
-            this.btnJobStart.Text = "New";
+            this.btnNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnNew.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.Image")));
+            this.btnNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(36, 36);
+            this.btnNew.Text = "New";
             // 
             // textBox1
             // 
@@ -199,11 +199,11 @@
             // 
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnJobStart,
-            this.btnJobStop,
-            this.toolStripButton1,
+            this.btnNew,
+            this.btnSave,
+            this.btnDelete,
+            this.btnCancel,
             this.toolStripSeparator1,
-            this.toolStripButton2,
             this.tsbActivate,
             this.btnJobLocation});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -212,14 +212,14 @@
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // btnJobStop
+            // btnSave
             // 
-            this.btnJobStop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnJobStop.Image = ((System.Drawing.Image)(resources.GetObject("btnJobStop.Image")));
-            this.btnJobStop.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnJobStop.Name = "btnJobStop";
-            this.btnJobStop.Size = new System.Drawing.Size(36, 36);
-            this.btnJobStop.Text = "Save";
+            this.btnSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
+            this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(36, 36);
+            this.btnSave.Text = "Save";
             // 
             // gvPushJobs
             // 
@@ -416,15 +416,28 @@
             this.label32.TabIndex = 24;
             this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label1
+            // comboBox2
             // 
-            this.label1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(7, 48);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(119, 18);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Job Name";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "CPU",
+            "Memory",
+            "Storage"});
+            this.comboBox2.Location = new System.Drawing.Point(127, 172);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 21);
+            this.comboBox2.TabIndex = 43;
+            // 
+            // label14
+            // 
+            this.label14.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(10, 173);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(105, 18);
+            this.label14.TabIndex = 42;
+            this.label14.Text = "Parameter";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // comboBox1
             // 
@@ -449,28 +462,15 @@
             this.label2.Text = "Entity Name";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // comboBox2
+            // label1
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "CPU",
-            "Memory",
-            "Storage"});
-            this.comboBox2.Location = new System.Drawing.Point(127, 172);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 43;
-            // 
-            // label14
-            // 
-            this.label14.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(10, 173);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(105, 18);
-            this.label14.TabIndex = 42;
-            this.label14.Text = "Parameter";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(7, 48);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(119, 18);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Job Name";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // frmJobsNotifications
             // 
@@ -483,6 +483,7 @@
             this.MaximizeBox = false;
             this.Name = "frmJobsNotifications";
             this.Text = "Notification Jobs";
+            this.Load += new System.EventHandler(this.frmJobsNotifications_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvPushJobs)).EndInit();
@@ -499,17 +500,17 @@
         private System.Windows.Forms.ToolStripButton tsbActivate;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripButton btnJobLocation;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton btnCancel;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton btnDelete;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.ToolStripButton btnJobStart;
+        private System.Windows.Forms.ToolStripButton btnNew;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton btnJobStop;
+        private System.Windows.Forms.ToolStripButton btnSave;
         private System.Windows.Forms.DataGridView gvPushJobs;
         private System.Windows.Forms.DataGridViewTextBoxColumn JOB_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn JOB_NAME;

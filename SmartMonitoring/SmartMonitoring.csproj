@@ -99,6 +99,12 @@
     <Compile Include="ExportCounter.Designer.cs">
       <DependentUpon>ExportCounter.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmServersGroupsConfigration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmServersGroupsConfigration.Designer.cs">
+      <DependentUpon>frmServersGroupsConfigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmUserConfigration.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -271,6 +277,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ExportCounter.resx">
       <DependentUpon>ExportCounter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmServersGroupsConfigration.resx">
+      <DependentUpon>frmServersGroupsConfigration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUserConfigration.resx">
       <DependentUpon>frmUserConfigration.cs</DependentUpon>
@@ -509,6 +518,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\servers_groups.jpg" />
     <Content Include="Resources\users.jpg" />
     <EmbeddedResource Include="Resources\error.wav" />
     <EmbeddedResource Include="Resources\message.wav" />
