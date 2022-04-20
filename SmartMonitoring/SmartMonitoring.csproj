@@ -99,6 +99,12 @@
     <Compile Include="ExportCounter.Designer.cs">
       <DependentUpon>ExportCounter.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmUserConfigration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUserConfigration.Designer.cs">
+      <DependentUpon>frmUserConfigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="MonitorErrors.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -230,6 +236,12 @@
     <Compile Include="servers_updates.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="server_groups.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="server_users.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="set_counters.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -237,6 +249,12 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="set_serialno.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sys_settings.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="user.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="xx_counters_transactions.cs">
@@ -253,6 +271,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ExportCounter.resx">
       <DependentUpon>ExportCounter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUserConfigration.resx">
+      <DependentUpon>frmUserConfigration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MonitorErrors.resx">
       <DependentUpon>MonitorErrors.cs</DependentUpon>
@@ -488,10 +509,14 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="Resources\users.jpg" />
     <EmbeddedResource Include="Resources\error.wav" />
     <EmbeddedResource Include="Resources\message.wav" />
     <EmbeddedResource Include="Resources\notification.wav" />
     <EmbeddedResource Include="Resources\warning.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

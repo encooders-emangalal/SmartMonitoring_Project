@@ -14,6 +14,12 @@ namespace SmartMonitoring
     
     public partial class montr_machines_list
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public montr_machines_list()
+        {
+            this.server_users = new HashSet<server_users>();
+        }
+    
         public string machine_id { get; set; }
         public string machine_name { get; set; }
         public string machine_description { get; set; }
@@ -32,5 +38,11 @@ namespace SmartMonitoring
         public Nullable<System.DateTime> update_dt { get; set; }
         public Nullable<int> delete_user_id { get; set; }
         public Nullable<System.DateTime> delete_dt { get; set; }
+        public Nullable<int> group_id { get; set; }
+        public Nullable<int> interval_timer { get; set; }
+    
+        public virtual server_groups server_groups { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<server_users> server_users { get; set; }
     }
 }

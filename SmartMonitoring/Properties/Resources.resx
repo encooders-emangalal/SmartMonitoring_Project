@@ -118,32 +118,26 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="actions_charts_chart1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\actions-charts-chart1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="actions_view_list_details" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\actions-view-list-details.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="actions_charts_chart2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\actions-charts-chart2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="devices_system" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\devices-system.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="actions_charts_chart3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\actions-charts-chart3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="devices_computer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\devices-computer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="actions_charts_chart4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\actions-charts-chart4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="apps_preferences_config" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\apps-preferences-config.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="actions_charts_pie" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\actions-charts-pie.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="actions_view_file_columns" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\actions-view-file-columns.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="actions_chronometer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\actions-chronometer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="devices_ram" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\devices-ram.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="actions_controls_help" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\actions-controls-help.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="actions_document_open_folder" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\actions-document-open-folder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="actions_document_save" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\actions-document-save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="preferences_desktop_font_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\preferences-desktop-font-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="actions_document_save_all" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\actions-document-save-all.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -151,97 +145,106 @@
   <data name="actions_document_save_as" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\actions-document-save-as.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="actions_media_eject" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\actions-media-eject.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="actions_charts_chart2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\actions-charts-chart2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="actions_media_pause" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\actions-media-pause.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="actions_media_start" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\actions-media-start.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="devices_harddisk" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\devices-harddisk.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="actions_media_stop" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\actions-media-stop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="actions_project_development" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\actions-project-development.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="actions_view_file_columns" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\actions-view-file-columns.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="actions_view_list_details" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\actions-view-list-details.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="actions_chronometer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\actions-chronometer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="actions_view_process" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\actions-view-process.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="actions_window_close" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\actions-window-close.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="actions_charts_chart3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\actions-charts-chart3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="actions_window_new" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\actions-window-new.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="actions_window_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\actions-window-normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="apps_preferences_about" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\apps-preferences-about.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="apps_preferences_config" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\apps-preferences-config.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="apps_preferences_config2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\apps-preferences-config2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="apps_preferences_help" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\apps-preferences-help.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="apps_preferences_notification" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\apps-preferences-notification.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="apps_tools_database" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\apps-tools-database.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="devices_computer" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\devices-computer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="devices_cpu" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\devices-cpu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="devices_harddisk" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\devices-harddisk.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="devices_harddisk2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\devices-harddisk2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="devices_internet" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\devices-internet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="devices_modem" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\devices-modem.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="devices_nas1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\devices-nas1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="actions_media_eject" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\actions-media-eject.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="devices_nas2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\devices-nas2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="devices_nas3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\devices-nas3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="apps_tools_database" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\apps-tools-database.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="devices_ram" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\devices-ram.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="actions_media_stop" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\actions-media-stop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="devices_system" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\devices-system.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="actions_document_open_folder" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\actions-document-open-folder.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="apps_preferences_help" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\apps-preferences-help.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="actions_window_new" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\actions-window-new.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="actions_project_development" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\actions-project-development.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="devices_system2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\devices-system2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="actions_controls_help" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\actions-controls-help.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="devices_internet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\devices-internet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="apps_preferences_config2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\apps-preferences-config2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="apps_preferences_about" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\apps-preferences-about.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="actions_document_save" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\actions-document-save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="actions_charts_chart4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\actions-charts-chart4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="actions_charts_chart1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\actions-charts-chart1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="devices_modem" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\devices-modem.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="devices_nas3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\devices-nas3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="devices_cpu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\devices-cpu.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="actions_window_close" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\actions-window-close.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="actions_media_start" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\actions-media-start.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="actions_window_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\actions-window-normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="devices_system3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\devices-system3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="preferences_desktop_font_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\preferences-desktop-font-icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="devices_nas1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\devices-nas1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="devices_harddisk2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\devices-harddisk2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="apps_preferences_notification" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\apps-preferences-notification.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="actions_charts_pie" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\actions-charts-pie.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="users" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\users.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

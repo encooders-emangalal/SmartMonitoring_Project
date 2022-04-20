@@ -27,6 +27,8 @@
           <Property Name="update_dt" Type="datetime" />
           <Property Name="delete_user_id" Type="int" />
           <Property Name="delete_dt" Type="datetime" />
+          <Property Name="group_id" Type="int" />
+          <Property Name="interval_timer" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'SmartMonitoring.dbo.montr_monitor_counters' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -107,15 +109,11 @@ warning 6002: The table/view 'SmartMonitoring.dbo.montr_monitor_groups_counters'
           <Property Name="is_alarm_raised" Type="bit" />
           <Property Name="is_action_raised" Type="bit" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'SmartMonitoring.dbo.montr_monitor_transactions' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="montr_monitor_transactions">
           <Key>
-            <PropertyRef Name="machine_id" />
-            <PropertyRef Name="counter_id" />
-            <PropertyRef Name="counter_datetime" />
-            <PropertyRef Name="counter_value" />
+            <PropertyRef Name="transaction_id" />
           </Key>
+          <Property Name="transaction_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="machine_id" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="counter_id" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="instance_id" Type="nvarchar" MaxLength="150" />
@@ -147,6 +145,21 @@ warning 6002: The table/view 'SmartMonitoring.dbo.montr_monitor_transactions' do
           <Property Name="schd_weekly_thursday" Type="bit" />
           <Property Name="schd_weekly_friday" Type="bit" />
           <Property Name="schd_monthly_day" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="server_groups">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="server_users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="machine_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="servers_data">
           <Key>
@@ -228,6 +241,26 @@ warning 6002: The table/view 'SmartMonitoring.dbo.set_counters_categories' does 
           <Property Name="serialno_value" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'SmartMonitoring.dbo.sys_settings' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="sys_settings">
+          <Key>
+            <PropertyRef Name="key" />
+            <PropertyRef Name="value" />
+            <PropertyRef Name="type" />
+          </Key>
+          <Property Name="key" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="value" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="type" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nchar" MaxLength="50" />
+          <Property Name="email" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="xx_counters_transactions">
           <Key>
@@ -243,15 +276,55 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
           <Property Name="counter_datetime" Type="datetime" Nullable="false" />
           <Property Name="counter_value" Type="float" Nullable="false" />
         </EntityType>
+        <Association Name="FK_montr_machines_list_server_groups">
+          <End Role="server_groups" Type="Self.server_groups" Multiplicity="0..1" />
+          <End Role="montr_machines_list" Type="Self.montr_machines_list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="server_groups">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="montr_machines_list">
+              <PropertyRef Name="group_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_server_users_montr_machines_list">
+          <End Role="montr_machines_list" Type="Self.montr_machines_list" Multiplicity="1" />
+          <End Role="server_users" Type="Self.server_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="montr_machines_list">
+              <PropertyRef Name="machine_id" />
+            </Principal>
+            <Dependent Role="server_users">
+              <PropertyRef Name="machine_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_server_users_Users">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="server_users" Type="Self.server_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="server_users">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="SmartMonitoringModelStoreContainer">
           <EntitySet Name="montr_machines_list" EntityType="Self.montr_machines_list" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="montr_monitor_groups" EntityType="Self.montr_monitor_groups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="montr_monitor_rules" EntityType="Self.montr_monitor_rules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="montr_monitor_transactions" EntityType="Self.montr_monitor_transactions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="schd_schedulers_data" EntityType="Self.schd_schedulers_data" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="server_groups" EntityType="Self.server_groups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="server_users" EntityType="Self.server_users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="servers_data" EntityType="Self.servers_data" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="servers_updates" EntityType="Self.servers_updates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="set_counters" EntityType="Self.set_counters" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="set_serialno" EntityType="Self.set_serialno" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="montr_monitor_counters" EntityType="Self.montr_monitor_counters" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [montr_monitor_counters].[machine_id] AS [machine_id], 
@@ -281,15 +354,6 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
     [montr_monitor_groups_counters].[instance_id] AS [instance_id]
     FROM [dbo].[montr_monitor_groups_counters] AS [montr_monitor_groups_counters]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="montr_monitor_transactions" EntityType="Self.montr_monitor_transactions" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [montr_monitor_transactions].[machine_id] AS [machine_id], 
-    [montr_monitor_transactions].[counter_id] AS [counter_id], 
-    [montr_monitor_transactions].[instance_id] AS [instance_id], 
-    [montr_monitor_transactions].[counter_datetime] AS [counter_datetime], 
-    [montr_monitor_transactions].[counter_value] AS [counter_value]
-    FROM [dbo].[montr_monitor_transactions] AS [montr_monitor_transactions]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="set_counters_categories" EntityType="Self.set_counters_categories" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [set_counters_categories].[category_id] AS [category_id], 
@@ -298,6 +362,13 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
     [set_counters_categories].[display_order] AS [display_order], 
     [set_counters_categories].[is_active] AS [is_active]
     FROM [dbo].[set_counters_categories] AS [set_counters_categories]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="sys_settings" EntityType="Self.sys_settings" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [sys_settings].[key] AS [key], 
+    [sys_settings].[value] AS [value], 
+    [sys_settings].[type] AS [type]
+    FROM [dbo].[sys_settings] AS [sys_settings]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="xx_counters_transactions" EntityType="Self.xx_counters_transactions" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -309,6 +380,18 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
     [xx_counters_transactions].[counter_value] AS [counter_value]
     FROM [dbo].[xx_counters_transactions] AS [xx_counters_transactions]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_montr_machines_list_server_groups" Association="Self.FK_montr_machines_list_server_groups">
+            <End Role="server_groups" EntitySet="server_groups" />
+            <End Role="montr_machines_list" EntitySet="montr_machines_list" />
+          </AssociationSet>
+          <AssociationSet Name="FK_server_users_montr_machines_list" Association="Self.FK_server_users_montr_machines_list">
+            <End Role="montr_machines_list" EntitySet="montr_machines_list" />
+            <End Role="server_users" EntitySet="server_users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_server_users_Users" Association="Self.FK_server_users_Users">
+            <End Role="users" EntitySet="users" />
+            <End Role="server_users" EntitySet="server_users" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -336,6 +419,10 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
           <Property Name="update_dt" Type="DateTime" Precision="3" />
           <Property Name="delete_user_id" Type="Int32" />
           <Property Name="delete_dt" Type="DateTime" Precision="3" />
+          <Property Name="group_id" Type="Int32" />
+          <NavigationProperty Name="server_groups" Relationship="SmartMonitoringModel.FK_montr_machines_list_server_groups" FromRole="montr_machines_list" ToRole="server_groups" />
+          <NavigationProperty Name="server_users" Relationship="SmartMonitoringModel.FK_server_users_montr_machines_list" FromRole="montr_machines_list" ToRole="server_users" />
+          <Property Name="interval_timer" Type="Int32" />
         </EntityType>
         <EntityType Name="montr_monitor_groups">
           <Key>
@@ -479,19 +566,6 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
           <Property Name="counter_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="instance_id" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
-        <EntityType Name="montr_monitor_transactions">
-          <Key>
-            <PropertyRef Name="machine_id" />
-            <PropertyRef Name="counter_id" />
-            <PropertyRef Name="counter_datetime" />
-            <PropertyRef Name="counter_value" />
-          </Key>
-          <Property Name="machine_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="counter_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="instance_id" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="counter_datetime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="counter_value" Type="Double" Nullable="false" />
-        </EntityType>
         <EntityType Name="set_counters_categories">
           <Key>
             <PropertyRef Name="category_id" />
@@ -505,20 +579,6 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
           <Property Name="display_order" Type="Byte" />
           <Property Name="is_active" Type="Boolean" Nullable="false" />
         </EntityType>
-        <EntityType Name="xx_counters_transactions">
-          <Key>
-            <PropertyRef Name="category_name" />
-            <PropertyRef Name="counter_name" />
-            <PropertyRef Name="counter_datetime" />
-            <PropertyRef Name="counter_value" />
-          </Key>
-          <Property Name="machine_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="category_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="counter_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="instance_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="counter_datetime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="counter_value" Type="Double" Nullable="false" />
-        </EntityType>
         <EntityContainer Name="SmartMonitoringEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="montr_machines_list" EntityType="Self.montr_machines_list" />
           <EntitySet Name="montr_monitor_groups" EntityType="Self.montr_monitor_groups" />
@@ -529,10 +589,26 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
           <EntitySet Name="set_serialno" EntityType="Self.set_serialno" />
           <EntitySet Name="montr_monitor_counters" EntityType="Self.montr_monitor_counters" />
           <EntitySet Name="montr_monitor_groups_counters" EntityType="Self.montr_monitor_groups_counters" />
-          <EntitySet Name="montr_monitor_transactions" EntityType="Self.montr_monitor_transactions" />
           <EntitySet Name="set_counters_categories" EntityType="Self.set_counters_categories" />
-          <EntitySet Name="xx_counters_transactions" EntityType="Self.xx_counters_transactions" />
           <EntitySet Name="montr_monitor_rules" EntityType="SmartMonitoringModel.montr_monitor_rules" />
+          <EntitySet Name="xx_counters_transactions" EntityType="SmartMonitoringModel.xx_counters_transactions" />
+          <EntitySet Name="montr_monitor_transactions" EntityType="SmartMonitoringModel.montr_monitor_transactions" />
+          <EntitySet Name="server_groups" EntityType="SmartMonitoringModel.server_groups" />
+          <EntitySet Name="server_users" EntityType="SmartMonitoringModel.server_users" />
+          <EntitySet Name="users" EntityType="SmartMonitoringModel.user" />
+          <AssociationSet Name="FK_montr_machines_list_server_groups" Association="SmartMonitoringModel.FK_montr_machines_list_server_groups">
+            <End Role="server_groups" EntitySet="server_groups" />
+            <End Role="montr_machines_list" EntitySet="montr_machines_list" />
+          </AssociationSet>
+          <AssociationSet Name="FK_server_users_montr_machines_list" Association="SmartMonitoringModel.FK_server_users_montr_machines_list">
+            <End Role="montr_machines_list" EntitySet="montr_machines_list" />
+            <End Role="server_users" EntitySet="server_users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_server_users_Users" Association="SmartMonitoringModel.FK_server_users_Users">
+            <End Role="user" EntitySet="users" />
+            <End Role="server_users" EntitySet="server_users" />
+          </AssociationSet>
+          <EntitySet Name="sys_settings" EntityType="SmartMonitoringModel.sys_settings" />
         </EntityContainer>
         <EntityType Name="montr_monitor_rules">
           <Key>
@@ -556,6 +632,104 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
           <Property Name="is_alarm_raised" Type="Boolean" />
           <Property Name="is_action_raised" Type="Boolean" />
         </EntityType>
+        <EntityType Name="xx_counters_transactions">
+          <Key>
+            <PropertyRef Name="category_name" />
+            <PropertyRef Name="counter_name" />
+            <PropertyRef Name="counter_datetime" />
+            <PropertyRef Name="counter_value" />
+          </Key>
+          <Property Name="machine_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="category_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="counter_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="instance_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="counter_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="counter_value" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="montr_monitor_transactions">
+          <Key>
+            <PropertyRef Name="transaction_id" />
+          </Key>
+          <Property Name="transaction_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="machine_id" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="counter_id" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="instance_id" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="counter_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="counter_value" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="server_groups">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="montr_machines_list" Relationship="SmartMonitoringModel.FK_montr_machines_list_server_groups" FromRole="server_groups" ToRole="montr_machines_list" />
+        </EntityType>
+        <EntityType Name="server_users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="machine_id" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="montr_machines_list" Relationship="SmartMonitoringModel.FK_server_users_montr_machines_list" FromRole="server_users" ToRole="montr_machines_list" />
+          <NavigationProperty Name="user" Relationship="SmartMonitoringModel.FK_server_users_Users" FromRole="server_users" ToRole="user" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="server_users" Relationship="SmartMonitoringModel.FK_server_users_Users" FromRole="user" ToRole="server_users" />
+        </EntityType>
+        <Association Name="FK_montr_machines_list_server_groups">
+          <End Type="SmartMonitoringModel.server_groups" Role="server_groups" Multiplicity="0..1" />
+          <End Type="SmartMonitoringModel.montr_machines_list" Role="montr_machines_list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="server_groups">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="montr_machines_list">
+              <PropertyRef Name="group_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_server_users_montr_machines_list">
+          <End Type="SmartMonitoringModel.montr_machines_list" Role="montr_machines_list" Multiplicity="1" />
+          <End Type="SmartMonitoringModel.server_users" Role="server_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="montr_machines_list">
+              <PropertyRef Name="machine_id" />
+            </Principal>
+            <Dependent Role="server_users">
+              <PropertyRef Name="machine_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_server_users_Users">
+          <End Type="SmartMonitoringModel.user" Role="user" Multiplicity="1" />
+          <End Type="SmartMonitoringModel.server_users" Role="server_users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="server_users">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="sys_settings">
+          <Key>
+            <PropertyRef Name="key" />
+            <PropertyRef Name="value" />
+            <PropertyRef Name="type" />
+          </Key>
+          <Property Name="key" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="value" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -565,6 +739,8 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
           <EntitySetMapping Name="montr_machines_list">
             <EntityTypeMapping TypeName="SmartMonitoringModel.montr_machines_list">
               <MappingFragment StoreEntitySet="montr_machines_list">
+                <ScalarProperty Name="interval_timer" ColumnName="interval_timer" />
+                <ScalarProperty Name="group_id" ColumnName="group_id" />
                 <ScalarProperty Name="machine_id" ColumnName="machine_id" />
                 <ScalarProperty Name="machine_name" ColumnName="machine_name" />
                 <ScalarProperty Name="machine_description" ColumnName="machine_description" />
@@ -733,17 +909,6 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="montr_monitor_transactions">
-            <EntityTypeMapping TypeName="SmartMonitoringModel.montr_monitor_transactions">
-              <MappingFragment StoreEntitySet="montr_monitor_transactions">
-                <ScalarProperty Name="machine_id" ColumnName="machine_id" />
-                <ScalarProperty Name="counter_id" ColumnName="counter_id" />
-                <ScalarProperty Name="instance_id" ColumnName="instance_id" />
-                <ScalarProperty Name="counter_datetime" ColumnName="counter_datetime" />
-                <ScalarProperty Name="counter_value" ColumnName="counter_value" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="set_counters_categories">
             <EntityTypeMapping TypeName="SmartMonitoringModel.set_counters_categories">
               <MappingFragment StoreEntitySet="set_counters_categories">
@@ -752,18 +917,6 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
                 <ScalarProperty Name="category_name" ColumnName="category_name" />
                 <ScalarProperty Name="display_order" ColumnName="display_order" />
                 <ScalarProperty Name="is_active" ColumnName="is_active" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="xx_counters_transactions">
-            <EntityTypeMapping TypeName="SmartMonitoringModel.xx_counters_transactions">
-              <MappingFragment StoreEntitySet="xx_counters_transactions">
-                <ScalarProperty Name="machine_name" ColumnName="machine_name" />
-                <ScalarProperty Name="category_name" ColumnName="category_name" />
-                <ScalarProperty Name="counter_name" ColumnName="counter_name" />
-                <ScalarProperty Name="instance_name" ColumnName="instance_name" />
-                <ScalarProperty Name="counter_datetime" ColumnName="counter_datetime" />
-                <ScalarProperty Name="counter_value" ColumnName="counter_value" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -787,6 +940,65 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
                 <ScalarProperty Name="counter_id" ColumnName="counter_id" />
                 <ScalarProperty Name="machine_id" ColumnName="machine_id" />
                 <ScalarProperty Name="rule_id" ColumnName="rule_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="xx_counters_transactions">
+            <EntityTypeMapping TypeName="SmartMonitoringModel.xx_counters_transactions">
+              <MappingFragment StoreEntitySet="xx_counters_transactions">
+                <ScalarProperty Name="counter_value" ColumnName="counter_value" />
+                <ScalarProperty Name="counter_datetime" ColumnName="counter_datetime" />
+                <ScalarProperty Name="instance_name" ColumnName="instance_name" />
+                <ScalarProperty Name="counter_name" ColumnName="counter_name" />
+                <ScalarProperty Name="category_name" ColumnName="category_name" />
+                <ScalarProperty Name="machine_name" ColumnName="machine_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="montr_monitor_transactions">
+            <EntityTypeMapping TypeName="SmartMonitoringModel.montr_monitor_transactions">
+              <MappingFragment StoreEntitySet="montr_monitor_transactions">
+                <ScalarProperty Name="counter_value" ColumnName="counter_value" />
+                <ScalarProperty Name="counter_datetime" ColumnName="counter_datetime" />
+                <ScalarProperty Name="instance_id" ColumnName="instance_id" />
+                <ScalarProperty Name="counter_id" ColumnName="counter_id" />
+                <ScalarProperty Name="machine_id" ColumnName="machine_id" />
+                <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="server_groups">
+            <EntityTypeMapping TypeName="SmartMonitoringModel.server_groups">
+              <MappingFragment StoreEntitySet="server_groups">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="server_users">
+            <EntityTypeMapping TypeName="SmartMonitoringModel.server_users">
+              <MappingFragment StoreEntitySet="server_users">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="machine_id" ColumnName="machine_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="SmartMonitoringModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sys_settings">
+            <EntityTypeMapping TypeName="SmartMonitoringModel.sys_settings">
+              <MappingFragment StoreEntitySet="sys_settings">
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="key" ColumnName="key" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

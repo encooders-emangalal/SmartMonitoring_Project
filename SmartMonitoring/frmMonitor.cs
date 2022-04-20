@@ -22,6 +22,10 @@ namespace SmartMonitoring
 		public static string strMonitorID = "";
         public static string strCounterID = "";
         public static string strInstanceName = "";
+        private double query;
+
+        public double? Value { get; set; }
+
         public Timer Timer { get; set; }
 
         public frmMonitor()
@@ -29,8 +33,167 @@ namespace SmartMonitoring
             InitializeComponent();
         }
 
+        private bool Get(double? value, string mathSymbol, double ruleValue)
+        {
+            if (mathSymbol == "equals")
+                return value == ruleValue;
+            else if (mathSymbol == "more_than")
+                return value > ruleValue;
+            else if (mathSymbol == "less_than")
+                return value < ruleValue;
+            else
+                return value != ruleValue;
+        }
+
         private void frmMonitor_Load(object sender, EventArgs e)
         {
+            var rules = db.montr_monitor_rules.ToList();
+            foreach (var rule in rules)
+            {
+                var counter = db.montr_monitor_counters.FirstOrDefault(c => c.machine_id == rule.machine_id && c.counter_id == rule.counter_id && c.instance_id == rule.instance_id);
+                if (rule.rule_field == "current")
+                {
+                    Value = counter.current_value;
+                    
+                }
+                else if (rule.rule_field == "average")
+                {
+                    Value = counter.average_value;
+                    query = db.montr_monitor_transactions.OrderByDescending(t => t.counter_datetime).Take(rule.ocuurance_interval).Average(c => c.counter_value);
+                }
+                else if (rule.rule_field == "minimum")
+                {
+                    Value = counter.minimum_value;
+                    query = db.montr_monitor_transactions.OrderByDescending(t => t.counter_datetime).Take(rule.ocuurance_interval).Min(c => c.counter_value);
+                }
+                else
+                {
+                    Value = counter.maximum_value;
+                    query = db.montr_monitor_transactions.OrderByDescending(t => t.counter_datetime).Take(rule.ocuurance_interval).Max(c => c.counter_value);
+                }
+
+                if (Get(Value, rule.rule_math_symbol, rule.rule_value))
+                {
+
+                }
+                // refmnilekr
+                if (rule.rule_field == "current")
+                {
+                    if (rule.rule_math_symbol == "equals")
+                    {
+                        if (counter.current_value == rule.rule_value)
+                        {
+                            if (rule.rule_ocuurance_type == 1) // For n occurance
+                            {
+                                var q = db.montr_monitor_transactions.OrderByDescending(c => c.counter_datetime).Take(rule.ocuurance_interval);
+                                if (q.Where(c => c.counter_value == rule.rule_value).Count() == rule.ocuurance_interval)
+                                {
+                                    // do something
+                                }
+                            }
+                            else // For specific period of time in seconds
+                            {
+                                var t = db.montr_monitor_transactions.Where(c => c.counter_datetime == DateTime.Now.AddSeconds(-rule.ocuurance_interval)).Count();
+                                var q = db.montr_monitor_transactions.OrderByDescending(c => c.counter_datetime).Take(t);
+                                if (q.Where(c => c.counter_value == rule.rule_value).Count() == t)
+                                {
+                                    // do something
+                                }
+                            }
+                        }
+                    }
+                    else if (rule.rule_math_symbol == "not_equal")
+                    {
+
+                    }
+                    else if (rule.rule_math_symbol == "more_than")
+                    {
+                        if (counter.current_value > rule.rule_value)
+                        {
+                            if (rule.rule_ocuurance_type == 1) // For n occurance
+                            {
+                                var q = db.montr_monitor_transactions.OrderByDescending(c => c.counter_datetime).Take(rule.ocuurance_interval).ToList();
+                                if (q.Where(c => c.counter_value > rule.rule_value).Count() == rule.ocuurance_interval)
+                                {
+                                    // do something
+                                }
+                            }
+                            else // For specific period of time in seconds
+                            {
+                                var dt = db.montr_monitor_transactions.OrderByDescending(c => c.counter_datetime).FirstOrDefault();
+                                var x = dt.counter_datetime.AddSeconds(-rule.ocuurance_interval);
+                                var t = db.montr_monitor_transactions.Where(c => c.counter_datetime > x).Count();
+                                var q = db.montr_monitor_transactions.OrderByDescending(c => c.counter_datetime).Take(t).ToList();
+                                if (q.Where(c => c.counter_value > rule.rule_value).Count() == t)
+                                {
+                                    // do something
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+
+                    }
+                }
+                else if (rule.rule_field == "average")
+                {
+                    if (rule.rule_math_symbol == "equals")
+                    {
+
+                    }
+                    else if (rule.rule_math_symbol == "not_equal")
+                    {
+
+                    }
+                    else if (rule.rule_math_symbol == "more_than")
+                    {
+
+                    }
+                    else
+                    {
+
+                    }
+                }
+                else if (rule.rule_field == "minimum")
+                {
+                    if (rule.rule_math_symbol == "equals")
+                    {
+
+                    }
+                    else if (rule.rule_math_symbol == "not_equal")
+                    {
+
+                    }
+                    else if (rule.rule_math_symbol == "more_than")
+                    {
+
+                    }
+                    else
+                    {
+
+                    }
+                }
+                else
+                {
+                    if (rule.rule_math_symbol == "equals")
+                    {
+
+                    }
+                    else if (rule.rule_math_symbol == "not_equal")
+                    {
+
+                    }
+                    else if (rule.rule_math_symbol == "more_than")
+                    {
+
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
             //Timer = new Timer
             //{
             //    Interval = 6000
@@ -908,6 +1071,19 @@ where counters.is_deleted = 0 and tbl_link.machine_id = '{_server_id}' and tbl_l
         {
             MonitorErrors monitorError = new MonitorErrors();
             monitorError.ShowDialog();
+        }
+
+        private void gvCounters_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+       
+
+        private void toolStripButton8_Click(object sender, EventArgs e)
+        {
+            frmUserConfigration frmUserConfigration = new frmUserConfigration();
+            frmUserConfigration.ShowDialog();
         }
     }
 

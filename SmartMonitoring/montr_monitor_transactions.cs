@@ -14,6 +14,7 @@ namespace SmartMonitoring
     
     public partial class montr_monitor_transactions
     {
+        public int transaction_id { get; set; }
         public string machine_id { get; set; }
         public string counter_id { get; set; }
         public string instance_id { get; set; }

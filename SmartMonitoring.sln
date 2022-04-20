@@ -1,15 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26430.14
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartMonitoring", "SmartMonitoring\SmartMonitoring.csproj", "{38F1709F-E643-4E5D-AF37-715FEDAFF84B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartMonitoring.WS", "SmartMonitoring.WS\SmartMonitoring.WS.csproj", "{1A843A13-FA9D-4521-AEF1-91A228541430}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xxSmartMonitoring.WS", "SmartMonitoring.WS\xxSmartMonitoring.WS.csproj", "{1A843A13-FA9D-4521-AEF1-91A228541430}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartMonitoring.ASMX", "SmartMonitoring.ASMX\SmartMonitoring.ASMX.csproj", "{F15DA224-1BC2-465F-8441-C24EB99FC10F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xxSmartMonitoring.ASMX", "SmartMonitoring.ASMX\xxSmartMonitoring.ASMX.csproj", "{F15DA224-1BC2-465F-8441-C24EB99FC10F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartMonitoring.BackEnd", "SmartMonitoring.BackEnd\SmartMonitoring.BackEnd.csproj", "{CFB44ABE-C1B3-4006-9B30-71AF6C3893BB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xxSmartMonitoring.BackEnd", "SmartMonitoring.BackEnd\xxSmartMonitoring.BackEnd.csproj", "{CFB44ABE-C1B3-4006-9B30-71AF6C3893BB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartMonitor.API", "SmartMonitor_API\SmartMonitor_API\SmartMonitor.API\SmartMonitor.API.csproj", "{35F38AD7-955D-43C2-BEC0-15C164F548CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NodeServer_WinService", "NodeServer_WinService\NodeServer_WinService\NodeServer_WinService\NodeServer_WinService.csproj", "{F7629DEF-9216-439B-8016-D12BC6A9AA03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,8 +37,19 @@ Global
 		{CFB44ABE-C1B3-4006-9B30-71AF6C3893BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFB44ABE-C1B3-4006-9B30-71AF6C3893BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFB44ABE-C1B3-4006-9B30-71AF6C3893BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35F38AD7-955D-43C2-BEC0-15C164F548CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35F38AD7-955D-43C2-BEC0-15C164F548CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35F38AD7-955D-43C2-BEC0-15C164F548CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35F38AD7-955D-43C2-BEC0-15C164F548CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7629DEF-9216-439B-8016-D12BC6A9AA03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7629DEF-9216-439B-8016-D12BC6A9AA03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7629DEF-9216-439B-8016-D12BC6A9AA03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7629DEF-9216-439B-8016-D12BC6A9AA03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {29A4259F-A432-4E53-AA9B-9D68E2E6ADEC}
 	EndGlobalSection
 EndGlobal
