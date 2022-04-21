@@ -61,6 +61,10 @@ namespace SmartMonitoring
                             message = "Updated Sucessfully";
                             newindex = index;
                         }
+                        else 
+                        { 
+                            return;
+                        }
                     }
                     else
                     {

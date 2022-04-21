@@ -25,6 +25,8 @@
         <AssociationConnector Association="SmartMonitoringModel.FK_server_users_montr_machines_list" />
         <AssociationConnector Association="SmartMonitoringModel.FK_server_users_Users" />
         <EntityTypeShape EntityType="SmartMonitoringModel.sys_settings" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="SmartMonitoringModel.C__EFMigrationsHistory" Width="1.5" PointX="11.375" PointY="9.75" />
+        <EntityTypeShape EntityType="SmartMonitoringModel.transaction_calculated" Width="1.5" PointX="5.375" PointY="12.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

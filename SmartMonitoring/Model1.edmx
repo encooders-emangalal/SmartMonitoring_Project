@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="SmartMonitoringModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__EFMigrationsHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
         <EntityType Name="montr_machines_list">
           <Key>
             <PropertyRef Name="machine_id" />
@@ -151,7 +158,7 @@ warning 6002: The table/view 'SmartMonitoring.dbo.montr_monitor_groups_counters'
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nchar" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="server_users">
           <Key>
@@ -248,17 +255,30 @@ warning 6002: The table/view 'SmartMonitoring.dbo.sys_settings' does not have a 
             <PropertyRef Name="value" />
             <PropertyRef Name="type" />
           </Key>
-          <Property Name="key" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="value" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="key" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="value" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="type" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="transaction_calculated">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="average" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="minimum" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="maximum" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="creation_date" Type="datetime" />
+          <Property Name="machine_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="counter_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="instance_id" Type="nvarchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="users">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nchar" MaxLength="50" />
-          <Property Name="email" Type="nchar" MaxLength="50" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -313,6 +333,7 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SmartMonitoringModelStoreContainer">
+          <EntitySet Name="__EFMigrationsHistory" EntityType="Self.__EFMigrationsHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="montr_machines_list" EntityType="Self.montr_machines_list" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="montr_monitor_groups" EntityType="Self.montr_monitor_groups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="montr_monitor_rules" EntityType="Self.montr_monitor_rules" Schema="dbo" store:Type="Tables" />
@@ -324,6 +345,7 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
           <EntitySet Name="servers_updates" EntityType="Self.servers_updates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="set_counters" EntityType="Self.set_counters" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="set_serialno" EntityType="Self.set_serialno" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="transaction_calculated" EntityType="Self.transaction_calculated" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="montr_monitor_counters" EntityType="Self.montr_monitor_counters" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -609,6 +631,8 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
             <End Role="server_users" EntitySet="server_users" />
           </AssociationSet>
           <EntitySet Name="sys_settings" EntityType="SmartMonitoringModel.sys_settings" />
+          <EntitySet Name="C__EFMigrationsHistory" EntityType="SmartMonitoringModel.C__EFMigrationsHistory" />
+          <EntitySet Name="transaction_calculated" EntityType="SmartMonitoringModel.transaction_calculated" />
         </EntityContainer>
         <EntityType Name="montr_monitor_rules">
           <Key>
@@ -662,7 +686,7 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="montr_machines_list" Relationship="SmartMonitoringModel.FK_montr_machines_list_server_groups" FromRole="server_groups" ToRole="montr_machines_list" />
         </EntityType>
         <EntityType Name="server_users">
@@ -680,8 +704,8 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="server_users" Relationship="SmartMonitoringModel.FK_server_users_Users" FromRole="user" ToRole="server_users" />
         </EntityType>
         <Association Name="FK_montr_machines_list_server_groups">
@@ -726,9 +750,29 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
             <PropertyRef Name="value" />
             <PropertyRef Name="type" />
           </Key>
-          <Property Name="key" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="value" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="key" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="value" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="type" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="C__EFMigrationsHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="transaction_calculated">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="average" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="minimum" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="maximum" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="creation_date" Type="DateTime" Precision="3" />
+          <Property Name="machine_id" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="counter_id" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="instance_id" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -999,6 +1043,28 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="value" ColumnName="value" />
                 <ScalarProperty Name="key" ColumnName="key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C__EFMigrationsHistory">
+            <EntityTypeMapping TypeName="SmartMonitoringModel.C__EFMigrationsHistory">
+              <MappingFragment StoreEntitySet="__EFMigrationsHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="transaction_calculated">
+            <EntityTypeMapping TypeName="SmartMonitoringModel.transaction_calculated">
+              <MappingFragment StoreEntitySet="transaction_calculated">
+                <ScalarProperty Name="instance_id" ColumnName="instance_id" />
+                <ScalarProperty Name="counter_id" ColumnName="counter_id" />
+                <ScalarProperty Name="machine_id" ColumnName="machine_id" />
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+                <ScalarProperty Name="maximum" ColumnName="maximum" />
+                <ScalarProperty Name="minimum" ColumnName="minimum" />
+                <ScalarProperty Name="average" ColumnName="average" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
