@@ -17,94 +17,91 @@ namespace SmartMonitoring
         int iseditnum = 0;
         string message = string.Empty;
         int index=0;
+        List<user> Users;
+        SmartMonitoringEntities1 context;
         public frmUserConfigration()
         {
             InitializeComponent();
+            context = new SmartMonitoringEntities1();
+            Users = new List<user>();
         }
 
         private void frmUserConfigration_Load(object sender, EventArgs e)
         {
             // gvUsers.Rows.Clear();
 
-            DataTable _table = new DataTable();
-            string _sql = "select * from users";
-            using (SqlConnection _connection = new SqlConnection(DAL.clsDBFunctions.getConnectionString()))
-            {
-                _connection.Open();
 
-                using (SqlDataAdapter da = new SqlDataAdapter(_sql, _connection))
-                {
-                    da.Fill(_table);
-                    gvUsers.DataSource = _table;
-                }
+            Users = context.users.Where(x => x.is_deleted != true).ToList();
+            gvUsers.DataSource = Converter.ListToDataTable(Users.Select(x => new { x.id,x.name, x.email} ).ToList());
 
-                _connection.Close();
-            }
         }
 
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+
+         
             int _count = 0;
             int newindex= 0;
-            using (SqlConnection _connection = new SqlConnection(DAL.clsDBFunctions.getConnectionString()))
+
+            if (!string.IsNullOrEmpty(nametxt.Text.Trim()) && !string.IsNullOrEmpty(emailtxt.Text.Trim()))
             {
-                _connection.Open();
-                string _sql = "";
-                if (!string.IsNullOrEmpty(nametxt.Text.Trim())&& !string.IsNullOrEmpty(emailtxt.Text.Trim()))
+                if (isedit)
                 {
-                    if (isedit)
-                    {
-                        if (MessageBox.Show(string.Format("Do you want to Update User ID: {0}?", iseditnum), "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                        {
-                            _sql = "update users set name= '" + nametxt.Text.Trim() + "',email='" + emailtxt.Text.Trim() + "' where id =" + iseditnum;
-                            message = "Updated Sucessfully";
-                            newindex = index;
-                        }
-                        else 
-                        { 
-                            return;
-                        }
+                    var user = Users.FirstOrDefault(x => x.id == iseditnum);
+                    if (MessageBox.Show(string.Format("Do you want to Update User Name: {0}?", user.name), "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {                        
+                        user.name = nametxt.Text;
+                        user.email = emailtxt.Text;
+                        user.is_active = IsActivecb.Checked;
+                        user.comments = commentstxt.Text;
+                        user.update_dt = DateTime.Now;
+                        context.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                        _count=context.SaveChanges();
+                        message = "Updated Sucessfully";
+                        newindex = index;
                     }
                     else
                     {
-                        _sql = "INSERT INTO users VALUES ('" + nametxt.Text.Trim() + "','" + emailtxt.Text.Trim() + "')";
-                        message = "Inserted Sucessfully";
-                        newindex = gvUsers.Rows.Count; ;
-                       
+                        return;
                     }
                 }
                 else
                 {
-                    return;
+                    user user = new user();
+                    user.name = nametxt.Text;
+                    user.email = emailtxt.Text;
+                    user.is_active = IsActivecb.Checked;
+                    user.comments = commentstxt.Text;
+                    user.insert_dt = DateTime.Now;
+                    context.users.Add(user);
+                    _count=context.SaveChanges();
+                    message = "Inserted Sucessfully";
+                    newindex = gvUsers.Rows.Count;
+
                 }
+            }
+            else
+            {
+                return;
+            }
 
-                using (SqlDataAdapter da = new SqlDataAdapter(_sql, _connection))
-                {
-                    using (SqlCommand _command = new SqlCommand(_sql, _connection))
-                    {
-                        _count = _command.ExecuteNonQuery();
-                    }
-                }
-                _connection.Close();
-                if (_count > 0)
-                {
-                    btnNew.Enabled = true;
-                    btnDelete.Enabled = true;
-                    btnCancel.Enabled = false;
-                    gvUsers.Enabled = true;
-                   
+            if (_count > 0)
+            {
+                btnNew.Enabled = true;
+                btnDelete.Enabled = true;
+                btnCancel.Enabled = false;
+                gvUsers.Enabled = true;
 
 
-                    MessageBox.Show(message);
-                    nametxt.Text = "";
-                    emailtxt.Text = "";
 
-                    frmUserConfigration_Load(sender, e);
-                    gvUsers.ClearSelection();
-                    gvUsers.Rows[newindex].Selected = true;
-                }
+                MessageBox.Show(message);
+                nametxt.Text = "";
+                emailtxt.Text = "";
 
+                frmUserConfigration_Load(sender, e);
+                gvUsers.ClearSelection();
+                gvUsers.Rows[newindex].Selected = true;
             }
         }
 
@@ -120,8 +117,10 @@ namespace SmartMonitoring
             if (rows > 0)
             {
                 iseditnum = int.Parse(gvUsers.SelectedRows[0].Cells[0].Value.ToString());
-                nametxt.Text = gvUsers.SelectedRows[0].Cells[1].Value.ToString().Trim();
-                emailtxt.Text = gvUsers.SelectedRows[0].Cells[2].Value.ToString().Trim();
+                nametxt.Text = Users.FirstOrDefault(x => x.id == iseditnum).name.ToString().Trim();
+                emailtxt.Text = Users.FirstOrDefault(x => x.id == iseditnum).email.ToString().Trim();
+                commentstxt.Text = Users.FirstOrDefault(x => x.id == iseditnum).comments.ToString().Trim();
+                IsActivecb.Checked = Users.FirstOrDefault(x => x.id == iseditnum).is_active ?? false;
                 isedit = true;
                 index = gvUsers.SelectedRows[0].Index;
             }
@@ -135,6 +134,8 @@ namespace SmartMonitoring
             gvUsers.Enabled = false;
             nametxt.Text = "";
             emailtxt.Text = "";
+            commentstxt.Text = "";
+            IsActivecb.Checked = false;
             isedit = false;
 
 
@@ -147,21 +148,32 @@ namespace SmartMonitoring
 
             if (rows > 0)
             {
-                if (MessageBox.Show(string.Format("Do you want to delete User ID: {0}?", iseditnum), "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                var user = Users.FirstOrDefault(x => x.id == iseditnum);
+                if (MessageBox.Show(string.Format("Do you want to delete User Name: {0}?", user.name), "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    using (SqlConnection _connection = new SqlConnection(DAL.clsDBFunctions.getConnectionString()))
-                    {
-                        using (SqlCommand cmd = new SqlCommand("DELETE FROM users WHERE id = @id", _connection))
-                        {
-                            cmd.CommandType = CommandType.Text;
-                            cmd.Parameters.AddWithValue("@id", iseditnum);
-                            _connection.Open();
-                            cmd.ExecuteNonQuery();
-                            _connection.Close();
-                        }
-                    }                    
+
+                    user.is_deleted = true;
+                    user.delete_dt = DateTime.Now;
+                    context.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                    context.SaveChanges();
+
+                    //using (SqlConnection _connection = new SqlConnection(DAL.clsDBFunctions.getConnectionString()))
+                    //{
+                    //    using (SqlCommand cmd = new SqlCommand("update users WHERE id = @id", _connection))
+                    //    {
+                    //        cmd.CommandType = CommandType.Text;
+                    //        cmd.Parameters.AddWithValue("@id", iseditnum);
+                    //        _connection.Open();
+                    //        cmd.ExecuteNonQuery();
+                    //        _connection.Close();
+                    //    }
+                    //}                    
                 }
-                int previndex = index - 1;
+                else
+                {
+                    return;
+                }
+                int previndex = index==0? index : index - 1;
                 frmUserConfigration_Load(sender, e);
                 gvUsers.ClearSelection();                
                gvUsers.Rows[previndex].Selected = true;
@@ -177,6 +189,28 @@ namespace SmartMonitoring
             gvUsers.Enabled = true;
             nametxt.Text = "";
             emailtxt.Text = "";
+            commentstxt.Text = "";
+            IsActivecb.Checked = false;
+            frmUserConfigration_Load(sender, e);
+            btnCancel.Enabled = true;
+
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtSearch.Text.Trim()))
+            {
+                Users = context.users.Where(x => x.name.Contains(txtSearch.Text.Trim())||x.email.Contains(txtSearch.Text.Trim())).ToList();
+                gvUsers.DataSource = Converter.ListToDataTable(Users.Select(x => new { x.id, x.name, x.email }).ToList());
+                btnCancel.Enabled = true;
+            }
+            else 
+            {
+                frmUserConfigration_Load(sender, e);
+               
+            }
+           
+
         }
     }
 }

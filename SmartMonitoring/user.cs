@@ -23,6 +23,15 @@ namespace SmartMonitoring
         public int id { get; set; }
         public string name { get; set; }
         public string email { get; set; }
+        public Nullable<bool> is_active { get; set; }
+        public Nullable<bool> is_deleted { get; set; }
+        public Nullable<int> insert_user_id { get; set; }
+        public Nullable<System.DateTime> insert_dt { get; set; }
+        public Nullable<int> update_user_id { get; set; }
+        public Nullable<System.DateTime> update_dt { get; set; }
+        public Nullable<int> delete_user_id { get; set; }
+        public Nullable<System.DateTime> delete_dt { get; set; }
+        public string comments { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<server_users> server_users { get; set; }
