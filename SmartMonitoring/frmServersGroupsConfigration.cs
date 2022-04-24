@@ -129,7 +129,16 @@ namespace SmartMonitoring
                 int previndex = index == 0 ? index : index - 1;
                 frmServersGroupsConfigration_Load(sender, e);
                 gvServersGroups.ClearSelection();
-                gvServersGroups.Rows[previndex].Selected = true;
+                if (gvServersGroups.Rows.Count > 0)
+                {
+                    gvServersGroups.Rows[previndex].Selected = true;
+                }
+                else
+                {
+                    nametxt.Text = "";
+                    commentstxt.Text = "";
+                    IsActivecb.Checked = false;
+                }
             }
         }
 

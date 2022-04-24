@@ -167,8 +167,20 @@ namespace SmartMonitoring
                 }
                 int previndex = index==0? index : index - 1;
                 frmUserConfigration_Load(sender, e);
-                gvUsers.ClearSelection();                
-               gvUsers.Rows[previndex].Selected = true;
+                gvUsers.ClearSelection();
+
+                if (gvUsers.Rows.Count>0)
+                {
+                    gvUsers.Rows[previndex].Selected = true;
+                }
+                else
+                {
+                    nametxt.Text = "";
+                    emailtxt.Text = "";
+                    commentstxt.Text = "";
+                    IsActivecb.Checked = false;
+                }
+               
             }
            
         }

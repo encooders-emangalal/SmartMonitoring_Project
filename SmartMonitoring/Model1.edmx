@@ -16,7 +16,7 @@
           <Key>
             <PropertyRef Name="machine_id" />
           </Key>
-          <Property Name="machine_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="machine_id" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="machine_name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="machine_description" Type="nvarchar" MaxLength="250" />
           <Property Name="host_name" Type="varchar" MaxLength="50" Nullable="false" />
@@ -174,7 +174,7 @@ warning 6002: The table/view 'SmartMonitoring.dbo.montr_monitor_groups_counters'
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="machine_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="machine_id" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="user_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="servers_data">
@@ -264,8 +264,8 @@ warning 6002: The table/view 'SmartMonitoring.dbo.sys_settings' does not have a 
             <PropertyRef Name="value" />
             <PropertyRef Name="type" />
           </Key>
-          <Property Name="key" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="value" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="key" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="value" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="type" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="transaction_calculated">
@@ -273,9 +273,9 @@ warning 6002: The table/view 'SmartMonitoring.dbo.sys_settings' does not have a 
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="average" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="minimum" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="maximum" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="average" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="minimum" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="maximum" Type="decimal" Precision="18" Scale="4" />
           <Property Name="creation_date" Type="datetime" />
           <Property Name="machine_id" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="counter_id" Type="varchar" MaxLength="10" Nullable="false" />
@@ -441,7 +441,7 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
           <Key>
             <PropertyRef Name="machine_id" />
           </Key>
-          <Property Name="machine_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="machine_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="machine_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="machine_description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="host_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
@@ -721,7 +721,7 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="machine_id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="machine_id" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="user_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="montr_machines_list" Relationship="SmartMonitoringModel.FK_server_users_montr_machines_list" FromRole="server_users" ToRole="montr_machines_list" />
           <NavigationProperty Name="user" Relationship="SmartMonitoringModel.FK_server_users_Users" FromRole="server_users" ToRole="user" />
@@ -786,8 +786,8 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
             <PropertyRef Name="value" />
             <PropertyRef Name="type" />
           </Key>
-          <Property Name="key" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="value" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="key" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="value" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="type" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="C__EFMigrationsHistory">
@@ -802,9 +802,9 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="average" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="minimum" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="maximum" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="average" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="minimum" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="maximum" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="creation_date" Type="DateTime" Precision="3" />
           <Property Name="machine_id" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="counter_id" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
