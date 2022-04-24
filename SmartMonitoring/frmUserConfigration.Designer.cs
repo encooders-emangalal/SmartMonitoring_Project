@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUserConfigration));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.nametxt = new System.Windows.Forms.TextBox();
             this.emailtxt = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -46,17 +46,17 @@
             this.btnCancel = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnJobLocation = new System.Windows.Forms.ToolStripButton();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.SearchPanal = new System.Windows.Forms.Panel();
             this.gvUsers = new System.Windows.Forms.DataGridView();
-            this.btnSearch = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtSearch = new System.Windows.Forms.TextBox();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.SearchPanal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvUsers)).BeginInit();
             this.SuspendLayout();
             // 
@@ -235,16 +235,16 @@
             this.btnJobLocation.Text = "Close";
             this.btnJobLocation.Click += new System.EventHandler(this.btnJobLocation_Click);
             // 
-            // panel2
+            // SearchPanal
             // 
-            this.panel2.Controls.Add(this.gvUsers);
-            this.panel2.Controls.Add(this.btnSearch);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.txtSearch);
-            this.panel2.Location = new System.Drawing.Point(7, 8);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(359, 371);
-            this.panel2.TabIndex = 28;
+            this.SearchPanal.Controls.Add(this.gvUsers);
+            this.SearchPanal.Controls.Add(this.btnSearch);
+            this.SearchPanal.Controls.Add(this.label2);
+            this.SearchPanal.Controls.Add(this.txtSearch);
+            this.SearchPanal.Location = new System.Drawing.Point(7, 8);
+            this.SearchPanal.Name = "SearchPanal";
+            this.SearchPanal.Size = new System.Drawing.Size(359, 371);
+            this.SearchPanal.TabIndex = 28;
             // 
             // gvUsers
             // 
@@ -258,14 +258,14 @@
             this.id,
             this.name,
             this.email});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(188)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gvUsers.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(153)))), ((int)(((byte)(188)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gvUsers.DefaultCellStyle = dataGridViewCellStyle1;
             this.gvUsers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
             this.gvUsers.Location = new System.Drawing.Point(5, 36);
             this.gvUsers.Name = "gvUsers";
@@ -277,6 +277,30 @@
             this.gvUsers.Size = new System.Drawing.Size(350, 332);
             this.gvUsers.TabIndex = 29;
             this.gvUsers.SelectionChanged += new System.EventHandler(this.gvUsers_SelectionChanged_1);
+            // 
+            // id
+            // 
+            this.id.DataPropertyName = "id";
+            this.id.HeaderText = "ID";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.id.Visible = false;
+            // 
+            // name
+            // 
+            this.name.DataPropertyName = "name";
+            this.name.HeaderText = "Name";
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            this.name.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // email
+            // 
+            this.email.DataPropertyName = "email";
+            this.email.HeaderText = "Email";
+            this.email.Name = "email";
+            this.email.ReadOnly = true;
             // 
             // btnSearch
             // 
@@ -310,36 +334,12 @@
             this.txtSearch.Size = new System.Drawing.Size(276, 23);
             this.txtSearch.TabIndex = 25;
             // 
-            // id
-            // 
-            this.id.DataPropertyName = "id";
-            this.id.HeaderText = "ID";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.id.Visible = false;
-            // 
-            // name
-            // 
-            this.name.DataPropertyName = "name";
-            this.name.HeaderText = "Name";
-            this.name.Name = "name";
-            this.name.ReadOnly = true;
-            this.name.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // email
-            // 
-            this.email.DataPropertyName = "email";
-            this.email.HeaderText = "Email";
-            this.email.Name = "email";
-            this.email.ReadOnly = true;
-            // 
             // frmUserConfigration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 381);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.SearchPanal);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -351,8 +351,8 @@
             this.panel1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.SearchPanal.ResumeLayout(false);
+            this.SearchPanal.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvUsers)).EndInit();
             this.ResumeLayout(false);
 
@@ -371,7 +371,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton btnJobLocation;
         private System.Windows.Forms.ToolStripButton btnCancel;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel SearchPanal;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnSearch;

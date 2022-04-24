@@ -74,6 +74,7 @@ namespace SmartMonitoring
                     user.is_active = IsActivecb.Checked;
                     user.comments = commentstxt.Text;
                     user.insert_dt = DateTime.Now;
+                    user.is_deleted = false;
                     context.users.Add(user);
                     _count=context.SaveChanges();
                     message = "Inserted Sucessfully";
@@ -92,6 +93,7 @@ namespace SmartMonitoring
                 btnDelete.Enabled = true;
                 btnCancel.Enabled = false;
                 gvUsers.Enabled = true;
+                SearchPanal.Enabled = true;
 
 
 
@@ -132,6 +134,7 @@ namespace SmartMonitoring
             btnDelete.Enabled = false;
             btnCancel.Enabled = true;
             gvUsers.Enabled = false;
+            SearchPanal.Enabled = false;
             nametxt.Text = "";
             emailtxt.Text = "";
             commentstxt.Text = "";
@@ -156,18 +159,7 @@ namespace SmartMonitoring
                     user.delete_dt = DateTime.Now;
                     context.Entry(user).State = System.Data.Entity.EntityState.Modified;
                     context.SaveChanges();
-
-                    //using (SqlConnection _connection = new SqlConnection(DAL.clsDBFunctions.getConnectionString()))
-                    //{
-                    //    using (SqlCommand cmd = new SqlCommand("update users WHERE id = @id", _connection))
-                    //    {
-                    //        cmd.CommandType = CommandType.Text;
-                    //        cmd.Parameters.AddWithValue("@id", iseditnum);
-                    //        _connection.Open();
-                    //        cmd.ExecuteNonQuery();
-                    //        _connection.Close();
-                    //    }
-                    //}                    
+               
                 }
                 else
                 {
@@ -187,12 +179,12 @@ namespace SmartMonitoring
             btnDelete.Enabled = true;
             btnCancel.Enabled = false;
             gvUsers.Enabled = true;
+            SearchPanal.Enabled = true;
             nametxt.Text = "";
             emailtxt.Text = "";
             commentstxt.Text = "";
             IsActivecb.Checked = false;
-            frmUserConfigration_Load(sender, e);
-            btnCancel.Enabled = true;
+          
 
         }
 
@@ -200,9 +192,9 @@ namespace SmartMonitoring
         {
             if (!string.IsNullOrEmpty(txtSearch.Text.Trim()))
             {
-                Users = context.users.Where(x => x.name.Contains(txtSearch.Text.Trim())||x.email.Contains(txtSearch.Text.Trim())).ToList();
+                Users = context.users.Where(x => (x.is_deleted==false)&& (x.name.Contains(txtSearch.Text.Trim())||x.email.Contains(txtSearch.Text.Trim()))).ToList();
                 gvUsers.DataSource = Converter.ListToDataTable(Users.Select(x => new { x.id, x.name, x.email }).ToList());
-                btnCancel.Enabled = true;
+              
             }
             else 
             {

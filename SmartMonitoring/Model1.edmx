@@ -159,6 +159,15 @@ warning 6002: The table/view 'SmartMonitoring.dbo.montr_monitor_groups_counters'
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="is_active" Type="bit" />
+          <Property Name="is_deleted" Type="bit" />
+          <Property Name="insert_user_id" Type="int" />
+          <Property Name="insert_dt" Type="datetime" />
+          <Property Name="update_user_id" Type="int" />
+          <Property Name="update_dt" Type="datetime" />
+          <Property Name="delete_user_id" Type="int" />
+          <Property Name="delete_dt" Type="datetime" />
+          <Property Name="comments" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="server_users">
           <Key>
@@ -697,6 +706,15 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="montr_machines_list" Relationship="SmartMonitoringModel.FK_montr_machines_list_server_groups" FromRole="server_groups" ToRole="montr_machines_list" />
+          <Property Name="is_active" Type="Boolean" />
+          <Property Name="is_deleted" Type="Boolean" />
+          <Property Name="insert_user_id" Type="Int32" />
+          <Property Name="insert_dt" Type="DateTime" Precision="3" />
+          <Property Name="update_user_id" Type="Int32" />
+          <Property Name="update_dt" Type="DateTime" Precision="3" />
+          <Property Name="delete_user_id" Type="Int32" />
+          <Property Name="delete_dt" Type="DateTime" Precision="3" />
+          <Property Name="comments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="server_users">
           <Key>
@@ -1032,6 +1050,15 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
           <EntitySetMapping Name="server_groups">
             <EntityTypeMapping TypeName="SmartMonitoringModel.server_groups">
               <MappingFragment StoreEntitySet="server_groups">
+                <ScalarProperty Name="comments" ColumnName="comments" />
+                <ScalarProperty Name="delete_dt" ColumnName="delete_dt" />
+                <ScalarProperty Name="delete_user_id" ColumnName="delete_user_id" />
+                <ScalarProperty Name="update_dt" ColumnName="update_dt" />
+                <ScalarProperty Name="update_user_id" ColumnName="update_user_id" />
+                <ScalarProperty Name="insert_dt" ColumnName="insert_dt" />
+                <ScalarProperty Name="insert_user_id" ColumnName="insert_user_id" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
