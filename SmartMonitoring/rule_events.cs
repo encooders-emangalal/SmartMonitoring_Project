@@ -12,10 +12,9 @@ namespace SmartMonitoring
     using System;
     using System.Collections.Generic;
     
-    public partial class montr_monitor_rules
+    public partial class rule_events
     {
-        public int rule_id { get; set; }
-        public string machine_id { get; set; }
+        public int id { get; set; }
         public string counter_id { get; set; }
         public string instance_id { get; set; }
         public string rule_field { get; set; }
@@ -23,12 +22,12 @@ namespace SmartMonitoring
         public double rule_value { get; set; }
         public byte rule_ocuurance_type { get; set; }
         public int ocuurance_interval { get; set; }
-        public string display_level { get; set; }
-        public int action_id { get; set; }
-        public Nullable<bool> is_active { get; set; }
-        public Nullable<System.DateTime> first_occurance_datetime { get; set; }
-        public Nullable<System.DateTime> last_occurance_datetime { get; set; }
-        public Nullable<int> occurance_count { get; set; }
-        public Nullable<int> occurance_interval { get; set; }
+        public string machine_id { get; set; }
+        public int rule_id { get; set; }
+        public int raised_action_id { get; set; }
+        public System.DateTime raised_action_fire_date { get; set; }
+        public Nullable<bool> is_ack { get; set; }
+        public Nullable<System.DateTime> ack_date_time { get; set; }
+        public Nullable<int> ack_user { get; set; }
     }
 }

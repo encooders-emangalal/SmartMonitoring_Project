@@ -17,6 +17,14 @@ namespace SmartMonitoring
         public int id { get; set; }
         public string machine_id { get; set; }
         public int user_id { get; set; }
+        public Nullable<bool> is_deleted { get; set; }
+        public Nullable<System.DateTime> delete_dt { get; set; }
+        public Nullable<bool> is_active { get; set; }
+        public Nullable<int> insert_user_id { get; set; }
+        public Nullable<System.DateTime> insert_dt { get; set; }
+        public Nullable<int> update_user_id { get; set; }
+        public Nullable<System.DateTime> update_dt { get; set; }
+        public Nullable<int> delete_user_id { get; set; }
     
         public virtual montr_machines_list montr_machines_list { get; set; }
         public virtual user user { get; set; }

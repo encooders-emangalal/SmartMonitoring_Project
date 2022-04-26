@@ -12,15 +12,15 @@ namespace SmartMonitoring
     using System;
     using System.Collections.Generic;
     
-    public partial class transaction_calculated
+    public partial class montr_transaction_calculated
     {
-        public int id { get; set; }
-        public Nullable<decimal> average { get; set; }
-        public Nullable<decimal> minimum { get; set; }
-        public Nullable<decimal> maximum { get; set; }
-        public Nullable<System.DateTime> creation_date { get; set; }
+        public int transaction_id { get; set; }
         public string machine_id { get; set; }
         public string counter_id { get; set; }
         public string instance_id { get; set; }
+        public Nullable<System.DateTime> creation_datetime { get; set; }
+        public Nullable<decimal> transaction_average { get; set; }
+        public Nullable<decimal> transaction_minimum { get; set; }
+        public Nullable<decimal> transaction_maximum { get; set; }
     }
 }

@@ -14,8 +14,16 @@ namespace SmartMonitoring
     
     public partial class sys_settings
     {
-        public string key { get; set; }
-        public string value { get; set; }
-        public int type { get; set; }
+        public int sys_id { get; set; }
+        public string sys_value { get; set; }
+        public int sys_type { get; set; }
+        public Nullable<bool> is_active { get; set; }
+        public Nullable<bool> is_deleted { get; set; }
+        public Nullable<int> insert_user_id { get; set; }
+        public Nullable<System.DateTime> insert_dt { get; set; }
+        public Nullable<int> update_user_id { get; set; }
+        public Nullable<System.DateTime> update_dt { get; set; }
+        public Nullable<int> delete_user_id { get; set; }
+        public Nullable<System.DateTime> delete_dt { get; set; }
     }
 }

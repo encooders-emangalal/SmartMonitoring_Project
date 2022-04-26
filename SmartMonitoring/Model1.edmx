@@ -109,12 +109,11 @@ warning 6002: The table/view 'SmartMonitoring.dbo.montr_monitor_groups_counters'
           <Property Name="ocuurance_interval" Type="int" Nullable="false" />
           <Property Name="display_level" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="action_id" Type="int" Nullable="false" />
+          <Property Name="is_active" Type="bit" />
           <Property Name="first_occurance_datetime" Type="datetime" />
           <Property Name="last_occurance_datetime" Type="datetime" />
           <Property Name="occurance_count" Type="int" />
           <Property Name="occurance_interval" Type="int" />
-          <Property Name="is_alarm_raised" Type="bit" />
-          <Property Name="is_action_raised" Type="bit" />
         </EntityType>
         <EntityType Name="montr_monitor_transactions">
           <Key>
@@ -126,6 +125,39 @@ warning 6002: The table/view 'SmartMonitoring.dbo.montr_monitor_groups_counters'
           <Property Name="instance_id" Type="nvarchar" MaxLength="150" />
           <Property Name="counter_datetime" Type="datetime" Nullable="false" />
           <Property Name="counter_value" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="montr_transaction_calculated">
+          <Key>
+            <PropertyRef Name="transaction_id" />
+          </Key>
+          <Property Name="transaction_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="machine_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="counter_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="instance_id" Type="nvarchar" MaxLength="150" />
+          <Property Name="creation_datetime" Type="datetime" />
+          <Property Name="transaction_average" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="transaction_minimum" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="transaction_maximum" Type="decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="rule_events">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="counter_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="instance_id" Type="nvarchar" MaxLength="150" />
+          <Property Name="rule_field" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="rule_math_symbol" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="rule_value" Type="float" Nullable="false" />
+          <Property Name="rule_ocuurance_type" Type="tinyint" Nullable="false" />
+          <Property Name="ocuurance_interval" Type="int" Nullable="false" />
+          <Property Name="machine_id" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="rule_id" Type="int" Nullable="false" />
+          <Property Name="raised_action_id" Type="int" Nullable="false" />
+          <Property Name="raised_action_fire_date" Type="datetime" Nullable="false" />
+          <Property Name="is_ack" Type="bit" />
+          <Property Name="ack_date_time" Type="datetime" />
+          <Property Name="ack_user" Type="int" />
         </EntityType>
         <EntityType Name="schd_schedulers_data">
           <Key>
@@ -176,6 +208,14 @@ warning 6002: The table/view 'SmartMonitoring.dbo.montr_monitor_groups_counters'
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="machine_id" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="is_deleted" Type="bit" />
+          <Property Name="delete_dt" Type="datetime" />
+          <Property Name="is_active" Type="bit" />
+          <Property Name="insert_user_id" Type="int" />
+          <Property Name="insert_dt" Type="datetime" />
+          <Property Name="update_user_id" Type="int" />
+          <Property Name="update_dt" Type="datetime" />
+          <Property Name="delete_user_id" Type="int" />
         </EntityType>
         <EntityType Name="servers_data">
           <Key>
@@ -256,30 +296,21 @@ warning 6002: The table/view 'SmartMonitoring.dbo.set_counters_categories' does 
           <Property Name="identifier_id" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="serialno_value" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'SmartMonitoring.dbo.sys_settings' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="sys_settings">
           <Key>
-            <PropertyRef Name="key" />
-            <PropertyRef Name="value" />
-            <PropertyRef Name="type" />
+            <PropertyRef Name="sys_id" />
           </Key>
-          <Property Name="key" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="value" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="type" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="transaction_calculated">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="average" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="minimum" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="maximum" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="creation_date" Type="datetime" />
-          <Property Name="machine_id" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="counter_id" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="instance_id" Type="nvarchar" MaxLength="150" />
+          <Property Name="sys_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sys_value" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="sys_type" Type="int" Nullable="false" />
+          <Property Name="is_active" Type="bit" />
+          <Property Name="is_deleted" Type="bit" />
+          <Property Name="insert_user_id" Type="int" />
+          <Property Name="insert_dt" Type="datetime" />
+          <Property Name="update_user_id" Type="int" />
+          <Property Name="update_dt" Type="datetime" />
+          <Property Name="delete_user_id" Type="int" />
+          <Property Name="delete_dt" Type="datetime" />
         </EntityType>
         <EntityType Name="users">
           <Key>
@@ -356,6 +387,8 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
           <EntitySet Name="montr_monitor_groups" EntityType="Self.montr_monitor_groups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="montr_monitor_rules" EntityType="Self.montr_monitor_rules" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="montr_monitor_transactions" EntityType="Self.montr_monitor_transactions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="montr_transaction_calculated" EntityType="Self.montr_transaction_calculated" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="rule_events" EntityType="Self.rule_events" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="schd_schedulers_data" EntityType="Self.schd_schedulers_data" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="server_groups" EntityType="Self.server_groups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="server_users" EntityType="Self.server_users" Schema="dbo" store:Type="Tables" />
@@ -363,7 +396,7 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
           <EntitySet Name="servers_updates" EntityType="Self.servers_updates" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="set_counters" EntityType="Self.set_counters" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="set_serialno" EntityType="Self.set_serialno" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="transaction_calculated" EntityType="Self.transaction_calculated" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sys_settings" EntityType="Self.sys_settings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="montr_monitor_counters" EntityType="Self.montr_monitor_counters" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -402,13 +435,6 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
     [set_counters_categories].[display_order] AS [display_order], 
     [set_counters_categories].[is_active] AS [is_active]
     FROM [dbo].[set_counters_categories] AS [set_counters_categories]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="sys_settings" EntityType="Self.sys_settings" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [sys_settings].[key] AS [key], 
-    [sys_settings].[value] AS [value], 
-    [sys_settings].[type] AS [type]
-    FROM [dbo].[sys_settings] AS [sys_settings]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="xx_counters_transactions" EntityType="Self.xx_counters_transactions" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -630,7 +656,6 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
           <EntitySet Name="montr_monitor_counters" EntityType="Self.montr_monitor_counters" />
           <EntitySet Name="montr_monitor_groups_counters" EntityType="Self.montr_monitor_groups_counters" />
           <EntitySet Name="set_counters_categories" EntityType="Self.set_counters_categories" />
-          <EntitySet Name="montr_monitor_rules" EntityType="SmartMonitoringModel.montr_monitor_rules" />
           <EntitySet Name="xx_counters_transactions" EntityType="SmartMonitoringModel.xx_counters_transactions" />
           <EntitySet Name="montr_monitor_transactions" EntityType="SmartMonitoringModel.montr_monitor_transactions" />
           <EntitySet Name="server_groups" EntityType="SmartMonitoringModel.server_groups" />
@@ -648,32 +673,12 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
             <End Role="user" EntitySet="users" />
             <End Role="server_users" EntitySet="server_users" />
           </AssociationSet>
-          <EntitySet Name="sys_settings" EntityType="SmartMonitoringModel.sys_settings" />
           <EntitySet Name="C__EFMigrationsHistory" EntityType="SmartMonitoringModel.C__EFMigrationsHistory" />
-          <EntitySet Name="transaction_calculated" EntityType="SmartMonitoringModel.transaction_calculated" />
+          <EntitySet Name="montr_transaction_calculated" EntityType="SmartMonitoringModel.montr_transaction_calculated" />
+          <EntitySet Name="sys_settings" EntityType="SmartMonitoringModel.sys_settings" />
+          <EntitySet Name="rule_events" EntityType="SmartMonitoringModel.rule_events" />
+          <EntitySet Name="montr_monitor_rules" EntityType="SmartMonitoringModel.montr_monitor_rules" />
         </EntityContainer>
-        <EntityType Name="montr_monitor_rules">
-          <Key>
-            <PropertyRef Name="rule_id" />
-          </Key>
-          <Property Name="rule_id" Type="Int32" Nullable="false" />
-          <Property Name="machine_id" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="counter_id" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="instance_id" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="rule_field" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="rule_math_symbol" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="rule_value" Type="Double" Nullable="false" />
-          <Property Name="rule_ocuurance_type" Type="Byte" Nullable="false" />
-          <Property Name="ocuurance_interval" Type="Int32" Nullable="false" />
-          <Property Name="display_level" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="action_id" Type="Int32" Nullable="false" />
-          <Property Name="first_occurance_datetime" Type="DateTime" Precision="3" />
-          <Property Name="last_occurance_datetime" Type="DateTime" Precision="3" />
-          <Property Name="occurance_count" Type="Int32" />
-          <Property Name="occurance_interval" Type="Int32" />
-          <Property Name="is_alarm_raised" Type="Boolean" />
-          <Property Name="is_action_raised" Type="Boolean" />
-        </EntityType>
         <EntityType Name="xx_counters_transactions">
           <Key>
             <PropertyRef Name="category_name" />
@@ -725,6 +730,14 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
           <Property Name="user_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="montr_machines_list" Relationship="SmartMonitoringModel.FK_server_users_montr_machines_list" FromRole="server_users" ToRole="montr_machines_list" />
           <NavigationProperty Name="user" Relationship="SmartMonitoringModel.FK_server_users_Users" FromRole="server_users" ToRole="user" />
+          <Property Name="is_deleted" Type="Boolean" />
+          <Property Name="delete_dt" Type="DateTime" Precision="3" />
+          <Property Name="is_active" Type="Boolean" />
+          <Property Name="insert_user_id" Type="Int32" />
+          <Property Name="insert_dt" Type="DateTime" Precision="3" />
+          <Property Name="update_user_id" Type="Int32" />
+          <Property Name="update_dt" Type="DateTime" Precision="3" />
+          <Property Name="delete_user_id" Type="Int32" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -780,16 +793,6 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="sys_settings">
-          <Key>
-            <PropertyRef Name="key" />
-            <PropertyRef Name="value" />
-            <PropertyRef Name="type" />
-          </Key>
-          <Property Name="key" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="value" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="type" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="C__EFMigrationsHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -797,18 +800,75 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
           <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="transaction_calculated">
+        <EntityType Name="montr_transaction_calculated">
+          <Key>
+            <PropertyRef Name="transaction_id" />
+          </Key>
+          <Property Name="transaction_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="machine_id" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="counter_id" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="instance_id" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="creation_datetime" Type="DateTime" Precision="3" />
+          <Property Name="transaction_average" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="transaction_minimum" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="transaction_maximum" Type="Decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="sys_settings">
+          <Key>
+            <PropertyRef Name="sys_id" />
+          </Key>
+          <Property Name="sys_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sys_value" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="sys_type" Type="Int32" Nullable="false" />
+          <Property Name="is_active" Type="Boolean" />
+          <Property Name="is_deleted" Type="Boolean" />
+          <Property Name="insert_user_id" Type="Int32" />
+          <Property Name="insert_dt" Type="DateTime" Precision="3" />
+          <Property Name="update_user_id" Type="Int32" />
+          <Property Name="update_dt" Type="DateTime" Precision="3" />
+          <Property Name="delete_user_id" Type="Int32" />
+          <Property Name="delete_dt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="rule_events">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="average" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="minimum" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="maximum" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="creation_date" Type="DateTime" Precision="3" />
+          <Property Name="counter_id" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="instance_id" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="rule_field" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rule_math_symbol" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rule_value" Type="Double" Nullable="false" />
+          <Property Name="rule_ocuurance_type" Type="Byte" Nullable="false" />
+          <Property Name="ocuurance_interval" Type="Int32" Nullable="false" />
+          <Property Name="machine_id" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="rule_id" Type="Int32" Nullable="false" />
+          <Property Name="raised_action_id" Type="Int32" Nullable="false" />
+          <Property Name="raised_action_fire_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="is_ack" Type="Boolean" />
+          <Property Name="ack_date_time" Type="DateTime" Precision="3" />
+          <Property Name="ack_user" Type="Int32" />
+        </EntityType>
+        <EntityType Name="montr_monitor_rules">
+          <Key>
+            <PropertyRef Name="rule_id" />
+          </Key>
+          <Property Name="rule_id" Type="Int32" Nullable="false" />
           <Property Name="machine_id" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="counter_id" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="instance_id" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="rule_field" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rule_math_symbol" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rule_value" Type="Double" Nullable="false" />
+          <Property Name="rule_ocuurance_type" Type="Byte" Nullable="false" />
+          <Property Name="ocuurance_interval" Type="Int32" Nullable="false" />
+          <Property Name="display_level" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="action_id" Type="Int32" Nullable="false" />
+          <Property Name="is_active" Type="Boolean" />
+          <Property Name="first_occurance_datetime" Type="DateTime" Precision="3" />
+          <Property Name="last_occurance_datetime" Type="DateTime" Precision="3" />
+          <Property Name="occurance_count" Type="Int32" />
+          <Property Name="occurance_interval" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1000,29 +1060,6 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="montr_monitor_rules">
-            <EntityTypeMapping TypeName="SmartMonitoringModel.montr_monitor_rules">
-              <MappingFragment StoreEntitySet="montr_monitor_rules">
-                <ScalarProperty Name="is_action_raised" ColumnName="is_action_raised" />
-                <ScalarProperty Name="is_alarm_raised" ColumnName="is_alarm_raised" />
-                <ScalarProperty Name="occurance_interval" ColumnName="occurance_interval" />
-                <ScalarProperty Name="occurance_count" ColumnName="occurance_count" />
-                <ScalarProperty Name="last_occurance_datetime" ColumnName="last_occurance_datetime" />
-                <ScalarProperty Name="first_occurance_datetime" ColumnName="first_occurance_datetime" />
-                <ScalarProperty Name="action_id" ColumnName="action_id" />
-                <ScalarProperty Name="display_level" ColumnName="display_level" />
-                <ScalarProperty Name="ocuurance_interval" ColumnName="ocuurance_interval" />
-                <ScalarProperty Name="rule_ocuurance_type" ColumnName="rule_ocuurance_type" />
-                <ScalarProperty Name="rule_value" ColumnName="rule_value" />
-                <ScalarProperty Name="rule_math_symbol" ColumnName="rule_math_symbol" />
-                <ScalarProperty Name="rule_field" ColumnName="rule_field" />
-                <ScalarProperty Name="instance_id" ColumnName="instance_id" />
-                <ScalarProperty Name="counter_id" ColumnName="counter_id" />
-                <ScalarProperty Name="machine_id" ColumnName="machine_id" />
-                <ScalarProperty Name="rule_id" ColumnName="rule_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="xx_counters_transactions">
             <EntityTypeMapping TypeName="SmartMonitoringModel.xx_counters_transactions">
               <MappingFragment StoreEntitySet="xx_counters_transactions">
@@ -1067,6 +1104,14 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
           <EntitySetMapping Name="server_users">
             <EntityTypeMapping TypeName="SmartMonitoringModel.server_users">
               <MappingFragment StoreEntitySet="server_users">
+                <ScalarProperty Name="delete_user_id" ColumnName="delete_user_id" />
+                <ScalarProperty Name="update_dt" ColumnName="update_dt" />
+                <ScalarProperty Name="update_user_id" ColumnName="update_user_id" />
+                <ScalarProperty Name="insert_dt" ColumnName="insert_dt" />
+                <ScalarProperty Name="insert_user_id" ColumnName="insert_user_id" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="delete_dt" ColumnName="delete_dt" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="machine_id" ColumnName="machine_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -1091,15 +1136,6 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sys_settings">
-            <EntityTypeMapping TypeName="SmartMonitoringModel.sys_settings">
-              <MappingFragment StoreEntitySet="sys_settings">
-                <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="value" ColumnName="value" />
-                <ScalarProperty Name="key" ColumnName="key" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="C__EFMigrationsHistory">
             <EntityTypeMapping TypeName="SmartMonitoringModel.C__EFMigrationsHistory">
               <MappingFragment StoreEntitySet="__EFMigrationsHistory">
@@ -1108,17 +1144,77 @@ warning 6002: The table/view 'SmartMonitoring.dbo.xx_counters_transactions' does
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="transaction_calculated">
-            <EntityTypeMapping TypeName="SmartMonitoringModel.transaction_calculated">
-              <MappingFragment StoreEntitySet="transaction_calculated">
+          <EntitySetMapping Name="montr_transaction_calculated">
+            <EntityTypeMapping TypeName="SmartMonitoringModel.montr_transaction_calculated">
+              <MappingFragment StoreEntitySet="montr_transaction_calculated">
+                <ScalarProperty Name="transaction_maximum" ColumnName="transaction_maximum" />
+                <ScalarProperty Name="transaction_minimum" ColumnName="transaction_minimum" />
+                <ScalarProperty Name="transaction_average" ColumnName="transaction_average" />
+                <ScalarProperty Name="creation_datetime" ColumnName="creation_datetime" />
                 <ScalarProperty Name="instance_id" ColumnName="instance_id" />
                 <ScalarProperty Name="counter_id" ColumnName="counter_id" />
                 <ScalarProperty Name="machine_id" ColumnName="machine_id" />
-                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
-                <ScalarProperty Name="maximum" ColumnName="maximum" />
-                <ScalarProperty Name="minimum" ColumnName="minimum" />
-                <ScalarProperty Name="average" ColumnName="average" />
+                <ScalarProperty Name="transaction_id" ColumnName="transaction_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sys_settings">
+            <EntityTypeMapping TypeName="SmartMonitoringModel.sys_settings">
+              <MappingFragment StoreEntitySet="sys_settings">
+                <ScalarProperty Name="delete_dt" ColumnName="delete_dt" />
+                <ScalarProperty Name="delete_user_id" ColumnName="delete_user_id" />
+                <ScalarProperty Name="update_dt" ColumnName="update_dt" />
+                <ScalarProperty Name="update_user_id" ColumnName="update_user_id" />
+                <ScalarProperty Name="insert_dt" ColumnName="insert_dt" />
+                <ScalarProperty Name="insert_user_id" ColumnName="insert_user_id" />
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="sys_type" ColumnName="sys_type" />
+                <ScalarProperty Name="sys_value" ColumnName="sys_value" />
+                <ScalarProperty Name="sys_id" ColumnName="sys_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rule_events">
+            <EntityTypeMapping TypeName="SmartMonitoringModel.rule_events">
+              <MappingFragment StoreEntitySet="rule_events">
+                <ScalarProperty Name="ack_user" ColumnName="ack_user" />
+                <ScalarProperty Name="ack_date_time" ColumnName="ack_date_time" />
+                <ScalarProperty Name="is_ack" ColumnName="is_ack" />
+                <ScalarProperty Name="raised_action_fire_date" ColumnName="raised_action_fire_date" />
+                <ScalarProperty Name="raised_action_id" ColumnName="raised_action_id" />
+                <ScalarProperty Name="rule_id" ColumnName="rule_id" />
+                <ScalarProperty Name="machine_id" ColumnName="machine_id" />
+                <ScalarProperty Name="ocuurance_interval" ColumnName="ocuurance_interval" />
+                <ScalarProperty Name="rule_ocuurance_type" ColumnName="rule_ocuurance_type" />
+                <ScalarProperty Name="rule_value" ColumnName="rule_value" />
+                <ScalarProperty Name="rule_math_symbol" ColumnName="rule_math_symbol" />
+                <ScalarProperty Name="rule_field" ColumnName="rule_field" />
+                <ScalarProperty Name="instance_id" ColumnName="instance_id" />
+                <ScalarProperty Name="counter_id" ColumnName="counter_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="montr_monitor_rules">
+            <EntityTypeMapping TypeName="SmartMonitoringModel.montr_monitor_rules">
+              <MappingFragment StoreEntitySet="montr_monitor_rules">
+                <ScalarProperty Name="occurance_interval" ColumnName="occurance_interval" />
+                <ScalarProperty Name="occurance_count" ColumnName="occurance_count" />
+                <ScalarProperty Name="last_occurance_datetime" ColumnName="last_occurance_datetime" />
+                <ScalarProperty Name="first_occurance_datetime" ColumnName="first_occurance_datetime" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+                <ScalarProperty Name="action_id" ColumnName="action_id" />
+                <ScalarProperty Name="display_level" ColumnName="display_level" />
+                <ScalarProperty Name="ocuurance_interval" ColumnName="ocuurance_interval" />
+                <ScalarProperty Name="rule_ocuurance_type" ColumnName="rule_ocuurance_type" />
+                <ScalarProperty Name="rule_value" ColumnName="rule_value" />
+                <ScalarProperty Name="rule_math_symbol" ColumnName="rule_math_symbol" />
+                <ScalarProperty Name="rule_field" ColumnName="rule_field" />
+                <ScalarProperty Name="instance_id" ColumnName="instance_id" />
+                <ScalarProperty Name="counter_id" ColumnName="counter_id" />
+                <ScalarProperty Name="machine_id" ColumnName="machine_id" />
+                <ScalarProperty Name="rule_id" ColumnName="rule_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

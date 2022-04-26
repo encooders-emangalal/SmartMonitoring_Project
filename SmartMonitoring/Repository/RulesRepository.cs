@@ -39,9 +39,7 @@ namespace SmartMonitoring.Repository
             entity.first_occurance_datetime = rule.first_occurance_datetime;
             entity.last_occurance_datetime = rule.last_occurance_datetime;
             entity.occurance_count = rule.occurance_count;
-            entity.occurance_interval = rule.occurance_interval;
-            entity.is_action_raised = rule.is_action_raised;
-            entity.is_alarm_raised = rule.is_alarm_raised;
+            entity.occurance_interval = rule.occurance_interval;            
             db.Entry(entity).State = EntityState.Modified;
         }
 

@@ -1069,10 +1069,10 @@ where counters.is_deleted = 0 and tbl_link.machine_id = '{_server_id}' and tbl_l
 
         private void btnErrors_Click(object sender, EventArgs e)
         {
-            frmJobsNotifications frmJobsNotifications = new frmJobsNotifications();
-            frmJobsNotifications.ShowDialog();
-            //MonitorErrors monitorError = new MonitorErrors();
-            //monitorError.ShowDialog();
+            //frmJobsNotifications frmJobsNotifications = new frmJobsNotifications();
+            //frmJobsNotifications.ShowDialog();
+            MonitorErrors monitorError = new MonitorErrors();
+            monitorError.ShowDialog();
         }
 
         private void gvCounters_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -1092,6 +1092,12 @@ where counters.is_deleted = 0 and tbl_link.machine_id = '{_server_id}' and tbl_l
         {
             frmServersGroupsConfigration frmServersGroupsConfigration = new frmServersGroupsConfigration();
             frmServersGroupsConfigration.ShowDialog();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            frmSystemSettings frmSystemSettings = new frmSystemSettings();
+            frmSystemSettings.ShowDialog();
         }
     }
 

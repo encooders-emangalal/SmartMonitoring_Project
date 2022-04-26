@@ -15,7 +15,6 @@
         <EntityTypeShape EntityType="SmartMonitoringModel.montr_monitor_counters" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SmartMonitoringModel.montr_monitor_groups_counters" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SmartMonitoringModel.set_counters_categories" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SmartMonitoringModel.montr_monitor_rules" Width="1.5" PointX="11.375" PointY="3.75" />
         <EntityTypeShape EntityType="SmartMonitoringModel.xx_counters_transactions" Width="1.5" PointX="3.375" PointY="10.75" />
         <EntityTypeShape EntityType="SmartMonitoringModel.montr_monitor_transactions" Width="1.5" PointX="9.375" PointY="9.75" />
         <EntityTypeShape EntityType="SmartMonitoringModel.server_groups" Width="1.5" PointX="0.625" PointY="18.875" />
@@ -24,9 +23,11 @@
         <AssociationConnector Association="SmartMonitoringModel.FK_montr_machines_list_server_groups" />
         <AssociationConnector Association="SmartMonitoringModel.FK_server_users_montr_machines_list" />
         <AssociationConnector Association="SmartMonitoringModel.FK_server_users_Users" />
-        <EntityTypeShape EntityType="SmartMonitoringModel.sys_settings" Width="1.5" PointX="0.75" PointY="11.75" />
         <EntityTypeShape EntityType="SmartMonitoringModel.C__EFMigrationsHistory" Width="1.5" PointX="11.375" PointY="9.75" />
-        <EntityTypeShape EntityType="SmartMonitoringModel.transaction_calculated" Width="1.5" PointX="5.75" PointY="13.5" />
+        <EntityTypeShape EntityType="SmartMonitoringModel.montr_transaction_calculated" Width="1.5" PointX="5.375" PointY="12.75" />
+        <EntityTypeShape EntityType="SmartMonitoringModel.sys_settings" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="SmartMonitoringModel.rule_events" Width="1.5" PointX="7.375" PointY="12.75" />
+        <EntityTypeShape EntityType="SmartMonitoringModel.montr_monitor_rules" Width="1.5" PointX="9.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
