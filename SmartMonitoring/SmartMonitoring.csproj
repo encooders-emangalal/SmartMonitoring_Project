@@ -114,12 +114,6 @@
     <Compile Include="frmServersGroupsConfigration.Designer.cs">
       <DependentUpon>frmServersGroupsConfigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmSystemSettings.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmSystemSettings.Designer.cs">
-      <DependentUpon>frmSystemSettings.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmUserConfigration.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -303,9 +297,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmServersGroupsConfigration.resx">
       <DependentUpon>frmServersGroupsConfigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmSystemSettings.resx">
-      <DependentUpon>frmSystemSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUserConfigration.resx">
       <DependentUpon>frmUserConfigration.cs</DependentUpon>

@@ -42,8 +42,8 @@ namespace SmartMonitoring
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<C__EFMigrationsHistory> C__EFMigrationsHistory { get; set; }
         public virtual DbSet<montr_transaction_calculated> montr_transaction_calculated { get; set; }
-        public virtual DbSet<sys_settings> sys_settings { get; set; }
         public virtual DbSet<rule_events> rule_events { get; set; }
         public virtual DbSet<montr_monitor_rules> montr_monitor_rules { get; set; }
+        public virtual DbSet<sys_settings> sys_settings { get; set; }
     }
 }

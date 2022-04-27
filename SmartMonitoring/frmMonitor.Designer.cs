@@ -1192,6 +1192,8 @@
             this.tsbActivate.Size = new System.Drawing.Size(73, 61);
             this.tsbActivate.Text = "Options";
             this.tsbActivate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsbActivate.Visible = false;
+            this.tsbActivate.Click += new System.EventHandler(this.tsbActivate_Click);
             // 
             // btnJobLocation
             // 

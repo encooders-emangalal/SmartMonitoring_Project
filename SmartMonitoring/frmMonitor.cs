@@ -1096,8 +1096,16 @@ where counters.is_deleted = 0 and tbl_link.machine_id = '{_server_id}' and tbl_l
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            frmSystemSettings frmSystemSettings = new frmSystemSettings();
-            frmSystemSettings.ShowDialog();
+
+            frmSettings frmSettings = new frmSettings();
+            frmSettings.ShowDialog();
+            //frmSystemSettings frmSystemSettings = new frmSystemSettings();
+            //frmSystemSettings.ShowDialog();
+        }
+
+        private void tsbActivate_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 

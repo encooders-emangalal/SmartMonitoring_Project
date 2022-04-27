@@ -8,15 +8,29 @@ using System.Threading.Tasks;
 namespace SmartMonitoring.Enums
 {
     public class Enums
-    {       
+    {
         public enum sys_type
         {
-            SMTP=0, 
-            SenderEmail=1,
-            EmailPassword=2,
-            SMTPPort =3,
-            SenderName =4,
+            
+            [System.Xml.Serialization.XmlEnumAttribute("SMTP")]
+            SMTP,
+            [System.Xml.Serialization.XmlEnumAttribute("SenderEmail")]
+            SenderEmail,
+            [System.Xml.Serialization.XmlEnumAttribute("EmailPassword")]
+            EmailPassword,
+            [System.Xml.Serialization.XmlEnumAttribute("SMTPPort")]
+            SMTPPort,          
+            [System.Xml.Serialization.XmlEnumAttribute("SenderName")]
+            SenderName,         
         }
+        //public enum sys_type
+        //{
+        //    SMTP = 0, 
+        //    SenderEmail=1,
+        //    EmailPassword=2,
+        //    SMTPPort =3,
+        //    SenderName =4,
+        //}
 
     }
 }

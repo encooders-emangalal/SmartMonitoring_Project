@@ -16,7 +16,7 @@ namespace SmartMonitoring
     {
         public int sys_id { get; set; }
         public string sys_value { get; set; }
-        public int sys_type { get; set; }
+        public string sys_type { get; set; }
         public Nullable<bool> is_active { get; set; }
         public Nullable<bool> is_deleted { get; set; }
         public Nullable<int> insert_user_id { get; set; }
